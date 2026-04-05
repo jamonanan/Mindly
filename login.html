@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign In - Mindly</title>
+    <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/login.css">
 </head>
 
@@ -24,6 +25,9 @@
         <div class="auth-card">
             <h2 class="auth-title">Sign In</h2>
             <p class="auth-subtitle">Enter your credentials to access your dashboard</p>
+            
+            <!-- Message Div for Login Errors -->
+            <div id="loginMessage" style="display:none; color: #dc3545; text-align: center; margin-bottom: 1rem; transition: opacity 0.5s;"></div>
 
             <!-- Login Form -->
             <form id="loginForm" class="auth-form" novalidate>
@@ -40,7 +44,7 @@
                 </div>
 
                 <!-- Sign In Button -->
-                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+                <button type="button" onclick="loginUser()" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
                     Sign In
                 </button>
             </form>
@@ -55,6 +59,7 @@
     <!-- Link JavaScript Files -->
     <script src="common.js"></script>
     <script src="login.js"></script>
+    <script type="module" src="firebaseAuth.js"></script>
 </body>
 
 </html>

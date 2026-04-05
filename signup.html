@@ -5,7 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Account - Mindly</title>
+    <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/signup.css">
+    <script type="module" src="firebaseAuth.js"></script>
+    
 </head>
 
 <body class="auth-page signup-page">
@@ -26,7 +29,8 @@
             <p class="auth-subtitle">Join Mindly to start your personalized learning journey</p>
 
             <!-- Sign Up Form -->
-            <form id="signupForm" class="auth-form" novalidate>
+            <form id="signupForm" class="auth-form" method="post">
+               <div id="signUpMessage" class="messageDiv" style="display: none;"></div>
                 <!-- Full Name Input -->
                 <div class="input-group">
                     <label for="fullName">Full Name</label>
@@ -36,13 +40,13 @@
                 <!-- Email Input -->
                 <div class="input-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    <input type="email" id="registerEmail" name="email" placeholder="Enter your email" required>
                 </div>
 
                 <!-- Password Input -->
                 <div class="input-group">
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                    <input type="password" id="registerPassword" name="password" placeholder="Enter your password" required>
                 </div>
 
                 <!-- Confirm Password Input -->
@@ -51,13 +55,14 @@
                     <input type="password" id="confirmPassword" name="confirmPassword"
                         placeholder="Confirm your password" required>
                 </div>
+                 <div id="signInMessage" class="messageDiv" style="display: none;"></div>
 
                 <!-- Create Account Button -->
-                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+                <button type="button" onclick="registerUser()" id="submitSignUp" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
                     Create Account
                 </button>
             </form>
-
+            
             <!-- Sign In Link -->
             <div class="auth-link">
                 Already have an account? <a href="login.html">Sign in</a>
