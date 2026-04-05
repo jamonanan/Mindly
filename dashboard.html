@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Mindly</title>
+    <link rel="stylesheet" href="styles/dashboard.css">
+</head>
+
+<body class="dashboard-page">
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <!-- Logo and Welcome -->
+            <div class="dashboard-welcome">
+                <div class="logo">
+                    <div class="logo-icon">🧠</div>
+                    <span>Mindly</span>
+                </div>
+                <!-- <span style="color: var(--gray-dark); margin-left: 1rem;">Welcome back, sads!! ✨</span> -->
+            </div>
+
+            <!-- Dashboard Actions -->
+            <div class="dashboard-actions">
+                <button class="btn btn-secondary" style="display: flex; align-items: center; gap: 0.5rem;">
+                    ⚙️ Settings
+                </button>
+                <a href="login.html" class="btn btn-secondary" style="display: flex; align-items: center; gap: 0.5rem;">
+                    → Logout
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="dashboard-main container">
+        <!-- Main Heading -->
+        <h2 class="dashboard-heading">Ready to continue your learning journey today?</h2>
+
+        <!-- Key Metrics Section -->
+        <section class="metrics-section">
+            <div class="metrics-grid">
+                <!-- Reading Time Card -->
+                <div class="metric-card blue">
+                    <p class="metric-title">Reading Time</p>
+                    <p class="metric-value">45m</p>
+                    <p class="metric-insight">↗ +20% from yesterday</p>
+                </div>
+
+                <!-- Lessons Done Card -->
+                <div class="metric-card green">
+                    <p class="metric-title">Lessons Done</p>
+                    <p class="metric-value">3</p>
+                    <p class="metric-insight">↗ Out of 5 planned</p>
+                </div>
+
+                <!-- Quiz Score Card -->
+                <div class="metric-card yellow">
+                    <p class="metric-title">Quiz Score</p>
+                    <p class="metric-value">85%</p>
+                    <p class="metric-insight">↗ Great improvement!</p>
+                </div>
+
+                <!-- Focus Time Card -->
+                <div class="metric-card purple">
+                    <p class="metric-title">Focus Time</p>
+                    <p class="metric-value">120m</p>
+                    <p class="metric-insight">↗ New personal best!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Main Content -->
+        <div class="dashboard-content">
+            <!-- Left Column -->
+            <div class="dashboard-left">
+
+                <!-- Learning Activities Section -->
+                <section class="surface-card">
+                    <h3 class="section-title">Jump into your learning activities</h3>
+                    <div class="activities-grid">
+                        <!-- Reading Buddy -->
+                        <a href="reading-buddy.html" class="activity-card purple">
+                            <div class="activity-icon">🧠</div>
+                            <div class="activity-title">Reading Buddy</div>
+                            <div class="activity-description">Read with AI assistance</div>
+                        </a>
+
+                        <!-- Study Plan -->
+                        <div class="activity-card green">
+                            <div class="activity-icon">📋</div>
+                            <div class="activity-title">Study Plan</div>
+                            <div class="activity-description">Your personalized schedule</div>
+                        </div>
+
+                        <!-- Lessons -->
+                        <div class="activity-card orange">
+                            <div class="activity-icon">📚</div>
+                            <div class="activity-title">Lessons</div>
+                            <div class="activity-description">Simplified content</div>
+                        </div>
+
+                        <!-- Quizzes -->
+                        <div class="activity-card blue">
+                            <div class="activity-icon">❓</div>
+                            <div class="activity-title">Quizzes</div>
+                            <div class="activity-description">Adaptive practice</div>
+                        </div>
+
+                        <!-- Mental Health -->
+                        <div class="activity-card pink">
+                            <div class="activity-icon">❤️</div>
+                            <div class="activity-title">Mental Health</div>
+                            <div class="activity-description">Chat for support</div>
+                        </div>
+
+                        <!-- Focus Timer -->
+                        <div class="activity-card yellow">
+                            <div class="activity-icon">⏰</div>
+                            <div class="activity-title">Focus Timer</div>
+                            <div class="activity-description">Pomodoro sessions</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Progress Insights Section -->
+                <section class="surface-card">
+                    <div class="insights-header">
+                        <div>
+                            <h3 class="section-title">Your Progress Insights</h3>
+                            <p class="section-subtitle">Personalized insights just for you</p>
+                        </div>
+                        <span class="insight-pill">AI-Powered</span>
+                    </div>
+                    <div class="insight-list">
+                        <div class="insight-item green">
+                            <div class="insight-icon">📈</div>
+                            <p class="insight-text">You read 20% faster than last week!</p>
+                        </div>
+                        <div class="insight-item pink">
+                            <div class="insight-icon">❤️</div>
+                            <p class="insight-text">Focus time improved by 15 minutes</p>
+                        </div>
+                        <div class="insight-item yellow">
+                            <div class="insight-icon">⭐</div>
+                            <p class="insight-text">Quiz scores up 12% this week!</p>
+                        </div>
+                        <div class="insight-item orange">
+                            <div class="insight-icon">🔥</div>
+                            <p class="insight-text">7-day learning streak! You're on fire!</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Column -->
+            <aside class="dashboard-right">
+                <!-- Weekly Progress Section -->
+                <section class="weekly-card">
+                    <div class="weekly-header">
+                        <div>
+                            <div class="weekly-title-row">
+                                <span class="weekly-icon">🎯</span>
+                                <h3 class="section-title">Weekly Progress</h3>
+                            </div>
+                            <p class="section-subtitle">Your learning journey this week</p>
+                        </div>
+                        <!-- <div class="buddy-widget">
+                            <div class="buddy-speech">Hi! Ready to learn today? ✨</div>
+                            <div class="buddy-avatar">😊</div>
+                        </div> -->
+                    </div>
+
+                    <div class="weekly-row">
+                        <div class="progress-label">
+                            <span class="progress-icon">📚</span>
+                            <span class="progress-title">Reading</span>
+                            <span class="progress-percent">75%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-dot blue filled"></div>
+                            <div class="progress-dot blue filled"></div>
+                            <div class="progress-dot blue filled"></div>
+                            <div class="progress-dot blue filled"></div>
+                            <div class="progress-dot blue filled"></div>
+                            <div class="progress-dot blue filled"></div>
+                            <div class="progress-dot blue filled"></div>
+                            <div class="progress-dot blue"></div>
+                        </div>
+                    </div>
+
+                    <div class="weekly-row">
+                        <div class="progress-label">
+                            <span class="progress-icon">📄</span>
+                            <span class="progress-title">Lessons</span>
+                            <span class="progress-percent">60%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-dot green filled"></div>
+                            <div class="progress-dot green filled"></div>
+                            <div class="progress-dot green filled"></div>
+                            <div class="progress-dot green filled"></div>
+                            <div class="progress-dot green filled"></div>
+                            <div class="progress-dot green"></div>
+                            <div class="progress-dot green"></div>
+                            <div class="progress-dot green"></div>
+                        </div>
+                    </div>
+
+                    <div class="weekly-row">
+                        <div class="progress-label">
+                            <span class="progress-icon">🎯</span>
+                            <span class="progress-title">Quizzes</span>
+                            <span class="progress-percent">80%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-dot orange filled"></div>
+                            <div class="progress-dot orange filled"></div>
+                            <div class="progress-dot orange filled"></div>
+                            <div class="progress-dot orange filled"></div>
+                            <div class="progress-dot orange filled"></div>
+                            <div class="progress-dot orange filled"></div>
+                            <div class="progress-dot orange filled"></div>
+                            <div class="progress-dot orange"></div>
+                        </div>
+                    </div>
+
+                    <div class="weekly-row">
+                        <div class="progress-label">
+                            <span class="progress-icon">⏰</span>
+                            <span class="progress-title">Focus</span>
+                            <span class="progress-percent">65%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-dot purple filled"></div>
+                            <div class="progress-dot purple filled"></div>
+                            <div class="progress-dot purple filled"></div>
+                            <div class="progress-dot purple filled"></div>
+                            <div class="progress-dot purple filled"></div>
+                            <div class="progress-dot purple filled"></div>
+                            <div class="progress-dot purple"></div>
+                            <div class="progress-dot purple"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Recent Achievements Section -->
+                <section class="achievements-card">
+                    <div class="achievements-header">
+                        <span class="achievements-icon">🎗️</span>
+                        <div>
+                            <h3 class="section-title">Recent Achievements</h3>
+                            <p class="section-subtitle">Keep up the great work!</p>
+                        </div>
+                    </div>
+
+                    <div class="achievement-item">
+                        <div class="achievement-icon teal">📖</div>
+                        <div>
+                            <p class="achievement-title">Reading Streak</p>
+                            <p class="achievement-meta">7 days in a row!</p>
+                        </div>
+                        <span class="achievement-sparkle">✨</span>
+                    </div>
+
+                    <div class="achievement-item">
+                        <div class="achievement-icon gold">🏅</div>
+                        <div>
+                            <p class="achievement-title">Quiz Master</p>
+                            <p class="achievement-meta">90%+ on 5 quizzes</p>
+                        </div>
+                        <span class="achievement-sparkle">✨</span>
+                    </div>
+
+                    <div class="achievement-item">
+                        <div class="achievement-icon purple">🔵</div>
+                        <div>
+                            <p class="achievement-title">Focus Champion</p>
+                            <p class="achievement-meta">2 hours of focused study</p>
+                        </div>
+                        <span class="achievement-sparkle">✨</span>
+                    </div>
+                </section>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Floating Chat Bubble -->
+    <div class="chat-bubble">
+        <div class="chat-bubble-speech">Hi! Ready to learn today? ✨</div>
+        <button class="chat-bubble-button">😊</button>
+    </div>
+
+
+</body>
+
+</html>

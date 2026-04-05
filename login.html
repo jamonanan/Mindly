@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - Mindly</title>
+    <link rel="stylesheet" href="styles/login.css">
+</head>
+
+<body class="auth-page login-page">
+    <!-- Auth Container -->
+    <div class="auth-container">
+        <!-- Header with Logo and Tagline -->
+        <div class="auth-header">
+            <div class="logo" style="justify-content: center; margin-bottom: 1rem;">
+                <div class="logo-icon">🧠</div>
+                <span>Mindly</span>
+            </div>
+            <p style="color: var(--gray-dark);">Welcome to personalized learning</p>
+        </div>
+
+        <!-- Login Card -->
+        <div class="auth-card">
+            <h2 class="auth-title">Sign In</h2>
+            <p class="auth-subtitle">Enter your credentials to access your dashboard</p>
+
+            <!-- Login Form -->
+            <form id="loginForm" class="auth-form" novalidate>
+                <!-- Email Input -->
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+
+                <!-- Password Input -->
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+
+                <!-- Sign In Button -->
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+                    Sign In
+                </button>
+            </form>
+
+            <!-- Sign Up Link -->
+            <div class="auth-link">
+                Don't have an account? <a href="signup.html">Sign up</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Link JavaScript Files -->
+    <script src="common.js"></script>
+    <script src="login.js"></script>
+</body>
+
+</html>
