@@ -167,3 +167,13 @@ a:hover {
     border: 1px solid rgba(124, 58, 237, 0.1);
 }
 
+.messageDiv {
+    background-color: lightpink;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    font-size: 1rem;
+    opacity: 0;
+    animation: fadeIn 3s forwards;
+}
