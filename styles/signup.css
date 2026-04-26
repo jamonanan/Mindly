@@ -177,3 +177,51 @@ a:hover {
     opacity: 0;
     animation: fadeIn 3s forwards;
 }
+
+/* Password Rules Popup Styles */
+#password-rules-popup {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    z-index: 10;
+    margin-top: 5px;
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.password-rules-hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-5px);
+}
+
+.password-rules-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.rule-invalid {
+    color: #ef4444;
+    /* Red */
+}
+
+.rule-invalid::before {
+    content: '❌ ';
+    font-size: 0.8em;
+}
+
+.rule-valid {
+    color: #10b981;
+    /* Green */
+}
+
+.rule-valid::before {
+    content: '✅ ';
+    font-size: 0.8em;
+}

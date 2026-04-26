@@ -3,7 +3,7 @@
     // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import { getAuth , createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, sendEmailVerification, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
   import {getFirestore, setDoc, doc, getDoc} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
   
 
@@ -22,6 +22,7 @@
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
   const db = getFirestore(app);
+  const provider = new GoogleAuthProvider();
 
   function showMessage(message, divId){
     var messageDiv=document.getElementById(divId);
@@ -45,27 +46,47 @@
         return;
     }
 
+    // Validate password rules
+    const hasLength = password.length >= 8;
+    const hasUpper = /[A-Z]/.test(password);
+    const hasLower = /[a-z]/.test(password);
+    const hasNumber = /[0-9]/.test(password);
+    const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
+    if (!hasLength || !hasUpper || !hasLower || !hasNumber || !hasSpecial) {
+        showMessage('Please ensure your password meets all the rules.', 'signUpMessage');
+        return;
+    }
+
     createUserWithEmailAndPassword(auth,email,password)
     .then((userCredentials)=>{
         const user=userCredentials.user;
         const userData={
             email: email,
             fullName: fullName
+        };
 
-  };
-  showMessage('Account created successfully! Redirecting to login...', 'signUpMessage');
-  const docRef=doc(db,'users',user.uid);
-    setDoc(docRef,userData)
-    .then(()=>{
-        // Wait 2 seconds so the user can read the success message before redirecting
-        setTimeout(() => {
-            window.location.href='login.html';
-        }, 2000);
-    })
-    .catch((error)=>{
-        console.error('Error saving user data:', error);
-    });
-})      
+        const docRef=doc(db,'users',user.uid);
+        setDoc(docRef,userData)
+        .then(()=>{
+            sendEmailVerification(user)
+            .then(() => {
+                showMessage('Account created! Please check your email for a verification link.', 'signUpMessage');
+                // Wait 3 seconds so the user can read the success message before redirecting
+                setTimeout(() => {
+                    window.location.href='login.html';
+                }, 3000);
+            })
+            .catch((error) => {
+                console.error('Error sending verification email:', error);
+                showMessage('Account created, but error sending verification email.', 'signUpMessage');
+            });
+        })
+        .catch((error)=>{
+            console.error('Error saving user data:', error);
+        });
+    })      
+//If user enters email for already registered one.
     .catch((error)=>{
         const errorCode=error.code;
         if(errorCode==='auth/email-already-in-use'){
@@ -84,6 +105,11 @@
 
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
+        if (!userCredential.user.emailVerified) {
+          showMessage('Please verify your email address before logging in.', 'loginMessage');
+          signOut(auth);
+          return;
+        }
         // Signed in successfully
         window.location.href = 'dashboard.html';
       })
@@ -110,3 +136,43 @@
       }
     }
   });
+
+  // Function to handle Google Sign-In
+  window.signInWithGoogle = function() {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        // The signed-in user info
+        const user = result.user;
+        
+        // Prepare user data to save in Firestore
+        const userData = {
+          email: user.email,
+          fullName: user.displayName || 'Google User'
+        };
+
+        const docRef = doc(db, 'users', user.uid);
+        
+        // Use setDoc with merge: true to update or create user doc
+        setDoc(docRef, userData, { merge: true })
+          .then(() => {
+            // Redirect to dashboard
+            window.location.href = 'dashboard.html';
+          })
+          .catch((error) => {
+            console.error('Error saving Google user data:', error);
+            // Optionally redirect anyway if saving fails, or show message
+            window.location.href = 'dashboard.html';
+          });
+      })
+      .catch((error) => {
+        console.error('Google Sign-In error:', error);
+        // Show error message if on a page with message div
+        const msgDiv = document.getElementById('loginMessage') || document.getElementById('signUpMessage');
+        if (msgDiv) {
+            msgDiv.style.display = 'block';
+            msgDiv.innerHTML = 'Error signing in with Google: ' + error.message;
+        } else {
+            alert('Error signing in with Google: ' + error.message);
+        }
+      });
+  }

@@ -9,27 +9,6 @@
  * @returns {boolean} - Returns true if form is valid, false otherwise
  */
 
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-analytics.js";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyBIPpZnKkWzeYYCfASkAy6pF-nj9250JUY",
-  authDomain: "mindly-e43c5.firebaseapp.com",
-  projectId: "mindly-e43c5",
-  storageBucket: "mindly-e43c5.firebasestorage.app",
-  messagingSenderId: "121797775832",
-  appId: "1:121797775832:web:bc9396e4a711d89528a2ad",
-  measurementId: "G-KRM6M02434"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 function validateSignupForm(event) {
   // Prevent form from submitting by default
   event.preventDefault();
@@ -109,7 +88,7 @@ function validateSignupForm(event) {
 
   // If form is valid, redirect to dashboard
   if (isValid) {
-    // In a real application, you would send data to a server here
+    // In a real application, send data to a server here
     window.location.href = 'dashboard.html';
   } else {
     // Show error message
@@ -136,5 +115,59 @@ function initSignup() {
   const signupForm = document.getElementById('signupForm');
   if (signupForm) {
     signupForm.addEventListener('submit', validateSignupForm);
+  }
+
+  // Set up password rules popup logic
+  const passwordInput = document.getElementById('registerPassword');
+  const rulesPopup = document.getElementById('password-rules-popup');
+
+  if (passwordInput && rulesPopup) {
+    const rules = {
+      length: document.getElementById('rule-length'),
+      upper: document.getElementById('rule-upper'),
+      lower: document.getElementById('rule-lower'),
+      number: document.getElementById('rule-number'),
+      special: document.getElementById('rule-special')
+    };
+
+    // Show popup on focus
+    passwordInput.addEventListener('focus', () => {
+      rulesPopup.classList.remove('password-rules-hidden');
+      rulesPopup.classList.add('password-rules-visible');
+    });
+
+    // Hide popup on blur
+    passwordInput.addEventListener('blur', () => {
+      rulesPopup.classList.remove('password-rules-visible');
+      rulesPopup.classList.add('password-rules-hidden');
+    });
+
+    // Validate rules dynamically on input
+    passwordInput.addEventListener('input', (e) => {
+      const p = e.target.value;
+
+      // Rule: Length >= 8
+      toggleRuleClass(rules.length, p.length >= 8);
+      // Rule: Uppercase
+      toggleRuleClass(rules.upper, /[A-Z]/.test(p));
+      // Rule: Lowercase
+      toggleRuleClass(rules.lower, /[a-z]/.test(p));
+      // Rule: Number
+      toggleRuleClass(rules.number, /[0-9]/.test(p));
+      // Rule: Special char
+      toggleRuleClass(rules.special, /[!@#$%^&*(),.?":{}|<>]/.test(p));
+    });
+  }
+}
+
+// Helper to toggle valid/invalid class for rules
+window.toggleRuleClass = function(element, isValid) {
+  if (!element) return;
+  if (isValid) {
+    element.classList.remove('rule-invalid');
+    element.classList.add('rule-valid');
+  } else {
+    element.classList.remove('rule-valid');
+    element.classList.add('rule-invalid');
   }
 }
