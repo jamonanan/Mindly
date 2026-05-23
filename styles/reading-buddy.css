@@ -302,6 +302,10 @@ a:hover {
     transition: background 0.3s ease;
 }
 
+.reading-buddy-page .word-clickable {
+    cursor: pointer;
+}
+
 @media (max-width: 768px) {
     .reading-buddy-page .control-buttons {
         flex-direction: column;
@@ -310,5 +314,31 @@ a:hover {
     .reading-buddy-page .control-btn {
         width: 100%;
     }
+}
+
+.fixed-controls-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 -8px 32px rgba(15, 23, 42, 0.06);
+    border-top: 1px solid rgba(226, 232, 240, 0.8);
+    padding: 1rem 2rem;
+    z-index: 1000;
+}
+
+.fixed-controls-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reading-buddy-page .reading-buddy-container {
+    padding-bottom: 120px; /* Prevent fixed bottom bar overlap */
 }
 

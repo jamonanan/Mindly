@@ -22,8 +22,6 @@ function initReadingBuddy() {
   const resetBtn = document.getElementById('resetBtn');
   const textInput = document.getElementById('textInput');
   const readingDisplay = document.getElementById('readingDisplay');
-  const speedSlider = document.getElementById('speedSlider');
-  const volumeSlider = document.getElementById('volumeSlider');
   const bionicToggle = document.getElementById('bionicToggle');
 
   // Check if we're on the Reading Buddy page
@@ -53,20 +51,7 @@ function initReadingBuddy() {
     });
   }
 
-  // Set up speed slider
-  if (speedSlider) {
-    speedSlider.addEventListener('input', function () {
-      // Update speed (0.5x to 2x, slider value is 0-100)
-      const sliderValue = speedSlider.value;
-      readingBuddyState.speed = 0.5 + (sliderValue / 100) * 1.5;
 
-      // If currently playing, restart with new speed
-      if (readingBuddyState.isPlaying) {
-        handleStop();
-        handlePlay();
-      }
-    });
-  }
 
   // Set up bionic toggle
   if (bionicToggle) {
@@ -75,13 +60,67 @@ function initReadingBuddy() {
     });
   }
 
+  // Set up word click delegation on reading display
+  if (readingDisplay) {
+    readingDisplay.addEventListener('click', function (event) {
+      const clickedSpan = event.target.closest('.word-clickable');
+      if (clickedSpan) {
+        const targetIndex = parseInt(clickedSpan.getAttribute('data-index'), 10);
+        if (!isNaN(targetIndex)) {
+          // Update current index and play from there
+          readingBuddyState.currentWordIndex = targetIndex;
+          handleStop();
+          handlePlay();
+        }
+      }
+    });
+  }
+
   // Initialize reading display with default text
   updateReadingDisplay();
 }
 
+// Global variable to store active speech utterance
+let activeUtterance = null;
+
+/**
+ * Recurse a highly accurate fallback timer loop to move highlighting forward
+ * in case the browser does not support or fire native SpeechSynthesis boundary events.
+ */
+function scheduleNextWordTimer() {
+  if (!readingBuddyState.isPlaying || readingBuddyState.onboundarySupported) {
+    return;
+  }
+
+  const currentIndex = readingBuddyState.currentWordIndex;
+  const currentWord = readingBuddyState.words[currentIndex] || "";
+
+  // Average speaking pace constants (adjusts dynamically based on word length!)
+  const baseDelay = 200; 
+  const charMultiplier = 40; 
+  const delay = ((currentWord.length * charMultiplier) + baseDelay) / readingBuddyState.speed;
+
+  readingBuddyState.intervalId = setTimeout(() => {
+    if (!readingBuddyState.isPlaying || readingBuddyState.onboundarySupported) return;
+
+    // Advance to the next text-containing element, skipping whitespace blocks
+    let nextIndex = readingBuddyState.currentWordIndex + 1;
+    while (nextIndex < readingBuddyState.words.length && readingBuddyState.words[nextIndex].trim() === "") {
+      nextIndex++;
+    }
+
+    if (nextIndex < readingBuddyState.words.length) {
+      readingBuddyState.currentWordIndex = nextIndex;
+      updateReadingDisplay();
+      scheduleNextWordTimer();
+    }
+  }, delay);
+}
+
 /**
  * Handles the play button click
- * Starts reading the text word by word with highlighting
+ * Starts reading the text utilizing native browser speech synthesis.
+ * Supports pausing and resuming from the active index with correct speed.
  */
 function handlePlay() {
   const textInput = document.getElementById('textInput');
@@ -91,74 +130,132 @@ function handlePlay() {
     return;
   }
 
-  // Get text from input
-  const text = textInput.value.trim();
+  // 1. Ensure any running speech is cancelled
+  window.speechSynthesis.cancel();
+
+  // Get raw text from input (no trim to keep absolute character index alignment!)
+  const text = textInput.value;
 
   // If no text, show alert
-  if (text === '') {
+  if (text.trim() === '') {
     alert('Please enter some text to read.');
     return;
   }
 
-  // Split text into words (including punctuation)
+  // 2. Prepare text word arrays for highlighting
   readingBuddyState.words = text.split(/(\s+)/);
   readingBuddyState.isPlaying = true;
-  readingBuddyState.currentWordIndex = 0;
+  readingBuddyState.onboundarySupported = false; // Reset boundary check flag
 
-  // Calculate delay based on speed (faster speed = shorter delay)
-  // Base delay is 500ms, adjusted by speed
-  const baseDelay = 500;
-  const delay = baseDelay / readingBuddyState.speed;
+  // Calculate starting character indexes for every word block
+  let cumulativeLength = 0;
+  const wordRanges = readingBuddyState.words.map((word) => {
+    const start = cumulativeLength;
+    const end = cumulativeLength + word.length;
+    cumulativeLength = end;
+    return { start, end };
+  });
 
-  // Start highlighting words
-  highlightNextWord(delay);
-}
-
-/**
- * Highlights the next word in the reading display
- * @param {number} delay - Delay in milliseconds before highlighting next word
- */
-function highlightNextWord(delay) {
-  if (!readingBuddyState.isPlaying || readingBuddyState.currentWordIndex >= readingBuddyState.words.length) {
-    // Finished reading
-    readingBuddyState.isPlaying = false;
-    return;
+  // Safe checks for the current word index
+  if (readingBuddyState.currentWordIndex < 0 || readingBuddyState.currentWordIndex >= readingBuddyState.words.length) {
+    readingBuddyState.currentWordIndex = 0;
   }
 
-  // Update the display to highlight current word
-  updateReadingDisplay();
+  // 3. Find the character start index of our current word to resume speaking from
+  const startIndex = wordRanges[readingBuddyState.currentWordIndex] 
+    ? wordRanges[readingBuddyState.currentWordIndex].start 
+    : 0;
 
-  // Move to next word after delay
-  readingBuddyState.intervalId = setTimeout(function () {
-    readingBuddyState.currentWordIndex++;
-    highlightNextWord(delay);
-  }, delay);
+  // Squeeze text to speak only from the active word onwards (fully supports real-time speed/volume resumes!)
+  const textToSpeak = text.substring(startIndex);
+  activeUtterance = new SpeechSynthesisUtterance(textToSpeak);
+
+  // Set speed dynamically based on the slider state
+  activeUtterance.rate = readingBuddyState.speed;
+
+  // 4. Synchronize speaking with visual highlighting (native boundary alignment)
+  activeUtterance.onboundary = function (event) {
+    if (event.name === 'word') {
+      // Flag that the browser successfully fired native boundary events
+      if (!readingBuddyState.onboundarySupported) {
+        readingBuddyState.onboundarySupported = true;
+        if (readingBuddyState.intervalId) {
+          clearTimeout(readingBuddyState.intervalId);
+          readingBuddyState.intervalId = null;
+        }
+      }
+
+      // Shift character index by the starting index of the text we slice-spoke
+      const charIndex = event.charIndex + startIndex;
+
+      // Find which word in our array is being spoken
+      const spokenIndex = wordRanges.findIndex(
+        (range) => charIndex >= range.start && charIndex < range.end
+      );
+
+      if (spokenIndex !== -1) {
+        readingBuddyState.currentWordIndex = spokenIndex;
+        updateReadingDisplay();
+      }
+    }
+  };
+
+  activeUtterance.onend = function () {
+    // Only reset if we naturally finished reading the text
+    if (readingBuddyState.isPlaying) {
+      readingBuddyState.isPlaying = false;
+      readingBuddyState.currentWordIndex = 0;
+      if (readingBuddyState.intervalId) {
+        clearTimeout(readingBuddyState.intervalId);
+        readingBuddyState.intervalId = null;
+      }
+      updateReadingDisplay();
+    }
+  };
+
+  activeUtterance.onerror = function (err) {
+    // Ignore error caused by standard manual stops
+    if (err.error !== 'interrupted') {
+      console.error("SpeechSynthesis error:", err);
+      handleStop();
+    }
+  };
+
+  // Start speaking
+  window.speechSynthesis.speak(activeUtterance);
+
+  // 5. Fire the recursive fallback timer loop
+  if (readingBuddyState.intervalId) {
+    clearTimeout(readingBuddyState.intervalId);
+  }
+  scheduleNextWordTimer();
 }
 
 /**
  * Handles the stop button click
- * Stops the reading process
+ * Stops the speech synthesis process completely
  */
 function handleStop() {
+  window.speechSynthesis.cancel();
   readingBuddyState.isPlaying = false;
 
-  // Clear any pending intervals
+  // Clear any standard timeouts
   if (readingBuddyState.intervalId) {
     clearTimeout(readingBuddyState.intervalId);
     readingBuddyState.intervalId = null;
   }
 
-  // Update display to remove highlighting
+  // Reset highlight
   updateReadingDisplay();
 }
 
 /**
  * Handles the reset button click
- * Resets the reading to the beginning
+ * Resets the reading state to the beginning
  */
 function handleReset() {
-  handleStop(); // Stop any current reading
-  readingBuddyState.currentWordIndex = 0;
+  handleStop(); // Cancel active speech
+  readingBuddyState.currentWordIndex = 0; // Reset index back to start
   updateReadingDisplay();
 }
 
@@ -210,11 +307,15 @@ function updateReadingDisplay() {
       }
     }
 
-    // Add highlighting class if this is the current word
-    if (isCurrentWord) {
-      html += '<span class="word-highlight">' + wordDisplay + '</span>';
+    // Add highlighting class if this is the current word, only make text clickable (not whitespace)
+    if (word.trim() === '') {
+      html += '<span>' + word + '</span>';
     } else {
-      html += '<span>' + wordDisplay + '</span>';
+      if (isCurrentWord) {
+        html += '<span data-index="' + index + '" class="word-highlight word-clickable">' + wordDisplay + '</span>';
+      } else {
+        html += '<span data-index="' + index + '" class="word-clickable">' + wordDisplay + '</span>';
+      }
     }
   });
 
