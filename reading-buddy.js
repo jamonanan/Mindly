@@ -223,20 +223,88 @@ function updateReadingDisplay() {
 }
 
 /**
- * Handles file upload (placeholder function)
- * In a real application, this would read the file and populate the text input
+ * Handles file upload, converts it to base64, and sends it to our secure Firebase Cloud Function.
+ * Bypasses CORS and keeps our API key hidden.
  */
 function handleFileUpload() {
   const fileInput = document.createElement('input');
   fileInput.type = 'file';
-  fileInput.accept = '.txt,.doc,.docx,.pdf';
+  fileInput.accept = '.txt,.doc,.docx,.pdf,.ppt,.pptx';
 
-  fileInput.addEventListener('change', function (event) {
+  fileInput.addEventListener('change', async function (event) {
     const file = event.target.files[0];
-    if (file) {
-      // In a real application, you would read the file here
-      // For now, we'll just show an alert
-      alert('File upload functionality would be implemented here. For now, please paste your text directly.');
+    if (!file) return;
+
+    const textInput = document.getElementById('textInput');
+    if (!textInput) return;
+
+    // Show loading state in text box and disable it
+    const originalText = textInput.value;
+    textInput.value = "Extracting text from document... Please wait.";
+    textInput.disabled = true;
+
+    try {
+      // 1. Convert file to Base64
+      const fileBase64 = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+      });
+
+      // 2. Determine endpoint (Local Emulator vs Production)
+      const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+      const functionUrl = isLocal
+        ? "http://127.0.0.1:5001/mindly-7f7c4/us-central1/extractText"
+        : "https://extracttext-7f7c4-uc.a.run.app"; // Firebase Functions v2 standard URL format
+
+      // 3. Make POST request to our Cloud Function
+      const response = await fetch(functionUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          fileBase64: fileBase64,
+          fileName: file.name
+        })
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(errorText || "Failed to parse document");
+      }
+
+      const elements = await response.json();
+
+      // 4. Filter strictly for Body text ("NarrativeText", "Title", "ListItem")
+      // Discards captions, figures, and headers
+      const allowedTypes = ["NarrativeText", "Title", "ListItem"];
+      const readableText = elements
+        .filter(el => allowedTypes.includes(el.type))
+        .map(el => el.text)
+        .join("\n\n");
+
+      if (!readableText || readableText.trim() === "") {
+        textInput.value = "We couldn't extract any readable body text from this file.";
+      } else {
+        textInput.value = readableText;
+      }
+
+    } catch (error) {
+      console.error("Extraction error:", error);
+      alert("Error extracting document. Make sure your Firebase Emulators are running locally! \n\nDetails: " + error.message);
+      textInput.value = originalText; // Revert back
+    } finally {
+      textInput.disabled = false;
+      
+      // Trigger update word count and update reading display
+      if (typeof updateReadingDisplay === "function") {
+        updateReadingDisplay();
+      }
+      // Trigger the input event to update counts
+      const inputEvent = new Event('input', { bubbles: true });
+      textInput.dispatchEvent(inputEvent);
     }
   });
 
