@@ -54,7 +54,7 @@ exports.extractText = onRequest({ cors: true, maxInstances: 10 }, async (req, re
 
     const elements = await unstructuredRes.json();
     logger.info(`Extraction successful for ${fileName}. Sending elements back to client.`);
-    
+
     return res.status(200).json(elements);
 
   } catch (error) {
@@ -62,3 +62,47 @@ exports.extractText = onRequest({ cors: true, maxInstances: 10 }, async (req, re
     return res.status(500).send(`Internal Server Error: ${error.message}`);
   }
 });
+
+const { GoogleGenerativeAI } = require("@google/generative-ai");
+
+/**
+ * Cloud Function to securely handle Gemini API requests.
+ */
+exports.chatWithGemini = onRequest({ cors: true, maxInstances: 10 }, async (req, res) => {
+  try {
+    if (req.method !== "POST") {
+      return res.status(405).send("Method Not Allowed");
+    }
+
+    const { text, history } = req.body;
+    if (!text) {
+      return res.status(400).send("Bad Request: Missing text");
+    }
+
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) {
+      logger.error("Missing GEMINI_API_KEY inside environment variables.");
+      return res.status(500).send("Server Configuration Error: Missing API Key");
+    }
+
+    const genAI = new GoogleGenerativeAI(apiKey);
+    const model = genAI.getGenerativeModel({
+      model: "gemini-2.5-flash",
+      systemInstruction: "You are an upbeat, warm, and highly empathetic friend offering emotional support. You are NOT a medical professional, but rather a supportive peer. Always respond with casual, everyday language. Do not use robotic phrases like 'As an AI language model' or 'How can I assist you today?'. Use emojis naturally, keep your responses relatively short like a text message, and focus on validating the user's feelings and cheering them on. If the user mentions self-harm, gently encourage them to seek professional help."
+    });
+
+    const chatSession = model.startChat({
+      history: history || []
+    });
+
+    const result = await chatSession.sendMessage(text);
+    const responseText = result.response.text();
+
+    return res.status(200).json({ response: responseText });
+
+  } catch (error) {
+    logger.error("Internal Server Error in chatWithGemini:", error);
+    return res.status(500).send(`Internal Server Error: ${error.message}`);
+  }
+});
+
