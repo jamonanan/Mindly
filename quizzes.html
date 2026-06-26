@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adaptive Quizzes - Mindly</title>
+    <link rel="stylesheet" href="styles/quizzes.css">
+</head>
+
+<body class="quizzes-page">
+    <!-- Header -->
+    <header class="quizzes-header">
+        <a href="dashboard.html" class="back-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 12H5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Back
+        </a>
+        <div class="header-title">
+            <span>❓ Adaptive Practice</span>
+        </div>
+    </header>
+
+    <main class="main-container">
+        
+        <!-- View 1: Setup Input -->
+        <div id="setup-view" class="view-container active">
+            <div class="setup-header">
+                <h2>Create a Magic Quiz ✨</h2>
+                <p>Upload a document or paste your notes below to generate an adaptive quiz.</p>
+            </div>
+
+            <div class="input-section">
+                <!-- Hidden file input -->
+                <input type="file" id="file-input" accept=".pdf,.doc,.docx,.txt" style="display: none;">
+                
+                <div class="dropzone" id="dropzone" onclick="document.getElementById('file-input').click()">
+                    <p>📄 Click to upload a study guide (PDF, Word)</p>
+                    <span id="file-name-display">No file selected</span>
+                </div>
+
+                <div style="text-align: center; color: var(--gray-medium); font-weight: 500;">OR</div>
+
+                <textarea id="text-input" class="text-input-area" placeholder="Paste your notes or text here..."></textarea>
+            </div>
+
+            <button id="generate-btn" class="generate-btn">Generate Magic Quiz ✨</button>
+        </div>
+
+        <!-- View 2: Quiz -->
+        <div id="quiz-view" class="view-container">
+            <div class="quiz-progress">
+                <div class="progress-text">Question <span id="current-q-num">1</span> of <span id="total-q-num">5</span></div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="progress-bar"></div>
+                </div>
+            </div>
+
+            <h3 class="question-text" id="question-text">Loading question...</h3>
+
+            <div class="options-grid" id="options-grid">
+                <!-- Options will be injected here -->
+            </div>
+
+            <div class="explanation-card" id="explanation-card">
+                <h4>Explanation</h4>
+                <p id="explanation-text"></p>
+            </div>
+
+            <button id="next-btn" class="next-btn">Next Question →</button>
+        </div>
+
+        <!-- View 3: Results -->
+        <div id="results-view" class="view-container">
+            <div class="results-header">
+                <h2>Quiz Complete! 🎉</h2>
+                <p>Here is your final score.</p>
+            </div>
+
+            <div class="score-display">
+                <span id="final-score">0</span> / <span id="final-total">5</span>
+            </div>
+
+            <div class="action-buttons">
+                <a href="dashboard.html" class="action-btn secondary">Return to Dashboard</a>
+                <button id="restart-btn" class="action-btn primary">Create Another Quiz</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="quizzes.js"></script>
+</body>
+
+</html>
