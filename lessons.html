@@ -10,6 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <!-- html2pdf for direct PDF downloading -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <link rel="stylesheet" href="styles/settings.css">
 </head>
 
 <body class="lessons-page">
@@ -26,7 +27,9 @@
             <span class="icon">📚</span>
             <h1>AI Study Lessons</h1>
         </div>
-        <div style="width: 100px;"></div> <!-- Spacer for flex alignment -->
+        <button class="settings-btn btn btn-secondary" style="display: flex; align-items: center; gap: 0.5rem;">
+            ⚙️ Settings
+        </button>
     </header>
 
     <main class="lessons-main container">
@@ -84,6 +87,7 @@
     </main>
 
     <script src="lessons.js"></script>
+    <script type="module" src="settings.js"></script>
 </body>
 
 </html>

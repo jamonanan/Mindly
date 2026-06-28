@@ -7,6 +7,7 @@
     <!-- Import dashboard styles for variables, then specific timer styles -->
     <link rel="stylesheet" href="styles/dashboard.css">
     <link rel="stylesheet" href="styles/focus-timer.css">
+    <link rel="stylesheet" href="styles/settings.css">
 </head>
 <body class="timer-page">
     <!-- Header -->
@@ -25,6 +26,9 @@
             </svg>
             <span>Focus Timer</span>
         </div>
+        <button class="settings-btn btn btn-secondary" style="display: flex; align-items: center; gap: 0.5rem; background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 0.5rem 1rem; cursor: pointer;">
+            ⚙️ Settings
+        </button>
     </header>
 
     <main class="timer-container">
@@ -109,5 +113,6 @@
     </main>
 
     <script src="focus-timer.js"></script>
+    <script type="module" src="settings.js"></script>
 </body>
 </html>

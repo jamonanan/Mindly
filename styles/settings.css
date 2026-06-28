@@ -1,0 +1,154 @@
+@font-face {
+    font-family: 'OpenDyslexic';
+    src: url('../fonts/OpenDyslexic-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body.dyslexic-mode * {
+    font-family: 'OpenDyslexic', sans-serif !important;
+}
+
+/* Settings Pop-up Bubble Styles */
+.settings-modal {
+    display: none;
+    position: absolute;
+    z-index: 1000;
+}
+
+.settings-modal.show {
+    display: block;
+}
+
+.settings-modal-content {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    width: 280px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    position: relative;
+    animation: bubbleFadeIn 0.2s ease-out forwards;
+    border: 1px solid #e5e7eb;
+}
+
+/* Arrow pointing up */
+.settings-modal-content::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    right: 20px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid white;
+}
+
+.settings-modal-content::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: 19px;
+    width: 0;
+    height: 0;
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-bottom: 9px solid #e5e7eb;
+    z-index: -1;
+}
+
+@keyframes bubbleFadeIn {
+    from { opacity: 0; transform: translateY(-10px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.settings-close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    color: #6b7280;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.settings-close-btn:hover {
+    color: #111827;
+}
+
+.settings-modal-content h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: #111827;
+    font-size: 1.2rem;
+}
+
+.settings-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.settings-option:last-child {
+    border-bottom: none;
+}
+
+.settings-option label {
+    font-size: 0.95rem;
+    color: #374151;
+    cursor: pointer;
+}
+
+.settings-option label:first-child {
+    flex: 1;
+}
+
+/* Toggle Switch Styles */
+.settings-switch {
+    position: relative;
+    display: inline-block;
+    width: 36px;
+    height: 20px;
+    flex: none;
+}
+
+.settings-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.settings-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.settings-slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .settings-slider {
+    background-color: #7c3aed; /* Primary purple color */
+}
+
+input:checked + .settings-slider:before {
+    transform: translateX(18px);
+}

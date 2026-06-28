@@ -158,6 +158,11 @@ function renderQuestion() {
     } else {
         nextBtn.textContent = "Next Question →";
     }
+
+    if (window.isBionicActive && window.isBionicActive()) {
+        window.applyBionicReading(questionTextEl);
+        window.applyBionicReading(optionsGrid);
+    }
 }
 
 function handleAnswer(selectedBtn, selectedOpt, correctOpt, explanation) {
@@ -187,6 +192,10 @@ function handleAnswer(selectedBtn, selectedOpt, correctOpt, explanation) {
     explanationText.textContent = explanation;
     explanationCard.classList.add("show");
     nextBtn.classList.add("show");
+
+    if (window.isBionicActive && window.isBionicActive()) {
+        window.applyBionicReading(explanationText);
+    }
 }
 
 nextBtn.addEventListener("click", () => {

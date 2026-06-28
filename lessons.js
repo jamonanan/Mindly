@@ -108,6 +108,10 @@ document.addEventListener('DOMContentLoaded', () => {
             // Render Markdown securely using marked.js
             lessonContent.innerHTML = marked.parse(lessonMarkdown);
 
+            if (window.isBionicActive && window.isBionicActive()) {
+                window.applyBionicReading(lessonContent);
+            }
+
         } catch (error) {
             console.error("Error generating lesson:", error);
             alert("Something went wrong: " + error.message);
