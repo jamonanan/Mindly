@@ -1,0 +1,287 @@
+:root {
+    --primary: #6366f1;
+    --primary-hover: #4f46e5;
+    --bg-color: #f8fafc;
+    --card-bg: #ffffff;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --border-color: #e2e8f0;
+    --orange-light: #ffedd5;
+    --orange-dark: #f97316;
+}
+
+body.lessons-page {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Header */
+.app-header {
+    background: var(--card-bg);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.back-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.back-link:hover {
+    color: var(--text-main);
+}
+
+.header-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.header-title h1 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.header-title .icon {
+    font-size: 1.5rem;
+}
+
+/* Buttons */
+.btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background: white;
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+    background: var(--bg-color);
+}
+
+/* Main Section */
+.hero-text {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.hero-text h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+}
+
+.hero-text p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+/* Upload Zone */
+.drop-zone {
+    border: 2px dashed #cbd5e1;
+    border-radius: 1rem;
+    padding: 3rem;
+    text-align: center;
+    background: var(--card-bg);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.drop-zone:hover, .drop-zone.dragover {
+    border-color: var(--primary);
+    background: #eef2ff;
+}
+
+.drop-zone-content .upload-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.drop-zone-content p {
+    margin: 0.5rem 0;
+    font-weight: 600;
+}
+
+.drop-zone-content .sub-text {
+    color: var(--text-muted);
+    font-weight: 400;
+    font-size: 0.9rem;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 2rem 0;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.divider span {
+    padding: 0 1rem;
+}
+
+.text-input-zone textarea {
+    width: 100%;
+    height: 150px;
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    padding: 1rem;
+    font-family: inherit;
+    font-size: 1rem;
+    resize: vertical;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+.text-input-zone textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.generate-btn {
+    width: 100%;
+    margin-top: 1.5rem;
+    font-size: 1.1rem;
+    padding: 1rem;
+}
+
+/* Loading State */
+.loading-state {
+    text-align: center;
+    padding: 4rem 2rem;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid var(--border-color);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1.5rem;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Results Section */
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.results-header h2 {
+    margin: 0;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.lesson-content {
+    background: var(--card-bg);
+    border-radius: 1rem;
+    padding: 2rem 3rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    line-height: 1.7;
+}
+
+/* Markdown Styling */
+.markdown-body h1, .markdown-body h2, .markdown-body h3 {
+    color: var(--text-main);
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+.markdown-body h1:first-child, .markdown-body h2:first-child {
+    margin-top: 0;
+}
+
+.markdown-body ul, .markdown-body ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.markdown-body li {
+    margin-bottom: 0.5rem;
+}
+
+/* Specific styling for the Key Takeaways section generated by AI */
+.markdown-body h3:last-of-type {
+    background: var(--orange-light);
+    color: var(--orange-dark);
+    padding: 1rem;
+    border-radius: 0.5rem 0.5rem 0 0;
+    margin-bottom: 0;
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.markdown-body h3:last-of-type + ul {
+    background: #fff8f1;
+    border: 1px solid var(--orange-light);
+    border-top: none;
+    border-radius: 0 0 0.5rem 0.5rem;
+    padding: 1.5rem 1.5rem 1.5rem 2.5rem;
+    margin-top: 0;
+}
+
+.hidden {
+    display: none !important;
+}

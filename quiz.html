@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mindly AI - Adaptive Quizzes</title>
+    <link rel="stylesheet" href="quizstyle.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="top-bar">
+            <button class="back-btn">← Back to Dashboard</button>
+
+            <div class="ai-badge">
+                AI-Powered
+            </div>
+        </div>
+
+        <h1>Adaptive Quizzes</h1>
+
+        <div class="intro">
+            <h2>Choose Your Quiz</h2>
+            <p>
+                Our adaptive quizzes adjust to your learning level and provide
+                instant feedback to help you understand concepts better.
+            </p>
+        </div>
+
+        <div class="quiz-grid">
+
+            <div class="card">
+                <span class="easy">Easy</span>
+
+                <h3>Basic Mathematics</h3>
+
+                <p>Addition and subtraction with visual aids</p>
+
+                <div class="info">
+                    <span>5 Questions</span>
+                    <span>~10 Min</span>
+                </div>
+
+                <button onclick="startQuiz('Basic Mathematics')">
+                    Start Quiz
+                </button>
+            </div>
+
+            <div class="card">
+                <span class="medium">Medium</span>
+
+                <h3>Reading Comprehension</h3>
+
+                <p>Simple stories and questions</p>
+
+                <div class="info">
+                    <span>4 Questions</span>
+                    <span>~8 Min</span>
+                </div>
+
+                <button onclick="startQuiz('Reading Comprehension')">
+                    Start Quiz
+                </button>
+            </div>
+
+            <div class="card">
+                <span class="easy">Easy</span>
+
+                <h3>Plants and Nature</h3>
+
+                <p>Learn about plants and their parts</p>
+
+                <div class="info">
+                    <span>6 Questions</span>
+                    <span>~12 Min</span>
+                </div>
+
+                <button onclick="startQuiz('Plants and Nature')">
+                    Start Quiz
+                </button>
+            </div>
+
+        </div>
+
+        <div class="features">
+
+            <h2>Adaptive Learning Features</h2>
+
+            <div class="feature-boxes">
+
+                <div class="feature">
+                    <h3>Smart Difficulty</h3>
+                    <p>Questions adapt to your learning level automatically.</p>
+                </div>
+
+                <div class="feature">
+                    <h3>Instant Feedback</h3>
+                    <p>Get explanations for every answer to learn from mistakes.</p>
+                </div>
+
+                <div class="feature">
+                    <h3>Progress Tracking</h3>
+                    <p>Monitor your improvement over time.</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
