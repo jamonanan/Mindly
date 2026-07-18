@@ -181,3 +181,44 @@ exports.generateQuiz = onRequest({ cors: true, maxInstances: 10 }, async (req, r
     return res.status(500).send(`Internal Server Error: ${error.message}`);
   }
 });
+
+/**
+ * Cloud Function to securely handle generating study plans using Gemini API.
+ */
+exports.generateStudyPlan = onRequest({ cors: true, maxInstances: 10 }, async (req, res) => {
+  try {
+    if (req.method !== "POST") {
+      return res.status(405).send("Method Not Allowed");
+    }
+
+    const { text } = req.body;
+    if (!text) {
+      return res.status(400).send("Bad Request: Missing text");
+    }
+
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) {
+      logger.error("Missing GEMINI_API_KEY inside environment variables.");
+      return res.status(500).send("Server Configuration Error: Missing API Key");
+    }
+
+    const genAI = new GoogleGenerativeAI(apiKey);
+    const model = genAI.getGenerativeModel({
+      model: "gemini-2.5-flash",
+      systemInstruction: "You are an expert tutor. Break the provided study material into small, manageable chunks for a study plan. Generate a descriptive, short title for the overall plan based on the material. Return the result STRICTLY as a JSON object with two keys: 'title' (string, e.g., 'Biology Chapter 4 Plan') and 'chunks' (array). Each object in the 'chunks' array must have keys: 'id' (string, e.g. 'chunk-1'), 'title' (short string), 'estimatedTimeMinutes' (number), and 'content' (the reading material excerpt or summary).",
+      generationConfig: {
+          responseMimeType: "application/json"
+      }
+    });
+
+    const result = await model.generateContent(text);
+    const responseText = result.response.text();
+    const parsed = JSON.parse(responseText);
+
+    return res.status(200).json({ title: parsed.title, plan: parsed.chunks });
+
+  } catch (error) {
+    logger.error("Internal Server Error in generateStudyPlan:", error);
+    return res.status(500).send(`Internal Server Error: ${error.message}`);
+  }
+});

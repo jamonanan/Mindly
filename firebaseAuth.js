@@ -5,7 +5,8 @@
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
   import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, sendEmailVerification, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
   import {getFirestore, setDoc, doc, getDoc} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-  
+  import { getStorage } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+
 
 
   // Your web app's Firebase configuration
@@ -22,6 +23,7 @@
   export const app = initializeApp(firebaseConfig);
   export const auth = getAuth(app);
   export const db = getFirestore(app);
+  export const storage = getStorage(app);
   export const provider = new GoogleAuthProvider();
 
   function showMessage(message, divId){
@@ -119,21 +121,30 @@
       });
   }
 
-  // Monitor authentication state to display user name on dashboard
+  // Monitor authentication state to display user name on dashboard and profile pictures
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      const greetingElement = document.getElementById('userGreeting');
-      if (greetingElement) {
-        const docRef = doc(db, "users", user.uid);
-        getDoc(docRef).then((docSnap) => {
-          if (docSnap.exists()) {
-            const userData = docSnap.data();
+      const docRef = doc(db, "users", user.uid);
+      getDoc(docRef).then((docSnap) => {
+        if (docSnap.exists()) {
+          const userData = docSnap.data();
+          
+          // Greet user if element exists
+          const greetingElement = document.getElementById('userGreeting');
+          if (greetingElement) {
             greetingElement.innerText = `Welcome back, ${userData.fullName}!! ✨`;
           }
-        }).catch((error) => {
-          console.error("Error getting user document:", error);
-        });
-      }
+
+          // Update profile picture everywhere if element exists
+          const profilePicUrl = userData.profilePicUrl || 'https://api.dicebear.com/7.x/bottts/svg?seed=' + user.uid;
+          const profilePicElements = document.querySelectorAll('.user-profile-pic');
+          profilePicElements.forEach(el => {
+            el.src = profilePicUrl;
+          });
+        }
+      }).catch((error) => {
+        console.error("Error getting user document:", error);
+      });
     }
   });
 

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Settings - Mindly</title>
+    <link rel="stylesheet" href="styles/account.css">
+    <link rel="stylesheet" href="styles/settings.css">
+</head>
+<body class="account-page">
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <a href="dashboard.html" class="back-link">
+                    ← Back to Dashboard
+                </a>
+                <h1 style="margin: 0; font-size: 1.5rem; color: var(--primary-purple);">Account Settings</h1>
+            </div>
+            <button id="logoutBtn" class="btn btn-secondary" style="display: flex; align-items: center; gap: 0.5rem;">
+                → Logout
+            </button>
+        </div>
+    </header>
+
+    <main class="account-container">
+        <!-- Message Box -->
+        <div id="accountMessage" class="message-box"></div>
+
+        <!-- Profile Picture Section -->
+        <section class="account-section">
+            <h2 class="section-title">Profile Picture</h2>
+            <div class="profile-pic-container">
+                <img id="profileImagePreview" class="profile-pic-preview" src="" alt="Profile Picture">
+                <div>
+                    <div class="upload-btn-wrapper">
+                        <button class="btn btn-primary" style="padding: 0.5rem 1rem;">Upload Image</button>
+                        <input type="file" id="profileImageUpload" accept="image/*" />
+                    </div>
+                    <p style="color: var(--gray-dark); font-size: 0.875rem; margin-top: 0.5rem;">Recommended size: 256x256px</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Personal Info Section -->
+        <section class="account-section">
+            <h2 class="section-title">Personal Information</h2>
+            <div class="form-group">
+                <label for="fullNameInput">Full Name</label>
+                <input type="text" id="fullNameInput" placeholder="Enter your full name">
+            </div>
+            <button id="saveNameBtn" class="btn btn-primary">Save Changes</button>
+        </section>
+
+        <!-- Security Section -->
+        <section class="account-section">
+            <h2 class="section-title">Security & Verification</h2>
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                <div>
+                    <h3 style="margin: 0 0 0.25rem 0;">Email Status</h3>
+                    <p id="emailDisplay" style="color: var(--gray-dark); margin: 0; font-size: 0.9rem;">user@example.com</p>
+                </div>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <span id="emailStatusBadge" class="status-badge status-unverified">Unverified</span>
+                    <button id="resendVerificationBtn" class="btn btn-secondary" style="display: none;">Resend Email</button>
+                </div>
+            </div>
+
+            <div style="border-top: 1px solid #e5e7eb; margin: 1.5rem 0;"></div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h3 style="margin: 0 0 0.25rem 0;">Password</h3>
+                    <p style="color: var(--gray-dark); margin: 0; font-size: 0.9rem;">Reset your password via email link.</p>
+                </div>
+                <button id="resetPasswordBtn" class="btn btn-secondary">Send Reset Link</button>
+            </div>
+        </section>
+
+        <!-- Danger Zone Section -->
+        <section class="account-section danger-zone">
+            <h2 class="section-title">Danger Zone</h2>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h3 style="margin: 0 0 0.25rem 0; color: var(--danger-color);">Delete Account</h3>
+                    <p style="color: var(--danger-color); margin: 0; font-size: 0.9rem;">Once you delete your account, there is no going back. Please be certain.</p>
+                </div>
+                <button id="deleteAccountBtn" class="btn btn-danger">Delete Account</button>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="account.js"></script>
+    <script type="module" src="settings.js"></script>
+</body>
+</html>

@@ -26,7 +26,7 @@
                 <button class="btn btn-secondary" style="display: flex; align-items: center; gap: 0.5rem;">
                     ⚙️ Settings
                 </button>
-                <a href="login.html" class="btn btn-primary">Get Started</a>
+                <a href="login.html" id="navGetStartedBtn" class="btn btn-primary">Get Started</a>
             </nav>
         </div>
     </header>
@@ -76,7 +76,7 @@
                 Mindly makes learning more personalized, inclusive, and engaging with adaptive reading support,
                 gamification, and comprehensive progress tracking for students, parents, and teachers.
             </p>
-            <a href="login.html" class="btn btn-primary btn-large">Start Learning Today</a>
+            <a href="login.html" id="heroGetStartedBtn" class="btn btn-primary btn-large">Start Learning Today</a>
         </section>
 
         <!-- Feature Cards Grid -->
@@ -106,14 +106,29 @@
         </section>
     </main>
 
-    <!-- Floating Chat Bubble -->
-    <div class="chat-bubble">
-        <div class="chat-bubble-speech">Hi! I'm Buddy, your learning companion! 👋</div>
-        <button class="chat-bubble-button">😊</button>
-    </div>
+
 
 
     <script type="module" src="settings.js"></script>
+    <script type="module">
+        import { auth } from './firebaseAuth.js';
+        import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                const navBtn = document.getElementById('navGetStartedBtn');
+                if (navBtn) {
+                    navBtn.href = 'dashboard.html';
+                    navBtn.innerText = 'Go to Dashboard';
+                }
+                const heroBtn = document.getElementById('heroGetStartedBtn');
+                if (heroBtn) {
+                    heroBtn.href = 'dashboard.html';
+                    heroBtn.innerText = 'Go to Dashboard';
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>

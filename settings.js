@@ -48,7 +48,7 @@ let bionicApplied = false;
 document.body.addEventListener('click', (e) => {
     // Check if clicked element is a settings button
     const btn = e.target.closest('.settings-btn') || 
-        (e.target.textContent && e.target.textContent.includes('⚙️ Settings') ? (e.target.closest('button') || e.target) : null);
+        (e.target.textContent && (e.target.textContent.includes('⚙️ Settings') || e.target.textContent.includes('👁️ Accessibility')) ? (e.target.closest('button') || e.target) : null);
     
     if (btn && !modal.contains(e.target)) {
         const rect = btn.getBoundingClientRect();

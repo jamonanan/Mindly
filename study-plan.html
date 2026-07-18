@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Plan - Mindly</title>
+    <link rel="stylesheet" href="styles/study-plan.css">
+    <link rel="stylesheet" href="styles/settings.css">
+</head>
+
+<body class="study-plan-page">
+    <!-- Header -->
+    <header class="study-plan-header">
+        <a href="dashboard.html" class="back-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 12H5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Back
+        </a>
+        <div class="header-title">
+            <span>📋 Study Plan</span>
+        </div>
+        <button class="settings-btn btn btn-secondary" style="display: flex; align-items: center; gap: 0.5rem; background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 0.5rem 1rem; cursor: pointer; color: black; font-weight: 500;">
+            👁️ Accessibility
+        </button>
+
+                <a href="account.html" class="btn btn-secondary" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.3rem 0.8rem; border-radius: 50px; text-decoration: none; color: inherit;">
+                    <img src="" class="user-profile-pic" alt="Profile" style="width: 24px; height: 24px; border-radius: 50%; object-fit: cover; background: #e0e0e0;">
+                    <span>Account</span>
+                </a>
+    </header>
+
+    <main class="main-container">
+        
+        <!-- View 0: List View -->
+        <div id="list-view" class="view-container active">
+            <div class="setup-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <div style="text-align: left;">
+                    <h2 style="margin: 0; color: var(--primary);">Your Study Plans</h2>
+                    <p style="margin: 0.5rem 0 0 0; color: var(--text-muted);">Manage your learning journeys.</p>
+                </div>
+                <button id="show-setup-btn" class="primary-btn" style="display: flex; align-items: center; gap: 0.5rem;">
+                    <span>➕</span> Create New Plan
+                </button>
+            </div>
+
+            <div id="plans-container" class="plans-grid">
+                <!-- Plan cards will be injected here -->
+                <p style="text-align: center; color: var(--text-muted); width: 100%; padding: 2rem 0;">Loading plans...</p>
+            </div>
+        </div>
+
+        <!-- View 1: Setup Input -->
+        <div id="setup-view" class="view-container" style="display: none;">
+            <div class="setup-header">
+                <button id="back-from-setup-btn" class="action-btn secondary" style="width: auto; padding: 0.5rem 1rem; font-size: 0.9rem; margin-bottom: 1rem; display: inline-flex; align-items: center; gap: 0.5rem;">
+                    ← Back to Plans
+                </button>
+                <h2>Create Your Study Plan ✨</h2>
+                <p>Upload a document or paste your notes below to generate a chunked study plan.</p>
+            </div>
+
+            <div class="input-section">
+                <!-- Hidden file input -->
+                <input type="file" id="file-input" accept=".pdf,.doc,.docx,.txt" style="display: none;">
+                
+                <div class="dropzone" id="dropzone" onclick="document.getElementById('file-input').click()">
+                    <p>📄 Click to upload a study guide (PDF, Word, TXT)</p>
+                    <span id="file-name-display" style="font-weight: 600; color: var(--primary);">No file selected</span>
+                </div>
+
+                <div style="text-align: center; color: var(--text-muted); font-weight: 500; margin: 1.5rem 0;">OR</div>
+
+                <textarea id="text-input" class="text-input-area" placeholder="Paste your notes or text here..."></textarea>
+            </div>
+
+            <button id="generate-btn" class="generate-btn">Generate Plan 📋</button>
+        </div>
+
+        <!-- View 2: Gamified Map -->
+        <div id="map-view" class="view-container" style="display: none;">
+            <div class="map-header">
+                <button id="back-from-map-btn" class="action-btn secondary" style="width: auto; padding: 0.5rem 1rem; font-size: 0.9rem; margin-bottom: 1rem; display: inline-flex; align-items: center; gap: 0.5rem;">
+                    ← Back to Plans
+                </button>
+                <h2 id="map-plan-title">Your Learning Path 🚀</h2>
+                <p>Follow the path to master your material.</p>
+            </div>
+
+            <div class="learning-path" id="learning-path">
+                <!-- Nodes will be injected here -->
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Reading Modal -->
+    <div id="reading-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Reading Title</h3>
+                <button id="close-modal-btn" class="close-btn">×</button>
+            </div>
+            <div class="modal-body">
+                <p id="modal-text" style="white-space: pre-wrap;">Content goes here...</p>
+            </div>
+            <div class="modal-footer">
+                <button id="mark-complete-btn" class="primary-btn">Mark Complete ✅</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <!-- Using Firebase SDKs -->
+    <script type="module" src="study-plan.js"></script>
+    <script type="module" src="settings.js"></script>
+</body>
+</html>

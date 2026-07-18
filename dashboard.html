@@ -26,10 +26,11 @@
             <!-- Dashboard Actions -->
             <div class="dashboard-actions">
                 <button class="btn btn-secondary" style="display: flex; align-items: center; gap: 0.5rem;">
-                    ⚙️ Settings
+                    👁️ Accessibility
                 </button>
-                <a href="login.html" class="btn btn-secondary" style="display: flex; align-items: center; gap: 0.5rem;">
-                    → Logout
+                <a href="account.html" class="btn btn-secondary" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.3rem 0.8rem; border-radius: 50px; text-decoration: none; color: inherit;">
+                    <img src="" class="user-profile-pic" alt="Profile" style="width: 24px; height: 24px; border-radius: 50%; object-fit: cover; background: #e0e0e0;">
+                    <span>Account</span>
                 </a>
             </div>
         </div>
@@ -90,11 +91,11 @@
                         </a>
 
                         <!-- Study Plan -->
-                        <div class="activity-card green">
+                        <a href="study-plan.html" class="activity-card green" style="text-decoration: none;">
                             <div class="activity-icon">📋</div>
                             <div class="activity-title">Study Plan</div>
                             <div class="activity-description">Your personalized schedule</div>
-                        </div>
+                        </a>
 
                         <!-- Lessons -->
                         <a href="lessons.html" class="activity-card orange" style="text-decoration: none;">
@@ -288,11 +289,7 @@
         </div>
     </main>
 
-    <!-- Floating Chat Bubble -->
-    <div class="chat-bubble">
-        <div class="chat-bubble-speech">Hi! Ready to learn today? ✨</div>
-        <button class="chat-bubble-button">😊</button>
-    </div>
+
 
     <script type="module" src="firebaseAuth.js"></script>
 

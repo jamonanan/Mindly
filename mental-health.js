@@ -1,3 +1,6 @@
+import { auth, db } from './firebaseAuth.js';
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const FUNCTION_URL = "http://127.0.0.1:5001/mindly-7f7c4/us-central1/chatWithGemini";
 
@@ -5,16 +8,39 @@ const chatMessages = document.getElementById("chat-messages");
 const chatInput = document.getElementById("chat-input");
 const sendBtn = document.getElementById("send-btn");
 
-let chatHistory = [
-    {
-        role: "user",
-        parts: [{ text: "Hello" }],
-    },
-    {
-        role: "model",
-        parts: [{ text: "Hello I'm your support buddy. How are you feeling about your studies today?" }],
+let chatHistory = [];
+let userName = "there";
+
+onAuthStateChanged(auth, async (user) => {
+    if (user) {
+        const docRef = doc(db, "users", user.uid);
+        try {
+            const docSnap = await getDoc(docRef);
+            if (docSnap.exists() && docSnap.data().fullName) {
+                userName = docSnap.data().fullName;
+            }
+        } catch (e) {
+            console.error("Error getting user name", e);
+        }
     }
-];
+    
+    // Initialize chat history with user name
+    chatHistory = [
+        {
+            role: "user",
+            parts: [{ text: `Hello, my name is ${userName}.` }],
+        },
+        {
+            role: "model",
+            parts: [{ text: `Hello ${userName}! I'm your support buddy. How are you feeling about your studies today?` }],
+        }
+    ];
+
+    const greetingEl = document.getElementById("ai-greeting");
+    if (greetingEl) {
+        greetingEl.textContent = `Hello ${userName}! I'm your support buddy. How are you feeling about your studies today?`;
+    }
+});
 
 function createMessageElement(text, isUser = false) {
     const messageDiv = document.createElement("div");
