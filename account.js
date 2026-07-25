@@ -20,8 +20,6 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 
 // UI Elements
-const profileImagePreview = document.getElementById('profileImagePreview');
-const profileImageUpload = document.getElementById('profileImageUpload');
 const fullNameInput = document.getElementById('fullNameInput');
 const saveNameBtn = document.getElementById('saveNameBtn');
 const emailDisplay = document.getElementById('emailDisplay');
@@ -69,10 +67,6 @@ onAuthStateChanged(auth, async (user) => {
             if (docSnap.exists()) {
                 const userData = docSnap.data();
                 fullNameInput.value = userData.fullName || '';
-                
-                // Set Profile Picture
-                const picUrl = userData.profilePicUrl || 'https://api.dicebear.com/7.x/bottts/svg?seed=' + user.uid;
-                profileImagePreview.src = picUrl;
             }
         } catch (error) {
             console.error("Error loading user data:", error);
@@ -109,47 +103,6 @@ saveNameBtn.addEventListener('click', async () => {
     }
 });
 
-// Upload Profile Picture
-profileImageUpload.addEventListener('change', async (e) => {
-    if (!currentUser) return;
-    const file = e.target.files[0];
-    if (!file) return;
-
-    if (!file.type.startsWith('image/')) {
-        showMessage("Please select an image file.", 'error');
-        return;
-    }
-
-    try {
-        showMessage("Uploading profile picture...", 'success');
-        const storageRef = ref(storage, `profile_pics/${currentUser.uid}`);
-        
-        // Upload file
-        await uploadBytes(storageRef, file);
-        
-        // Get URL
-        const downloadURL = await getDownloadURL(storageRef);
-        
-        // Update Auth Profile
-        await updateProfile(currentUser, { photoURL: downloadURL });
-
-        // Update Firestore
-        const docRef = doc(db, "users", currentUser.uid);
-        await updateDoc(docRef, { profilePicUrl: downloadURL });
-
-        // Update UI
-        profileImagePreview.src = downloadURL;
-        showMessage("Profile picture updated!");
-
-        // Update headers immediately
-        const headerPics = document.querySelectorAll('.user-profile-pic');
-        headerPics.forEach(pic => pic.src = downloadURL);
-        
-    } catch (error) {
-        console.error("Error uploading image:", error);
-        showMessage("Failed to upload image.", 'error');
-    }
-});
 
 // Password Reset
 resetPasswordBtn.addEventListener('click', async () => {

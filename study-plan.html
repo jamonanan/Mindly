@@ -22,14 +22,20 @@
         <div class="header-title">
             <span>📋 Study Plan</span>
         </div>
-        <button class="settings-btn btn btn-secondary" style="display: flex; align-items: center; gap: 0.5rem; background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 0.5rem 1rem; cursor: pointer; color: black; font-weight: 500;">
-            👁️ Accessibility
-        </button>
-
-                <a href="account.html" class="btn btn-secondary" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.3rem 0.8rem; border-radius: 50px; text-decoration: none; color: inherit;">
-                    <img src="" class="user-profile-pic" alt="Profile" style="width: 24px; height: 24px; border-radius: 50%; object-fit: cover; background: #e0e0e0;">
-                    <span>Account</span>
-                </a>
+        <div class="header-actions" style="display: flex; align-items: center; gap: 1rem;">
+            <button class="settings-btn btn btn-secondary" style="display: flex; align-items: center; gap: 0.5rem; background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 0.5rem 1rem; cursor: pointer; color: black; font-weight: 500;">
+                👁️ Accessibility
+            </button>
+            <div class="account-dropdown-wrapper" style="position: relative; display: inline-block;">
+                <button class="btn btn-secondary account-dropdown-btn" style="display: flex; align-items: center; gap: 0.5rem; background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 0.5rem 1rem; cursor: pointer; color: black; font-weight: 500;">
+                    👤 Account
+                </button>
+                <div class="account-dropdown-menu" style="display: none; position: absolute; right: 0; top: 110%; background: white; border: 1px solid #e5e7eb; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 160px; z-index: 1000; overflow: hidden;">
+                    <a href="account.html" style="display: block; padding: 0.75rem 1rem; color: #374151; text-decoration: none; border-bottom: 1px solid #e5e7eb; font-size: 0.95rem; font-weight: 500;">⚙️ Account Settings</a>
+                    <button id="globalLogoutBtn" style="display: block; width: 100%; text-align: left; padding: 0.75rem 1rem; color: #ef4444; background: none; border: none; cursor: pointer; font-size: 0.95rem; font-weight: 500; font-family: inherit;">🚪 Logout</button>
+                </div>
+            </div>
+        </div>
     </header>
 
     <main class="main-container">
@@ -41,9 +47,6 @@
                     <h2 style="margin: 0; color: var(--primary);">Your Study Plans</h2>
                     <p style="margin: 0.5rem 0 0 0; color: var(--text-muted);">Manage your learning journeys.</p>
                 </div>
-                <button id="show-setup-btn" class="primary-btn" style="display: flex; align-items: center; gap: 0.5rem;">
-                    <span>➕</span> Create New Plan
-                </button>
             </div>
 
             <div id="plans-container" class="plans-grid">
@@ -52,32 +55,7 @@
             </div>
         </div>
 
-        <!-- View 1: Setup Input -->
-        <div id="setup-view" class="view-container" style="display: none;">
-            <div class="setup-header">
-                <button id="back-from-setup-btn" class="action-btn secondary" style="width: auto; padding: 0.5rem 1rem; font-size: 0.9rem; margin-bottom: 1rem; display: inline-flex; align-items: center; gap: 0.5rem;">
-                    ← Back to Plans
-                </button>
-                <h2>Create Your Study Plan ✨</h2>
-                <p>Upload a document or paste your notes below to generate a chunked study plan.</p>
-            </div>
 
-            <div class="input-section">
-                <!-- Hidden file input -->
-                <input type="file" id="file-input" accept=".pdf,.doc,.docx,.txt" style="display: none;">
-                
-                <div class="dropzone" id="dropzone" onclick="document.getElementById('file-input').click()">
-                    <p>📄 Click to upload a study guide (PDF, Word, TXT)</p>
-                    <span id="file-name-display" style="font-weight: 600; color: var(--primary);">No file selected</span>
-                </div>
-
-                <div style="text-align: center; color: var(--text-muted); font-weight: 500; margin: 1.5rem 0;">OR</div>
-
-                <textarea id="text-input" class="text-input-area" placeholder="Paste your notes or text here..."></textarea>
-            </div>
-
-            <button id="generate-btn" class="generate-btn">Generate Plan 📋</button>
-        </div>
 
         <!-- View 2: Gamified Map -->
         <div id="map-view" class="view-container" style="display: none;">

@@ -1,3 +1,8 @@
+import { auth, db } from './firebaseAuth.js';
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { doc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { initializeDailyMetrics, updateDailyMetric } from './metrics.js';
+
 document.addEventListener('DOMContentLoaded', () => {
     // --- Elements ---
     const timeDisplay = document.getElementById('time-display');
@@ -17,24 +22,55 @@ document.addEventListener('DOMContentLoaded', () => {
     const applyCustomBtn = document.getElementById('apply-custom');
     
     const totalFocusTimeEl = document.getElementById('total-focus-time');
-
+    const focusGoalInput = document.getElementById('focus-goal-input');
+    const saveGoalBtn = document.getElementById('save-goal-btn');
+    
     // --- State ---
-    let timerInterval = null;
-    let initialSeconds = 25 * 60; // 25 minutes default
+    let initialSeconds = 25 * 60;
     let remainingSeconds = initialSeconds;
+    let timerInterval = null;
     let isRunning = false;
     let currentType = 'focus'; // 'focus' or 'break'
     
-    // Total focus time state
-    let totalFocusSeconds = 0;
-    
-    // Load existing focus time from local storage if any
-    const today = new Date().toDateString();
-    const storedData = JSON.parse(localStorage.getItem('mindlyFocusTracker') || '{}');
-    if (storedData.date === today) {
-        totalFocusSeconds = storedData.seconds || 0;
+    let focusSecondsElapsedThisSession = 0;
+    let currentUser = null;
+    let metricsUnsubscribe = null;
+
+    onAuthStateChanged(auth, async (user) => {
+        currentUser = user;
+        if (user) {
+            await initializeDailyMetrics();
+            subscribeToMetrics(user);
+        } else if (metricsUnsubscribe) {
+            metricsUnsubscribe();
+        }
+    });
+
+    function subscribeToMetrics(user) {
+        const today = new Date();
+        const dateStr = today.getFullYear() + '-' + 
+                        String(today.getMonth() + 1).padStart(2, '0') + '-' + 
+                        String(today.getDate()).padStart(2, '0');
+        
+        const metricRef = doc(db, "users", user.uid, "dailyMetrics", dateStr);
+        metricsUnsubscribe = onSnapshot(metricRef, (docSnap) => {
+            if (docSnap.exists()) {
+                const data = docSnap.data();
+                totalFocusTimeEl.textContent = data.focusTimeMinutes || 0;
+                if (document.activeElement !== focusGoalInput) {
+                    focusGoalInput.value = data.focusTimeGoal || 30;
+                }
+            }
+        });
     }
-    updateTotalFocusDisplay();
+
+    saveGoalBtn.addEventListener('click', async () => {
+        const val = parseInt(focusGoalInput.value, 10);
+        if (val && val > 0) {
+            await updateDailyMetric('focusTimeGoal', val, 'set');
+            console.log(`Daily focus goal updated to ${val} minutes.`);
+        }
+    });
 
     // --- Core Timer Logic ---
     function formatTime(totalSeconds) {
@@ -82,9 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Accumulate focus time if it's a focus session
             if (currentType === 'focus') {
-                totalFocusSeconds++;
-                saveTotalFocusTime();
-                updateTotalFocusDisplay();
+                focusSecondsElapsedThisSession++;
             }
             
             updateDisplay();
@@ -95,37 +129,35 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1000);
     }
 
-    function stopTimer() {
+    async function stopTimer() {
         if (!isRunning) return;
         isRunning = false;
         clearInterval(timerInterval);
         startBtn.style.opacity = '1';
         startBtn.style.cursor = 'pointer';
+
+        if (focusSecondsElapsedThisSession > 0) {
+            const minutesToAdd = Math.floor(focusSecondsElapsedThisSession / 60);
+            if (minutesToAdd > 0) {
+                await updateDailyMetric('focusTimeMinutes', minutesToAdd);
+            }
+            focusSecondsElapsedThisSession = focusSecondsElapsedThisSession % 60; // keep remainder
+        }
+    }
+
+
+
+    function completeTimer() {
+        stopTimer();
+        console.log(`Time's up! Great job finishing your ${currentType} session.`);
+        // Note: Could add a nice notification sound here if desired
     }
 
     function resetTimer() {
         stopTimer();
         remainingSeconds = initialSeconds;
+        focusSecondsElapsedThisSession = 0;
         updateDisplay();
-    }
-
-    function completeTimer() {
-        stopTimer();
-        alert(`Time's up! Great job finishing your ${currentType} session.`);
-        // Note: Could add a nice notification sound here if desired
-    }
-
-    // --- Tracking Logic ---
-    function saveTotalFocusTime() {
-        localStorage.setItem('mindlyFocusTracker', JSON.stringify({
-            date: today,
-            seconds: totalFocusSeconds
-        }));
-    }
-
-    function updateTotalFocusDisplay() {
-        const totalMinutes = Math.floor(totalFocusSeconds / 60);
-        totalFocusTimeEl.textContent = totalMinutes;
     }
 
     // --- Event Listeners ---
@@ -176,7 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
             customInputs.style.display = 'none';
             customBtn.style.display = 'inline-flex';
         } else {
-            alert('Please enter a valid number of minutes.');
+            console.warn('Please enter a valid number of minutes.');
         }
     });
 

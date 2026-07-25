@@ -1,25 +1,17 @@
 import { auth, db } from './firebaseAuth.js';
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import { collection, doc, getDocs, addDoc, deleteDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { updateDailyMetric } from './metrics.js';
 
 const UNSTRUCTURED_URL = "http://127.0.0.1:5001/mindly-7f7c4/us-central1/extractText";
 const GENERATE_PLAN_URL = "http://127.0.0.1:5001/mindly-7f7c4/us-central1/generateStudyPlan";
 
 // UI Elements - Views
 const listView = document.getElementById("list-view");
-const setupView = document.getElementById("setup-view");
 const mapView = document.getElementById("map-view");
 
 // UI Elements - List View
 const plansContainer = document.getElementById("plans-container");
-const showSetupBtn = document.getElementById("show-setup-btn");
-
-// UI Elements - Setup View
-const fileInput = document.getElementById("file-input");
-const fileNameDisplay = document.getElementById("file-name-display");
-const textInput = document.getElementById("text-input");
-const generateBtn = document.getElementById("generate-btn");
-const backFromSetupBtn = document.getElementById("back-from-setup-btn");
 
 // UI Elements - Map View
 const learningPath = document.getElementById("learning-path");
@@ -46,7 +38,7 @@ onAuthStateChanged(auth, async (user) => {
         switchView(listView);
         await loadAllPlans();
     } else {
-        alert("Please log in to use the Study Plan feature.");
+        console.warn("Please log in to use the Study Plan feature.");
         window.location.href = "login.html";
     }
 });
@@ -54,22 +46,9 @@ onAuthStateChanged(auth, async (user) => {
 // --- View Navigation Logic ---
 function switchView(view) {
     listView.style.display = "none";
-    setupView.style.display = "none";
     mapView.style.display = "none";
     view.style.display = "block";
 }
-
-showSetupBtn.addEventListener("click", () => {
-    // Reset inputs
-    fileInput.value = "";
-    fileNameDisplay.textContent = "No file selected";
-    textInput.value = "";
-    switchView(setupView);
-});
-
-backFromSetupBtn.addEventListener("click", () => {
-    switchView(listView);
-});
 
 backFromMapBtn.addEventListener("click", () => {
     switchView(listView);
@@ -156,100 +135,12 @@ async function deletePlan(planId) {
         // We removed loadAllPlans() here because we optimistically removed the card from the DOM
     } catch (error) {
         console.error("Error deleting plan:", error);
-        alert("Failed to delete plan.");
+        console.error("Failed to delete plan.");
         await loadAllPlans(); // Reload to restore the card if deletion failed
     }
 }
 
-// --- Setup View Logic ---
-fileInput.addEventListener("change", (e) => {
-    if (e.target.files.length > 0) {
-        fileNameDisplay.textContent = e.target.files[0].name;
-    } else {
-        fileNameDisplay.textContent = "No file selected";
-    }
-});
 
-function getBase64(file) {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = error => reject(error);
-    });
-}
-
-generateBtn.addEventListener("click", async () => {
-    const file = fileInput.files[0];
-    const text = textInput.value.trim();
-
-    if (!file && !text) {
-        alert("Please upload a file or paste some text.");
-        return;
-    }
-
-    generateBtn.disabled = true;
-    generateBtn.textContent = "Analyzing materials... ⏳";
-
-    try {
-        let finalContextText = text;
-
-        if (file) {
-            generateBtn.textContent = "Extracting text from document... 📄";
-            const base64Data = await getBase64(file);
-            
-            const extractRes = await fetch(UNSTRUCTURED_URL, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ fileBase64: base64Data, fileName: file.name })
-            });
-
-            if (!extractRes.ok) throw new Error("Failed to extract text from document.");
-            const elements = await extractRes.json();
-            
-            const extractedText = elements.map(el => el.text).join("\n");
-            finalContextText = finalContextText + "\n\n" + extractedText;
-        }
-
-        generateBtn.textContent = "Generating your path... 🚀";
-
-        const planRes = await fetch(GENERATE_PLAN_URL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ text: finalContextText })
-        });
-
-        if (!planRes.ok) throw new Error("Failed to generate plan.");
-        const data = await planRes.json();
-        
-        let newPlanChunks = data.plan; // the chunks array
-        let generatedTitle = data.title || "My Study Plan";
-        
-        // Initialize state for each node
-        let chunksWithStatus = newPlanChunks.map((node, index) => ({
-            ...node,
-            status: index === 0 ? 'active' : 'locked' // First node is active, rest are locked
-        }));
-
-        // Save as new document
-        const plansRef = collection(db, "users", currentUser.uid, "studyPlans");
-        const newDocRef = await addDoc(plansRef, {
-            title: generatedTitle,
-            chunks: chunksWithStatus,
-            createdAt: new Date().toISOString()
-        });
-
-        // Open the newly created plan
-        openPlanMap(newDocRef.id, { title: generatedTitle, chunks: chunksWithStatus });
-
-    } catch (error) {
-        console.error(error);
-        alert("Error generating plan: " + error.message);
-    } finally {
-        generateBtn.disabled = false;
-        generateBtn.textContent = "Generate Plan 📋";
-    }
-});
 
 // --- Gamified Map Logic ---
 function openPlanMap(planId, data) {
@@ -356,6 +247,12 @@ markCompleteBtn.addEventListener("click", async () => {
             await updateDoc(planRef, { chunks: chunksArray });
         } else {
             await updateDoc(planRef, { plan: chunksArray });
+        }
+        
+        // Check if the entire plan is now completed
+        const isPlanComplete = chunksArray.every(chunk => chunk.status === 'completed');
+        if (isPlanComplete) {
+            await updateDailyMetric('studyPlansDone', 1);
         }
     } catch (error) {
         console.error("Error updating plan:", error);

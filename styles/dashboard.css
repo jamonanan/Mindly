@@ -377,14 +377,14 @@ body.dashboard-page {
     font-weight: 600;
 }
 
-.dashboard-page .weekly-card {
+.dashboard-page .progress-card {
     background: linear-gradient(180deg, #ffffff 0%, #f1f2ff 100%);
     border-radius: var(--radius-lg);
     padding: var(--spacing-lg);
     box-shadow: var(--shadow-md);
 }
 
-.dashboard-page .weekly-header {
+.dashboard-page .progress-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -392,21 +392,21 @@ body.dashboard-page {
     gap: var(--spacing-md);
 }
 
-.dashboard-page .weekly-title-row {
+.dashboard-page .progress-title-row {
     display: flex;
     align-items: center;
     gap: var(--spacing-xs);
     margin-bottom: var(--spacing-xs);
 }
 
-.dashboard-page .weekly-row {
+.dashboard-page .progress-row {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-xs);
     margin-bottom: var(--spacing-md);
 }
 
-.dashboard-page .weekly-row:last-child {
+.dashboard-page .progress-row:last-child {
     margin-bottom: 0;
 }
 

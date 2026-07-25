@@ -1,181 +1,131 @@
+import { auth, db } from './firebaseAuth.js';
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { collection, doc, getDocs, deleteDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { updateDailyMetric } from './metrics.js';
+
 document.addEventListener('DOMContentLoaded', () => {
-    const dropZone = document.getElementById('dropZone');
-    const fileInput = document.getElementById('fileInput');
-    const textInput = document.getElementById('textInput');
-    const generateBtn = document.getElementById('generateBtn');
-    
-    const uploadSection = document.getElementById('uploadSection');
-    const loadingState = document.getElementById('loadingState');
-    const loadingStatus = document.getElementById('loadingStatus');
+    const listView = document.getElementById('list-view');
     const resultsSection = document.getElementById('resultsSection');
+    const lessonsContainer = document.getElementById('lessons-container');
     const lessonContent = document.getElementById('lessonContent');
-    const resetBtn = document.getElementById('resetBtn');
-    const saveBtn = document.getElementById('saveBtn');
+    const lessonDetailTitle = document.getElementById('lesson-detail-title');
+    const backBtn = document.getElementById('back-from-detail-btn');
+    const finishBtn = document.getElementById('finishBtn');
 
-    if (saveBtn) {
-        saveBtn.addEventListener('click', () => {
-            const element = document.getElementById('lessonContent');
-            const opt = {
-                margin:       1,
-                filename:     'Mindly_Study_Lesson.pdf',
-                image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2 },
-                jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
-            };
-            
-            // New Promise-based usage of html2pdf
-            html2pdf().set(opt).from(element).save();
-        });
-    }
+    let currentUser = null;
+    let currentLessonId = null;
 
-    // Determine backend URLs based on environment
-    const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
-    const EXTRACT_URL = isLocal 
-        ? "http://127.0.0.1:5001/mindly-7f7c4/us-central1/extractText" 
-        : "https://extracttext-7f7c4-uc.a.run.app";
-    const GENERATE_URL = isLocal 
-        ? "http://127.0.0.1:5001/mindly-7f7c4/us-central1/generateLesson" 
-        : "https://generatelesson-7f7c4-uc.a.run.app";
-
-    let selectedFile = null;
-
-    // Drag and Drop Events
-    dropZone.addEventListener('click', () => fileInput.click());
-
-    dropZone.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        dropZone.classList.add('dragover');
-    });
-
-    dropZone.addEventListener('dragleave', () => {
-        dropZone.classList.remove('dragover');
-    });
-
-    dropZone.addEventListener('drop', (e) => {
-        e.preventDefault();
-        dropZone.classList.remove('dragover');
-        if (e.dataTransfer.files.length) {
-            handleFileSelect(e.dataTransfer.files[0]);
+    onAuthStateChanged(auth, async (user) => {
+        if (user) {
+            currentUser = user;
+            await loadLessons();
+        } else {
+            console.warn("Please log in to use the AI Lessons feature.");
+            window.location.href = "login.html";
         }
     });
 
-    fileInput.addEventListener('change', (e) => {
-        if (e.target.files.length) {
-            handleFileSelect(e.target.files[0]);
-        }
-    });
-
-    function handleFileSelect(file) {
-        selectedFile = file;
-        const p = dropZone.querySelector('p');
-        p.textContent = `Selected: ${file.name}`;
-        p.style.color = "var(--primary)";
-    }
-
-    // Generate Button Click
-    generateBtn.addEventListener('click', async () => {
-        const textValue = textInput.value.trim();
+    async function loadLessons() {
+        if (!currentUser) return;
+        lessonsContainer.innerHTML = '<p style="text-align: center; color: var(--text-muted); width: 100%; padding: 2rem 0;">Loading lessons...</p>';
         
-        if (!selectedFile && !textValue) {
-            alert("Please upload a file or paste some text first.");
-            return;
-        }
-
-        // Show loading state
-        uploadSection.classList.add('hidden');
-        loadingState.classList.remove('hidden');
-
         try {
-            let textToProcess = textValue;
-
-            // If a file is selected, extract text first
-            if (selectedFile) {
-                loadingStatus.textContent = "Extracting text from document...";
-                textToProcess = await extractTextFromFile(selectedFile);
-                if (!textToProcess) {
-                    throw new Error("Could not extract readable text from the file.");
-                }
+            const lessonsRef = collection(db, "users", currentUser.uid, "lessons");
+            const querySnapshot = await getDocs(lessonsRef);
+            
+            lessonsContainer.innerHTML = "";
+            
+            if (querySnapshot.empty) {
+                lessonsContainer.innerHTML = '<p style="text-align: center; color: var(--text-muted); width: 100%; padding: 2rem 0;">You have no lessons yet. Generate some from the dashboard!</p>';
+                return;
             }
 
-            // Generate Lesson
-            loadingStatus.textContent = "AI is studying and creating your lesson...";
-            const lessonMarkdown = await generateLesson(textToProcess);
-
-            // Show results
-            loadingState.classList.add('hidden');
-            resultsSection.classList.remove('hidden');
-
-            // Render Markdown securely using marked.js
-            lessonContent.innerHTML = marked.parse(lessonMarkdown);
-
-            if (window.isBionicActive && window.isBionicActive()) {
-                window.applyBionicReading(lessonContent);
-            }
-
+            querySnapshot.forEach((docSnap) => {
+                const data = docSnap.data();
+                renderLessonCard(docSnap.id, data);
+            });
         } catch (error) {
-            console.error("Error generating lesson:", error);
-            alert("Something went wrong: " + error.message);
-            loadingState.classList.add('hidden');
-            uploadSection.classList.remove('hidden');
+            console.error("Error loading lessons:", error);
+            lessonsContainer.innerHTML = '<p style="text-align: center; color: red;">Failed to load lessons.</p>';
         }
-    });
-
-    // Reset Button
-    resetBtn.addEventListener('click', () => {
-        resultsSection.classList.add('hidden');
-        uploadSection.classList.remove('hidden');
-        textInput.value = '';
-        selectedFile = null;
-        fileInput.value = '';
-        const p = dropZone.querySelector('p');
-        p.textContent = 'Drag and drop your PDF or DOCX here';
-        p.style.color = '';
-    });
-
-    // Helper functions
-    async function extractTextFromFile(file) {
-        const fileBase64 = await new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = () => resolve(reader.result);
-            reader.onerror = error => reject(error);
-        });
-
-        const response = await fetch(EXTRACT_URL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                fileBase64: fileBase64,
-                fileName: file.name
-            })
-        });
-
-        if (!response.ok) {
-            const errorText = await response.text();
-            throw new Error(errorText || "Failed to parse document");
-        }
-
-        const elements = await response.json();
-        const allowedTypes = ["NarrativeText", "Title", "ListItem"];
-        return elements
-            .filter(el => allowedTypes.includes(el.type))
-            .map(el => el.text)
-            .join("\n\n");
     }
 
-    async function generateLesson(text) {
-        const response = await fetch(GENERATE_URL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ text: text })
+    function renderLessonCard(lessonId, data) {
+        const dateStr = data.createdAt ? new Date(data.createdAt).toLocaleDateString() : 'Unknown Date';
+
+        const card = document.createElement("div");
+        card.className = "plan-card";
+
+        card.innerHTML = `
+            <div class="plan-info">
+                <h3 class="plan-title">${data.title || 'Untitled Lesson'}</h3>
+                <p class="plan-meta">Created: ${dateStr}</p>
+            </div>
+            <button class="delete-plan-btn delete-btn" title="Delete Lesson">🗑️</button>
+        `;
+
+        card.addEventListener("click", () => {
+            openLesson(lessonId, data);
         });
 
-        if (!response.ok) {
-            const errorText = await response.text();
-            throw new Error(errorText || "Failed to generate lesson");
+        const deleteBtn = card.querySelector(".delete-btn");
+        deleteBtn.addEventListener("click", async (e) => {
+            e.stopPropagation();
+            if (confirm(`Are you sure you want to delete "${data.title || 'this lesson'}"?`)) {
+                card.remove();
+                if (lessonsContainer.children.length === 0) {
+                    lessonsContainer.innerHTML = '<p style="text-align: center; color: var(--text-muted); width: 100%; padding: 2rem 0;">You have no lessons yet. Generate some from the dashboard!</p>';
+                }
+                await deleteLesson(lessonId);
+            }
+        });
+
+        lessonsContainer.appendChild(card);
+    }
+
+    async function deleteLesson(lessonId) {
+        try {
+            await deleteDoc(doc(db, "users", currentUser.uid, "lessons", lessonId));
+        } catch (error) {
+            console.error("Error deleting lesson:", error);
+            console.error("Failed to delete lesson.");
+        }
+    }
+
+    function openLesson(lessonId, data) {
+        currentLessonId = lessonId;
+        lessonDetailTitle.textContent = data.title || "Lesson Details";
+        
+        // Render Markdown securely using marked.js
+        if (typeof marked !== 'undefined') {
+            lessonContent.innerHTML = marked.parse(data.content || "");
+        } else {
+            lessonContent.innerHTML = "<p>Error: Markdown parser not loaded.</p>";
         }
 
-        const data = await response.json();
-        return data.lesson;
+        if (window.isBionicActive && window.isBionicActive()) {
+            window.applyBionicReading(lessonContent);
+        }
+
+        listView.style.display = "none";
+        resultsSection.style.display = "block";
     }
+
+    backBtn.addEventListener('click', () => {
+        resultsSection.style.display = "none";
+        listView.style.display = "block";
+        currentLessonId = null;
+    });
+
+    finishBtn.addEventListener('click', async () => {
+        try {
+            await updateDailyMetric('lessonsDone', 1);
+            console.log("Lesson finished! Great job.");
+        } catch (error) {
+            console.error("Error updating lesson metric:", error);
+        }
+        resultsSection.style.display = "none";
+        listView.style.display = "block";
+        currentLessonId = null;
+    });
 });

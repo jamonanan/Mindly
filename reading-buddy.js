@@ -138,7 +138,7 @@ function handlePlay() {
 
   // If no text, show alert
   if (text.trim() === '') {
-    alert('Please enter some text to read.');
+    console.warn('Please enter some text to read.');
     return;
   }
 
@@ -393,9 +393,8 @@ function handleFileUpload() {
       }
 
     } catch (error) {
-      console.error("Extraction error:", error);
-      alert("Error extracting document. Make sure your Firebase Emulators are running locally! \n\nDetails: " + error.message);
-      textInput.value = originalText; // Revert back
+      console.error("Error extracting document: " + error.message);
+      textInput.value = "Error extracting text. Check console."; // Revert back
     } finally {
       textInput.disabled = false;
       

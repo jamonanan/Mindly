@@ -48,10 +48,12 @@ function validateSignupForm(event) {
     isValid = false;
     errorMessage = 'Please enter your email address.';
     emailInput.style.borderColor = '#EF4444';
+    console.error(errorMessage);
   } else if (!isValidEmail(email)) {
     isValid = false;
     errorMessage = 'Please enter a valid email address.';
     emailInput.style.borderColor = '#EF4444';
+    console.error(errorMessage);
   } else {
     emailInput.style.borderColor = '';
   }
@@ -92,7 +94,7 @@ function validateSignupForm(event) {
     window.location.href = 'dashboard.html';
   } else {
     // Show error message
-    alert(errorMessage);
+    console.error(errorMessage);
   }
 
   return isValid;

@@ -1,4 +1,3 @@
-
   // Import the functions you need from the SDKs you need
     // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
@@ -148,6 +147,30 @@
     }
   });
 
+  // Global Dropdown and Logout logic
+  document.addEventListener('click', async (e) => {
+    // Dropdown toggle
+    const btn = e.target.closest('.account-dropdown-btn');
+    const menu = document.querySelector('.account-dropdown-menu');
+    
+    if (btn && menu) {
+        menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    } else if (menu && !e.target.closest('.account-dropdown-wrapper')) {
+        menu.style.display = 'none';
+    }
+
+    // Global Logout
+    if (e.target.id === 'globalLogoutBtn') {
+        try {
+            await signOut(auth);
+            window.location.href = 'index.html';
+        } catch (error) {
+            console.error("Sign out error:", error);
+            console.error("Failed to sign out. Please try again.");
+        }
+    }
+  });
+
   // Function to handle Google Sign-In
   window.signInWithGoogle = function() {
     signInWithPopup(auth, provider)
@@ -182,8 +205,8 @@
         if (msgDiv) {
             msgDiv.style.display = 'block';
             msgDiv.innerHTML = 'Error signing in with Google: ' + error.message;
-        } else {
-            alert('Error signing in with Google: ' + error.message);
         }
+        console.error('Error signing in with Google:', error);
+        console.error('Error signing in with Google: ' + error.message);
       });
   }

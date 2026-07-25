@@ -60,8 +60,8 @@ function validateLoginForm(event) {
     // For now, we'll just redirect to the dashboard
     window.location.href = 'dashboard.html';
   } else {
-    // Show error message (you could use an alert or a better UI element)
-    alert(errorMessage);
+    // Show error message
+    console.error(errorMessage);
   }
 
   return isValid;

@@ -18,8 +18,10 @@
     <header class="app-header">
         <a href="dashboard.html" class="back-link">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19 12H5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M19 12H5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
             </svg>
             Back to Dashboard
         </a>
@@ -27,71 +29,66 @@
             <span class="icon">📚</span>
             <h1>AI Study Lessons</h1>
         </div>
-        <button class="settings-btn btn btn-secondary" style="display: flex; align-items: center; gap: 0.5rem;">
-            👁️ Accessibility
-        </button>
-
-                <a href="account.html" class="btn btn-secondary" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.3rem 0.8rem; border-radius: 50px; text-decoration: none; color: inherit;">
-                    <img src="" class="user-profile-pic" alt="Profile" style="width: 24px; height: 24px; border-radius: 50%; object-fit: cover; background: #e0e0e0;">
-                    <span>Account</span>
-                </a>
+        <div class="header-actions" style="display: flex; align-items: center; gap: 1rem;">
+            <button class="settings-btn btn btn-secondary" style="display: flex; align-items: center; gap: 0.5rem; background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 0.5rem 1rem; cursor: pointer; color: black; font-weight: 500;">
+                👁️ Accessibility
+            </button>
+            <div class="account-dropdown-wrapper" style="position: relative; display: inline-block;">
+                <button class="btn btn-secondary account-dropdown-btn" style="display: flex; align-items: center; gap: 0.5rem; background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 0.5rem 1rem; cursor: pointer; color: black; font-weight: 500;">
+                    👤 Account
+                </button>
+                <div class="account-dropdown-menu" style="display: none; position: absolute; right: 0; top: 110%; background: white; border: 1px solid #e5e7eb; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 160px; z-index: 1000; overflow: hidden;">
+                    <a href="account.html" style="display: block; padding: 0.75rem 1rem; color: #374151; text-decoration: none; border-bottom: 1px solid #e5e7eb; font-size: 0.95rem; font-weight: 500;">⚙️ Account Settings</a>
+                    <button id="globalLogoutBtn" style="display: block; width: 100%; text-align: left; padding: 0.75rem 1rem; color: #ef4444; background: none; border: none; cursor: pointer; font-size: 0.95rem; font-weight: 500; font-family: inherit;">🚪 Logout</button>
+                </div>
+            </div>
+        </div>
     </header>
 
     <main class="lessons-main container">
-        <div class="upload-section" id="uploadSection">
-            <div class="hero-text">
-                <h2>Turn dense study materials into bite-sized lessons.</h2>
-                <p>Upload a document or paste your notes, and our AI will create a structured lesson with key takeaways.</p>
-            </div>
-
-            <!-- Drag and drop zone -->
-            <div class="drop-zone" id="dropZone">
-                <div class="drop-zone-content">
-                    <span class="upload-icon">📄</span>
-                    <p>Drag and drop your PDF or DOCX here</p>
-                    <p class="sub-text">or click to browse files</p>
-                </div>
-                <input type="file" id="fileInput" accept=".pdf,.doc,.docx,.ppt,.pptx,.txt" hidden>
-            </div>
-
-            <div class="divider">
-                <span>OR</span>
-            </div>
-
-            <!-- Text input fallback -->
-            <div class="text-input-zone">
-                <textarea id="textInput" placeholder="Paste your text or article here..."></textarea>
-            </div>
-
-            <button class="btn btn-primary generate-btn" id="generateBtn">
-                Generate Lesson ✨
-            </button>
-        </div>
-
-        <!-- Loading State -->
-        <div class="loading-state hidden" id="loadingState">
-            <div class="spinner"></div>
-            <h3 id="loadingStatus">Reading your document...</h3>
-            <p>This might take a few moments.</p>
-        </div>
-
-        <!-- Results View -->
-        <div class="results-section hidden" id="resultsSection">
-            <div class="results-header">
-                <h2>Your AI Generated Lesson</h2>
-                <div class="action-buttons">
-                    <button class="btn btn-secondary" id="saveBtn">💾 Save</button>
-                    <button class="btn btn-secondary" id="resetBtn">🔄 Start Over</button>
+        <!-- List View -->
+        <div id="list-view" class="view-container active">
+            <div class="setup-header"
+                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <div style="text-align: left;">
+                    <h2 style="margin: 0; color: var(--primary);">Your AI Lessons</h2>
+                    <p style="margin: 0.5rem 0 0 0; color: var(--text-muted);">Review your generated lessons.</p>
                 </div>
             </div>
-            
+
+            <div id="lessons-container" class="plans-grid">
+                <!-- Lesson cards will be injected here -->
+                <p style="text-align: center; color: var(--text-muted); width: 100%; padding: 2rem 0;">Loading
+                    lessons...</p>
+            </div>
+        </div>
+
+        <!-- Detail View -->
+        <div class="results-section" id="resultsSection" style="display: none;">
+            <div class="results-header"
+                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <button id="back-from-detail-btn" class="action-btn secondary"
+                    style="width: auto; padding: 0.5rem 1rem; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.5rem;">
+                    ← Back to Lessons
+                </button>
+                <h2 id="lesson-detail-title" style="margin: 0;">Your AI Generated Lesson</h2>
+                <div style="width: 120px;"></div> <!-- Balances the flex layout -->
+            </div>
+
             <div class="lesson-content markdown-body" id="lessonContent">
                 <!-- Markdown will be rendered here -->
+            </div>
+
+            <div class="action-buttons" style="display: flex; justify-content: center; margin-top: 2rem;">
+                <button class="btn btn-primary" id="finishBtn"
+                    style="padding: 0.75rem 2rem; font-size: 1.1rem; border-radius: var(--radius-md); background: var(--primary); color: white; border: none; cursor: pointer;">Finish
+                    Lesson</button>
             </div>
         </div>
     </main>
 
-    <script src="lessons.js"></script>
+    <script type="module" src="firebaseAuth.js"></script>
+    <script type="module" src="lessons.js"></script>
     <script type="module" src="settings.js"></script>
 </body>
 
