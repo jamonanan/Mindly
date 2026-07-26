@@ -1,4 +1,4 @@
-import { auth, db } from './firebaseAuth.js';
+﻿import { auth, db } from './firebaseAuth.js';
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import { collection, addDoc, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 import { initializeDailyMetrics, updateDailyMetric } from './metrics.js';
@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Show generating status
         defaultText.style.display = 'none';
         statusText.style.display = 'block';
-        statusText.textContent = `Extracting text from ${file.name}... 📄`;
+        statusText.textContent = `Extracting text from ${file.name}... `;
         dropzone.style.pointerEvents = 'none';
         dropzone.style.opacity = '0.8';
 
@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error(`Document is too short (${wordCount} words). Please upload a document with at least 100 words.`);
             }
 
-            statusText.textContent = "Generating Study Plan, Lesson, and Quiz in the background... 🧠";
+            statusText.textContent = "Generating Study Plan, Lesson, and Quiz in the background... ";
 
             // 2. Generate all three in parallel
             const [planRes, lessonRes, quizRes] = await Promise.allSettled([
@@ -195,7 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }).then(res => { if (!res.ok) throw new Error("Quiz failed"); return res.json(); })
             ]);
 
-            statusText.textContent = "Saving to your account... 💾";
+            statusText.textContent = "Saving to your account... ";
 
             const timestamp = new Date().toISOString();
             const savePromises = [];
@@ -250,7 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Success
-            statusText.textContent = "✅ Materials generated successfully!";
+            statusText.textContent = " Materials generated successfully!";
             statusText.style.color = "green";
             
             setTimeout(() => {
@@ -259,7 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         } catch (error) {
             console.error("Upload Error:", error);
-            statusText.textContent = `❌ Error: ${error.message}`;
+            statusText.textContent = ` Error: ${error.message}`;
             statusText.style.color = "red";
             
             setTimeout(() => {
@@ -277,3 +277,4 @@ document.addEventListener('DOMContentLoaded', () => {
         fileInput.value = '';
     }
 });
+

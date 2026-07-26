@@ -1,4 +1,4 @@
-const fs = require('fs');
+﻿const fs = require('fs');
 const path = require('path');
 
 const dir = __dirname;
@@ -26,7 +26,7 @@ files.forEach(file => {
         // In other files, insert account button after settings button if not already there
         if (!content.includes('href="account.html"')) {
             // Find settings button closing tag
-            const regex = /(<button[^>]*>\s*⚙️ Settings\s*<\/button>)/s;
+            const regex = /(<button[^>]*>\s* Settings\s*<\/button>)/s;
             if (regex.test(content)) {
                 content = content.replace(regex, `$1\n${accountBtnHtml}`);
                 modified = true;
@@ -35,8 +35,8 @@ files.forEach(file => {
     }
 
     // Rename settings to accessibility across all files
-    if (content.includes('⚙️ Settings')) {
-        content = content.replace(/⚙️ Settings/g, '👁️ Accessibility');
+    if (content.includes(' Settings')) {
+        content = content.replace(/ Settings/g, ' Accessibility');
         modified = true;
     }
 
@@ -45,3 +45,4 @@ files.forEach(file => {
         console.log(`Updated headers in ${file}`);
     }
 });
+

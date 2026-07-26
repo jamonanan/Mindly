@@ -1,4 +1,4 @@
-:root {
+﻿:root {
     --primary-purple: #7C3AED;
     --primary-purple-dark: #6D28D9;
     --primary-purple-light: #A78BFA;
@@ -212,7 +212,7 @@ a:hover {
 }
 
 .rule-invalid::before {
-    content: '❌ ';
+    content: ' ';
     font-size: 0.8em;
 }
 
@@ -222,6 +222,6 @@ a:hover {
 }
 
 .rule-valid::before {
-    content: '✅ ';
+    content: ' ';
     font-size: 0.8em;
 }

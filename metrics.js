@@ -16,15 +16,13 @@ function getTodayMetricRef() {
     return doc(db, "users", auth.currentUser.uid, "dailyMetrics", dateStr);
 }
 
-/**
- * Ensures today's metric document exists, creates it with defaults if not.
- */
 export async function initializeDailyMetrics() {
     const metricRef = getTodayMetricRef();
     if (!metricRef) return null;
 
     try {
         const docSnap = await getDoc(metricRef);
+        let currentData = null;
         if (!docSnap.exists()) {
             const defaultMetrics = {
                 studyPlansGoal: 0,
@@ -37,9 +35,34 @@ export async function initializeDailyMetrics() {
                 focusTimeGoal: 30 // Default 30 mins
             };
             await setDoc(metricRef, defaultMetrics);
-            return defaultMetrics;
+            currentData = defaultMetrics;
+        } else {
+            currentData = docSnap.data();
         }
-        return docSnap.data();
+
+        // Dynamically sync goals to actual collection sizes so they don't reset to 0
+        try {
+            const { collection, getDocs } = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
+            const lessonsSnap = await getDocs(collection(db, "users", auth.currentUser.uid, "lessons"));
+            const plansSnap = await getDocs(collection(db, "users", auth.currentUser.uid, "studyPlans"));
+            
+            const trueLessonsGoal = lessonsSnap.size;
+            const truePlansGoal = plansSnap.size;
+
+            // Only update if they differ to avoid unnecessary writes
+            if (currentData.lessonsGoal !== trueLessonsGoal || currentData.studyPlansGoal !== truePlansGoal) {
+                await updateDoc(metricRef, {
+                    lessonsGoal: trueLessonsGoal,
+                    studyPlansGoal: truePlansGoal
+                });
+                currentData.lessonsGoal = trueLessonsGoal;
+                currentData.studyPlansGoal = truePlansGoal;
+            }
+        } catch (e) {
+            console.error("Error syncing collection sizes to goals:", e);
+        }
+
+        return currentData;
     } catch (error) {
         console.error("Error initializing daily metrics:", error);
         return null;

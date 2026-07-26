@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <!-- Your comment goes here -->
 
@@ -17,24 +17,31 @@
             <!-- Logo and Welcome -->
             <div class="dashboard-welcome">
                 <a href="index.html" class="logo" style="text-decoration: none; color: inherit;">
-                    <div class="logo-icon">🧠</div>
+                    <div class="logo-icon"><img src="icons/Mindly logo.png" alt="Mindly Logo" style="width: 100%; height: 100%; object-fit: contain;"></div>
                     <span>Mindly</span>
                 </a>
-                <!-- <span style="color: var(--gray-dark); margin-left: 1rem;">Welcome back, sads!! ✨</span> -->
+                <!-- <span style="color: var(--gray-dark); margin-left: 1rem;">Welcome back, sads!! </span> -->
             </div>
 
             <!-- Dashboard Actions -->
             <div class="header-actions" style="display: flex; align-items: center; gap: 1rem;">
-                <button class="settings-btn btn btn-secondary" style="display: flex; align-items: center; gap: 0.5rem; background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 0.5rem 1rem; cursor: pointer; color: black; font-weight: 500;">
-                    👁️ Accessibility
+                <button class="settings-btn btn btn-secondary"
+                    style="display: flex; align-items: center; gap: 0.5rem; background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 0.55rem 1.1rem; font-size: 1.05rem; cursor: pointer; color: black; font-weight: 500;">
+                    <img src="icons/low-vision-accessibility-icon.png" alt="Accessibility"
+                        style="width: 1.2em; height: 1.2em; object-fit: contain;"> Accessibility
                 </button>
                 <div class="account-dropdown-wrapper" style="position: relative; display: inline-block;">
-                    <button class="btn btn-secondary account-dropdown-btn" style="display: flex; align-items: center; gap: 0.5rem; background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 0.5rem 1rem; cursor: pointer; color: black; font-weight: 500;">
-                        👤 Account
+                    <button class="btn btn-secondary account-dropdown-btn"
+                        style="display: flex; align-items: center; gap: 0.5rem; background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 0.55rem 1.1rem; font-size: 1.05rem; cursor: pointer; color: black; font-weight: 500;">
+                        <img src="icons/account settings.png" alt="Account" style="width: 1.45em; height: 1.45em; object-fit: contain;"> Account
                     </button>
-                    <div class="account-dropdown-menu" style="display: none; position: absolute; right: 0; top: 110%; background: white; border: 1px solid #e5e7eb; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 160px; z-index: 1000; overflow: hidden;">
-                        <a href="account.html" style="display: block; padding: 0.75rem 1rem; color: #374151; text-decoration: none; border-bottom: 1px solid #e5e7eb; font-size: 0.95rem; font-weight: 500;">⚙️ Account Settings</a>
-                        <button id="globalLogoutBtn" style="display: block; width: 100%; text-align: left; padding: 0.75rem 1rem; color: #ef4444; background: none; border: none; cursor: pointer; font-size: 0.95rem; font-weight: 500; font-family: inherit;">🚪 Logout</button>
+                    <div class="account-dropdown-menu"
+                        style="display: none; position: absolute; right: 0; top: 110%; background: white; border: 1px solid #e5e7eb; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 160px; z-index: 1000; overflow: hidden;">
+                        <a href="account.html"
+                            style="display: block; padding: 0.55rem 0.8rem; color: #374151; text-decoration: none; border-bottom: 1px solid #e5e7eb; font-size: 0.95rem; font-weight: 500;"><img src="icons/account settings.png" alt="Account Settings" style="width: 1.45em; height: 1.45em; object-fit: contain;"> Account Settings</a>
+                        <button id="globalLogoutBtn"
+                            style="display: block; width: 100%; text-align: left; padding: 0.55rem 0.8rem; color: #ef4444; background: none; border: none; cursor: pointer; font-size: 0.95rem; font-weight: 500; font-family: inherit;">
+                            Logout</button>
                     </div>
                 </div>
             </div>
@@ -103,42 +110,48 @@
                     <div class="activities-grid">
                         <!-- Reading Buddy -->
                         <a href="reading-buddy.html" class="activity-card purple">
-                            <div class="activity-icon">🧠</div>
+                            <div class="activity-icon"><img src="icons/Reading buddy.png" alt="Reading Buddy"
+                                    style="width: 5.5rem; height: 5.5rem; object-fit: contain; margin: 0 auto;"></div>
                             <div class="activity-title">Reading Buddy</div>
                             <div class="activity-description">Read with AI assistance</div>
                         </a>
 
                         <!-- Study Plan -->
                         <a href="study-plan.html" class="activity-card green" style="text-decoration: none;">
-                            <div class="activity-icon">📋</div>
+                            <div class="activity-icon"><img src="icons/study plan.png" alt="Study Plan"
+                                    style="width: 5.5rem; height: 5.5rem; object-fit: contain; margin: 0 auto;"></div>
                             <div class="activity-title">Study Plan</div>
                             <div class="activity-description">Your personalized schedule</div>
                         </a>
 
                         <!-- Lessons -->
                         <a href="lessons.html" class="activity-card orange" style="text-decoration: none;">
-                            <div class="activity-icon">📚</div>
+                            <div class="activity-icon"><img src="icons/lessons.png" alt="Lessons"
+                                    style="width: 5.5rem; height: 5.5rem; object-fit: contain; margin: 0 auto;"></div>
                             <div class="activity-title">Lessons</div>
                             <div class="activity-description">Simplified content</div>
                         </a>
 
                         <!-- Quizzes -->
                         <a href="quizzes.html" class="activity-card blue" style="text-decoration: none;">
-                            <div class="activity-icon">❓</div>
+                            <div class="activity-icon"><img src="icons/quizzes.png" alt="Quizzes"
+                                    style="width: 5.5rem; height: 5.5rem; object-fit: contain; margin: 0 auto;"></div>
                             <div class="activity-title">Quizzes</div>
                             <div class="activity-description">Adaptive practice</div>
                         </a>
 
                         <!-- Mental Health -->
                         <a href="mental-health.html" class="activity-card pink" style="text-decoration: none;">
-                            <div class="activity-icon">❤️</div>
+                            <div class="activity-icon"><img src="icons/mental health chatbot.png" alt="Mental Health"
+                                    style="width: 5.5rem; height: 5.5rem; object-fit: contain; margin: 0 auto;"></div>
                             <div class="activity-title">Mental Health</div>
                             <div class="activity-description">Chat for support</div>
                         </a>
 
                         <!-- Focus Timer -->
                         <a href="focus-timer.html" class="activity-card yellow" style="text-decoration: none;">
-                            <div class="activity-icon">⏰</div>
+                            <div class="activity-icon"><img src="icons/focus timer.png" alt="Focus Timer"
+                                    style="width: 5.5rem; height: 5.5rem; object-fit: contain; margin: 0 auto;"></div>
                             <div class="activity-title">Focus Timer</div>
                             <div class="activity-description">Pomodoro sessions</div>
                         </a>
@@ -154,20 +167,20 @@
                     <div class="progress-header">
                         <div>
                             <div class="progress-title-row">
-                                <span class="progress-section-icon">🎯</span>
                                 <h3 class="section-title">Progress</h3>
                             </div>
                             <p class="section-subtitle">Your learning journey</p>
                         </div>
                         <!-- <div class="buddy-widget">
-                            <div class="buddy-speech">Hi! Ready to learn today? ✨</div>
-                            <div class="buddy-avatar">😊</div>
+                            <div class="buddy-speech">Hi! Ready to learn today? </div>
+                            <div class="buddy-avatar"></div>
                         </div> -->
                     </div>
 
                     <div class="progress-row">
                         <div class="progress-label">
-                            <span class="progress-icon">📚</span>
+                            <span class="progress-icon"><img src="icons/study plan.png" alt="Study Plan"
+                                    style="width: 1.2em; height: 1.2em; vertical-align: middle; object-fit: contain;"></span>
                             <span class="progress-title">Study Plan Done</span>
                             <span class="progress-percent">0%</span>
                         </div>
@@ -185,7 +198,8 @@
 
                     <div class="progress-row">
                         <div class="progress-label">
-                            <span class="progress-icon">📄</span>
+                            <span class="progress-icon"><img src="icons/lessons.png" alt="Lessons"
+                                    style="width: 1.2em; height: 1.2em; vertical-align: middle; object-fit: contain;"></span>
                             <span class="progress-title">Lessons</span>
                             <span class="progress-percent">0%</span>
                         </div>
@@ -203,7 +217,8 @@
 
                     <div class="progress-row">
                         <div class="progress-label">
-                            <span class="progress-icon">🎯</span>
+                            <span class="progress-icon"><img src="icons/quizzes.png" alt="Quizzes"
+                                    style="width: 1.2em; height: 1.2em; vertical-align: middle; object-fit: contain;"></span>
                             <span class="progress-title">Quizzes</span>
                             <span class="progress-percent">0%</span>
                         </div>
@@ -221,7 +236,8 @@
 
                     <div class="progress-row">
                         <div class="progress-label">
-                            <span class="progress-icon">⏰</span>
+                            <span class="progress-icon"><img src="icons/focus timer.png" alt="Focus"
+                                    style="width: 1.2em; height: 1.2em; vertical-align: middle; object-fit: contain;"></span>
                             <span class="progress-title">Focus</span>
                             <span class="progress-percent">0%</span>
                         </div>
@@ -251,3 +267,7 @@
 </body>
 
 </html>
+
+
+
+

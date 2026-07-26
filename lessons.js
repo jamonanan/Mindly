@@ -1,4 +1,4 @@
-import { auth, db } from './firebaseAuth.js';
+﻿import { auth, db } from './firebaseAuth.js';
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import { collection, doc, getDocs, deleteDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 import { updateDailyMetric } from './metrics.js';
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h3 class="plan-title">${data.title || 'Untitled Lesson'}</h3>
                 <p class="plan-meta">Created: ${dateStr}</p>
             </div>
-            <button class="delete-plan-btn delete-btn" title="Delete Lesson">🗑️</button>
+            <button class="delete-plan-btn delete-btn" title="Delete Lesson"></button>
         `;
 
         card.addEventListener("click", () => {
@@ -129,3 +129,4 @@ document.addEventListener('DOMContentLoaded', () => {
         currentLessonId = null;
     });
 });
+

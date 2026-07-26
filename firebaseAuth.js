@@ -1,4 +1,4 @@
-  // Import the functions you need from the SDKs you need
+﻿  // Import the functions you need from the SDKs you need
     // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
@@ -106,12 +106,7 @@
 
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        if (!userCredential.user.emailVerified) {
-          showMessage('Please verify your email address before logging in.', 'loginMessage');
-          signOut(auth);
-          return;
-        }
-        // Signed in successfully
+        // Signed in successfully, proceed to dashboard
         window.location.href = 'dashboard.html';
       })
       .catch((error) => {
@@ -131,7 +126,7 @@
           // Greet user if element exists
           const greetingElement = document.getElementById('userGreeting');
           if (greetingElement) {
-            greetingElement.innerText = `Welcome back, ${userData.fullName}!! ✨`;
+            greetingElement.innerText = `Welcome back, ${userData.fullName}!! `;
           }
 
           // Update profile picture everywhere if element exists
@@ -210,3 +205,4 @@
         console.error('Error signing in with Google: ' + error.message);
       });
   }
+

@@ -36,6 +36,19 @@ const bionicToggle = document.getElementById('globalBionicToggle');
 const statusText = document.getElementById('settingsStatus');
 const bionicContainer = document.getElementById('globalBionicContainer');
 
+// Read settings from LocalStorage for instant cross-page application
+const savedDyslexic = localStorage.getItem('dyslexicFont');
+const savedBionic = localStorage.getItem('bionicReading');
+
+if (savedDyslexic === 'false') {
+    if (dyslexicToggle) dyslexicToggle.checked = false;
+    document.body.classList.remove('dyslexic-mode');
+} else {
+    // Default to true or explicitly saved as true
+    if (dyslexicToggle) dyslexicToggle.checked = true;
+    document.body.classList.add('dyslexic-mode');
+}
+
 // Hide bionic option on reading buddy page
 if (window.location.pathname.includes('reading-buddy.html') && bionicContainer) {
     bionicContainer.style.display = 'none';
@@ -43,6 +56,18 @@ if (window.location.pathname.includes('reading-buddy.html') && bionicContainer) 
 
 let currentUser = null;
 let bionicApplied = false;
+
+if (savedBionic === 'true') {
+    if (bionicToggle) bionicToggle.checked = true;
+    if (!window.location.pathname.includes('reading-buddy.html')) {
+        setTimeout(() => {
+            if (!bionicApplied) {
+                applyBionicReading(document.body);
+                bionicApplied = true;
+            }
+        }, 100);
+    }
+}
 
 // Open modal logic
 document.body.addEventListener('click', (e) => {
@@ -84,7 +109,14 @@ onAuthStateChanged(auth, async (user) => {
             if (docSnap.exists()) {
                 const data = docSnap.data();
                 if (data.settings) {
-                    if (data.settings.dyslexicFont) {
+                    // Sync Firebase settings down to local storage
+                    if (data.settings.dyslexicFont !== undefined) localStorage.setItem('dyslexicFont', data.settings.dyslexicFont);
+                    if (data.settings.bionicReading !== undefined) localStorage.setItem('bionicReading', data.settings.bionicReading);
+
+                    if (data.settings.dyslexicFont === false) {
+                        dyslexicToggle.checked = false;
+                        document.body.classList.remove('dyslexic-mode');
+                    } else {
                         dyslexicToggle.checked = true;
                         document.body.classList.add('dyslexic-mode');
                     }
@@ -94,6 +126,10 @@ onAuthStateChanged(auth, async (user) => {
                             applyBionicReading(document.body);
                             bionicApplied = true;
                         }
+                    } else if (data.settings.bionicReading === false && bionicApplied) {
+                        if (bionicToggle) bionicToggle.checked = false;
+                        removeBionicReading();
+                        bionicApplied = false;
                     }
                 }
             }
@@ -123,6 +159,7 @@ async function updateFirebaseSettings() {
 
 // Toggle logic
 dyslexicToggle.addEventListener('change', async (e) => {
+    localStorage.setItem('dyslexicFont', e.target.checked);
     if (e.target.checked) {
         document.body.classList.add('dyslexic-mode');
     } else {
@@ -132,6 +169,7 @@ dyslexicToggle.addEventListener('change', async (e) => {
 });
 
 bionicToggle.addEventListener('change', async (e) => {
+    localStorage.setItem('bionicReading', e.target.checked);
     await updateFirebaseSettings();
     if (e.target.checked) {
         if (!bionicApplied) {

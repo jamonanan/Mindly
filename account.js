@@ -44,13 +44,15 @@ function showMessage(msg, type = 'success') {
 // Authentication State
 onAuthStateChanged(auth, async (user) => {
     if (user) {
-        currentUser = user;
+        // Reload user to get the latest email verification status
+        await user.reload();
+        currentUser = auth.currentUser;
         
         // Display email
-        emailDisplay.textContent = user.email;
+        emailDisplay.textContent = currentUser.email;
 
         // Email Verification Status
-        if (user.emailVerified) {
+        if (currentUser.emailVerified) {
             emailStatusBadge.textContent = 'Verified';
             emailStatusBadge.className = 'status-badge status-verified';
             resendVerificationBtn.style.display = 'none';

@@ -1,4 +1,4 @@
-import { auth, db } from './firebaseAuth.js';
+﻿import { auth, db } from './firebaseAuth.js';
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import { collection, doc, getDocs, deleteDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 import { updateDailyMetric } from './metrics.js';
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h3 class="plan-title">${data.title || 'Untitled Quiz'}</h3>
                 <p class="plan-meta">Created: ${dateStr} • ${numQuestions} Questions</p>
             </div>
-            <button class="delete-plan-btn delete-btn" title="Delete Quiz">🗑️</button>
+            <button class="delete-plan-btn delete-btn" title="Delete Quiz"></button>
         `;
 
         card.addEventListener("click", () => {
@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         if (currentQuestionIndex === quizData.length - 1) {
-            nextBtn.textContent = "See Results 🎉";
+            nextBtn.textContent = "See Results ";
         } else {
             nextBtn.textContent = "Next Question →";
         }
@@ -231,3 +231,4 @@ document.addEventListener('DOMContentLoaded', () => {
         switchView(listView);
     });
 });
+

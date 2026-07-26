@@ -1,4 +1,4 @@
-import { auth, db } from './firebaseAuth.js';
+﻿import { auth, db } from './firebaseAuth.js';
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import { collection, doc, getDocs, addDoc, deleteDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 import { updateDailyMetric } from './metrics.js';
@@ -102,7 +102,7 @@ function renderPlanCard(planId, data) {
                 <div class="plan-progress-fill" style="width: ${progressPercent}%"></div>
             </div>
         </div>
-        <button class="delete-plan-btn" title="Delete Plan">🗑️</button>
+        <button class="delete-plan-btn" title="Delete Plan"></button>
     `;
 
     // Click on card to open map
@@ -162,15 +162,15 @@ function renderMap() {
         const nodeEl = document.createElement("div");
         nodeEl.className = `node ${node.status}`;
         
-        let iconSymbol = "🔒";
-        if (node.status === 'active') iconSymbol = "▶️";
-        if (node.status === 'completed') iconSymbol = "✅";
+        let iconSymbol = "";
+        if (node.status === 'active') iconSymbol = "▶";
+        if (node.status === 'completed') iconSymbol = "";
 
         nodeEl.innerHTML = `
             <div class="node-icon">${iconSymbol}</div>
             <div class="node-content">
                 <h4 class="node-title">${node.title}</h4>
-                <p class="node-time">⏱️ ~${node.estimatedTimeMinutes} mins</p>
+                <p class="node-time">⏱ ~${node.estimatedTimeMinutes} mins</p>
             </div>
         `;
 
@@ -199,11 +199,11 @@ function openModal(node) {
     modalText.textContent = node.content;
     
     if (node.status === 'completed') {
-        markCompleteBtn.textContent = "Completed ✅";
+        markCompleteBtn.textContent = "Completed ";
         markCompleteBtn.disabled = true;
         markCompleteBtn.style.opacity = "0.5";
     } else {
-        markCompleteBtn.textContent = "Mark Complete ✅";
+        markCompleteBtn.textContent = "Mark Complete ";
         markCompleteBtn.disabled = false;
         markCompleteBtn.style.opacity = "1";
     }
@@ -258,3 +258,4 @@ markCompleteBtn.addEventListener("click", async () => {
         console.error("Error updating plan:", error);
     }
 });
+
