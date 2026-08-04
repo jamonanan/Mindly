@@ -29,8 +29,8 @@ export async function initializeDailyMetrics() {
                 studyPlansDone: 0,
                 lessonsGoal: 0,
                 lessonsDone: 0,
-                quizTotalScore: 0,
-                quizzesTaken: 0,
+                quizQuestionsCorrect: 0,
+                quizQuestionsTotal: 0,
                 focusTimeMinutes: 0,
                 focusTimeGoal: 30 // Default 30 mins
             };

@@ -1,6 +1,6 @@
-﻿import { auth, db } from './firebaseAuth.js';
+import { auth, db } from './firebaseAuth.js';
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import { collection, doc, getDocs, deleteDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { collection, doc, getDocs, deleteDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 import { updateDailyMetric } from './metrics.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentQuestionIndex = 0;
     let score = 0;
     let hasAnsweredCurrent = false;
+    let currentQuizId = null;
 
     onAuthStateChanged(auth, async (user) => {
         if (user) {
@@ -73,13 +74,14 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderQuizCard(quizId, data) {
         const dateStr = data.createdAt ? new Date(data.createdAt).toLocaleDateString() : 'Unknown Date';
         const numQuestions = data.quizData ? data.quizData.length : 0;
+        const statusText = data.status === 'completed' ? '<span style="color: green; font-weight: bold; font-size: 0.85em; padding: 2px 6px; background: #e6ffe6; border-radius: 4px; margin-left: 8px; vertical-align: middle;">Finished</span>' : '';
 
         const card = document.createElement("div");
         card.className = "plan-card";
 
         card.innerHTML = `
             <div class="plan-info">
-                <h3 class="plan-title">${data.title || 'Untitled Quiz'}</h3>
+                <h3 class="plan-title" style="display: flex; align-items: center;">${data.title || 'Untitled Quiz'} ${statusText}</h3>
                 <p class="plan-meta">Created: ${dateStr} • ${numQuestions} Questions</p>
             </div>
             <button class="delete-plan-btn delete-btn" title="Delete Quiz"></button>
@@ -87,6 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         card.addEventListener("click", () => {
             if (numQuestions > 0) {
+                currentQuizId = quizId;
                 quizData = data.quizData;
                 startQuiz();
             } else {
@@ -146,15 +149,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         questionTextEl.textContent = q.question;
         optionsGrid.innerHTML = "";
+        
         explanationCard.classList.remove("show");
         nextBtn.classList.remove("show");
 
-        // Randomize options just in case
         const options = [...q.options].sort(() => Math.random() - 0.5);
 
         options.forEach(opt => {
             const btn = document.createElement("button");
-            btn.classList.add("option-btn");
+            btn.className = "option-btn";
             btn.textContent = opt;
             btn.addEventListener("click", () => handleAnswer(btn, opt, q.correctAnswer, q.explanation));
             optionsGrid.appendChild(btn);
@@ -168,7 +171,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (window.isBionicActive && window.isBionicActive()) {
             window.applyBionicReading(questionTextEl);
-            window.applyBionicReading(optionsGrid);
+            optionsGrid.querySelectorAll(".option-btn").forEach(btn => {
+                window.applyBionicReading(btn);
+            });
         }
     }
 
@@ -219,9 +224,13 @@ document.addEventListener('DOMContentLoaded', () => {
         switchView(resultsView);
         
         try {
-            const finalPercentage = Math.round((score / quizData.length) * 100);
-            await updateDailyMetric('quizzesTaken', 1);
-            await updateDailyMetric('quizTotalScore', finalPercentage);
+            await updateDailyMetric('quizQuestionsTotal', Number(quizData.length));
+            await updateDailyMetric('quizQuestionsCorrect', Number(score));
+            
+            if (currentQuizId) {
+                const quizRef = doc(db, "users", currentUser.uid, "quizzes", currentQuizId);
+                await updateDoc(quizRef, { status: 'completed' });
+            }
         } catch (error) {
             console.error("Error updating quiz metrics:", error);
         }
@@ -229,6 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     restartBtn.addEventListener("click", () => {
         switchView(listView);
+        currentQuizId = null;
+        loadQuizzes(); // Refresh list to show Finished status
     });
 });
-

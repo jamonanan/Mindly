@@ -1,4 +1,4 @@
-﻿import { auth, db } from './firebaseAuth.js';
+import { auth, db } from './firebaseAuth.js';
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import { collection, addDoc, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 import { initializeDailyMetrics, updateDailyMetric } from './metrics.js';
@@ -53,10 +53,17 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Quizzes
         const quizzesCardTitle = document.querySelectorAll('.metric-card.yellow')[0];
-        const quizAvg = metrics.quizzesTaken > 0 ? Math.round(metrics.quizTotalScore / metrics.quizzesTaken) : 0;
+        const safeTotal = Number(metrics.quizQuestionsTotal) || 0;
+        const safeCorrect = Number(metrics.quizQuestionsCorrect) || 0;
+        const quizAvg = safeTotal > 0 ? Math.round((safeCorrect / safeTotal) * 100) : 0;
         if (quizzesCardTitle) {
             quizzesCardTitle.querySelector('.metric-value').textContent = `${quizAvg}%`;
-            quizzesCardTitle.querySelector('.metric-insight').textContent = metrics.quizzesTaken > 0 ? "keep it up" : "No quizzes taken";
+            
+            let insightMsg = "No quizzes taken";
+            if (safeTotal > 0) {
+                insightMsg = quizAvg > 60 ? "keep it up" : "You've got this! Keep practicing";
+            }
+            quizzesCardTitle.querySelector('.metric-insight').textContent = insightMsg;
         }
         
         // Focus
@@ -80,7 +87,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const row = progressRows[rowIndex];
         
         let percent = 0;
-        if (goal > 0) percent = Math.min(100, Math.round((current / goal) * 100));
+        if (goal > 0) {
+            percent = Math.min(100, Math.round((current / goal) * 100));
+        } else if (current > 0) {
+            percent = 100;
+        }
         
         const percentSpan = row.querySelector('.progress-percent');
         if (percentSpan) percentSpan.textContent = `${percent}%`;

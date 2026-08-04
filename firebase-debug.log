@@ -1,0 +1,527 @@
+[debug] [2026-07-29T16:30:00.743Z] ----------------------------------------------------------------------
+[debug] [2026-07-29T16:30:00.750Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\joevi\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js emulators:start
+[debug] [2026-07-29T16:30:00.751Z] CLI Version:   15.16.0
+[debug] [2026-07-29T16:30:00.751Z] Platform:      win32
+[debug] [2026-07-29T16:30:00.752Z] Node Version:  v24.15.0
+[debug] [2026-07-29T16:30:00.752Z] Time:          Wed Jul 29 2026 21:30:00 GMT+0500 (Pakistan Standard Time)
+[debug] [2026-07-29T16:30:00.752Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-07-29T16:30:10.595Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-07-29T16:30:10.596Z] > authorizing via signed-in user (joevinry@gmail.com)
+[info] i  emulators: Starting emulators: functions, extensions {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: functions, extensions"}}
+[debug] [2026-07-29T16:30:10.613Z] Checked if tokens are valid: false, expires at: 1785324000122
+[debug] [2026-07-29T16:30:10.615Z] Checked if tokens are valid: false, expires at: 1785324000122
+[debug] [2026-07-29T16:30:10.615Z] > refreshing access token with scopes: []
+[debug] [2026-07-29T16:30:10.619Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-07-29T16:30:10.619Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-07-29T16:30:11.128Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2026-07-29T16:30:11.129Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-07-29T16:30:11.173Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/mindly-7f7c4 [none]
+[debug] [2026-07-29T16:30:12.867Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/mindly-7f7c4 200
+[debug] [2026-07-29T16:30:12.868Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/mindly-7f7c4 {"projectNumber":"505317673514","projectId":"mindly-7f7c4","lifecycleState":"ACTIVE","name":"Mindly","labels":{"firebase":"enabled","firebase-core":"disabled"},"createTime":"2025-12-15T14:30:02.168101Z"}
+[debug] [2026-07-29T16:30:12.895Z] [logging] Logging Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2026-07-29T16:30:12.896Z] assigned listening specs for emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}]},"metadata":{"message":"assigned listening specs for emulators"}}
+[debug] [2026-07-29T16:30:12.909Z] Found emulator hub locator: {"version":"15.16.0","origins":["http://127.0.0.1:4400","http://[::1]:4400"],"pid":16004}
+[debug] [2026-07-29T16:30:12.909Z] Write emulator hub locator at C:\Users\joevi\AppData\Local\Temp\hub-mindly-7f7c4.json
+[debug] [2026-07-29T16:30:12.927Z] [Extensions] Started Extensions emulator, this is a noop.
+[debug] [2026-07-29T16:30:12.949Z] [functions] Functions Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2026-07-29T16:30:12.950Z] [eventarc] Eventarc Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2026-07-29T16:30:12.950Z] [tasks] Cloud Tasks Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2026-07-29T16:30:12.950Z] late-assigned ports for functions and eventarc emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"functions":[{"address":"127.0.0.1","family":"IPv4","port":5001}],"eventarc":[{"address":"127.0.0.1","family":"IPv4","port":9299}],"tasks":[{"address":"127.0.0.1","family":"IPv4","port":9499}]},"metadata":{"message":"late-assigned ports for functions and eventarc emulators"}}
+[warn] !  functions: The following emulators are not running, calls to these services from the Functions emulator will affect production: apphosting, auth, firestore, database, hosting, pubsub, storage, dataconnect {"metadata":{"emulator":{"name":"functions"},"message":"The following emulators are not running, calls to these services from the Functions emulator will affect production: \u001b[1mapphosting, auth, firestore, database, hosting, pubsub, storage, dataconnect\u001b[22m"}}
+[debug] [2026-07-29T16:30:12.991Z] defaultcredentials: writing to file C:\Users\joevi\AppData\Roaming\firebase\joevinry_gmail_com_application_default_credentials.json
+[debug] [2026-07-29T16:30:12.995Z] Setting GAC to C:\Users\joevi\AppData\Roaming\firebase\joevinry_gmail_com_application_default_credentials.json {"metadata":{"emulator":{"name":"functions"},"message":"Setting GAC to C:\\Users\\joevi\\AppData\\Roaming\\firebase\\joevinry_gmail_com_application_default_credentials.json"}}
+[debug] [2026-07-29T16:30:12.997Z] Checked if tokens are valid: true, expires at: 1785346210130
+[debug] [2026-07-29T16:30:12.997Z] Checked if tokens are valid: true, expires at: 1785346210130
+[debug] [2026-07-29T16:30:12.998Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/mindly-7f7c4/adminSdkConfig [none]
+[debug] [2026-07-29T16:30:13.685Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/mindly-7f7c4/adminSdkConfig 200
+[debug] [2026-07-29T16:30:13.686Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/mindly-7f7c4/adminSdkConfig {"projectId":"mindly-7f7c4","storageBucket":"mindly-7f7c4.firebasestorage.app"}
+[debug] [2026-07-29T16:30:13.738Z] [Extensions] Connecting Extensions emulator, this is a noop.
+[info] i  functions: Watching "D:\FYP\Mindly\functions" for Cloud Functions... {"metadata":{"emulator":{"name":"functions"},"message":"Watching \"D:\\FYP\\Mindly\\functions\" for Cloud Functions..."}}
+[debug] [2026-07-29T16:30:13.747Z] Validating nodejs source
+[warn] !  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[debug] [2026-07-29T16:30:21.638Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "24"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "firebase-admin": "^13.6.0",
+    "firebase-functions": "^7.0.0"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^3.4.1"
+  },
+  "private": true
+}
+[debug] [2026-07-29T16:30:21.639Z] Building nodejs source
+[debug] [2026-07-29T16:30:21.641Z] Failed to find version of module node: reached end of search path D:\FYP\Mindly\functions\node_modules
+[info] +  functions: Using node@24 from host. 
+[info] i  functions: Loaded environment variables from .env. 
+[debug] [2026-07-29T16:30:21.654Z] Could not find functions.yaml. Must use http discovery
+[debug] [2026-07-29T16:30:21.700Z] Found firebase-functions binary at 'D:\FYP\Mindly\functions\node_modules\.bin\firebase-functions'
+[info] Serving at port 8366
+
+[debug] [2026-07-29T16:30:24.218Z] Got response from /__/functions.yaml {"endpoints":{"extractText":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":10,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"extractText"},"chatWithGemini":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":10,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"chatWithGemini"},"generateLesson":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":10,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"generateLesson"},"generateQuiz":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":10,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"generateQuiz"},"generateStudyPlan":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":10,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"generateStudyPlan"}},"specVersion":"v1alpha1","requiredAPIs":[],"extensions":{}}
+[debug] [2026-07-29T16:30:28.323Z] defaultcredentials: writing to file C:\Users\joevi\AppData\Roaming\firebase\joevinry_gmail_com_application_default_credentials.json
+[debug] [2026-07-29T16:30:28.325Z] Setting GAC to C:\Users\joevi\AppData\Roaming\firebase\joevinry_gmail_com_application_default_credentials.json {"metadata":{"emulator":{"name":"functions"},"message":"Setting GAC to C:\\Users\\joevi\\AppData\\Roaming\\firebase\\joevinry_gmail_com_application_default_credentials.json"}}
+[info] +  functions: Loaded functions definitions from source: extractText, chatWithGemini, generateLesson, generateQuiz, generateStudyPlan. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: extractText, chatWithGemini, generateLesson, generateQuiz, generateStudyPlan."}}
+[info] +  functions[us-central1-extractText]: http function initialized (http://127.0.0.1:5001/mindly-7f7c4/us-central1/extractText). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://127.0.0.1:5001/mindly-7f7c4/us-central1/extractText)."}}
+[info] +  functions[us-central1-chatWithGemini]: http function initialized (http://127.0.0.1:5001/mindly-7f7c4/us-central1/chatWithGemini). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://127.0.0.1:5001/mindly-7f7c4/us-central1/chatWithGemini)."}}
+[info] +  functions[us-central1-generateLesson]: http function initialized (http://127.0.0.1:5001/mindly-7f7c4/us-central1/generateLesson). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://127.0.0.1:5001/mindly-7f7c4/us-central1/generateLesson)."}}
+[info] +  functions[us-central1-generateQuiz]: http function initialized (http://127.0.0.1:5001/mindly-7f7c4/us-central1/generateQuiz). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://127.0.0.1:5001/mindly-7f7c4/us-central1/generateQuiz)."}}
+[info] +  functions[us-central1-generateStudyPlan]: http function initialized (http://127.0.0.1:5001/mindly-7f7c4/us-central1/generateStudyPlan). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://127.0.0.1:5001/mindly-7f7c4/us-central1/generateStudyPlan)."}}
+[debug] [2026-07-29T16:30:28.378Z] Could not find VSCode notification endpoint: FetchError: request to http://localhost:40001/vscode/notify failed, reason: . If you are not running the Firebase SQL Connect VSCode extension, this is expected and not an issue.
+[info] 
+┌─────────────────────────────────────────────────────────────┐
+│ ✔  All emulators ready! It is now safe to connect your app. │
+│ i  View Emulator UI at http://127.0.0.1:4000/               │
+└─────────────────────────────────────────────────────────────┘
+
+┌────────────┬────────────────┬──────────────────────────────────┐
+│ Emulator   │ Host:Port      │ View in Emulator UI              │
+├────────────┼────────────────┼──────────────────────────────────┤
+│ Functions  │ 127.0.0.1:5001 │ http://127.0.0.1:4000/functions  │
+├────────────┼────────────────┼──────────────────────────────────┤
+│ Extensions │ 127.0.0.1:5001 │ http://127.0.0.1:4000/extensions │
+└────────────┴────────────────┴──────────────────────────────────┘
+  Emulator Hub host: 127.0.0.1 port: 4400
+  Other reserved ports: 4500
+┌─────────────────────────┬───────────────┬─────────────────────┐
+│ Extension Instance Name │ Extension Ref │ View in Emulator UI │
+└─────────────────────────┴───────────────┴─────────────────────┘
+Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
+ 
+[debug] [2026-07-30T05:22:23.419Z] Received signal SIGHUP 1
+[debug] [2026-07-30T05:41:50.540Z] ----------------------------------------------------------------------
+[debug] [2026-07-30T05:41:50.547Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\joevi\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js emulators:start
+[debug] [2026-07-30T05:41:50.547Z] CLI Version:   15.16.0
+[debug] [2026-07-30T05:41:50.548Z] Platform:      win32
+[debug] [2026-07-30T05:41:50.548Z] Node Version:  v24.15.0
+[debug] [2026-07-30T05:41:50.548Z] Time:          Thu Jul 30 2026 10:41:50 GMT+0500 (Pakistan Standard Time)
+[debug] [2026-07-30T05:41:50.549Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-07-30T05:41:56.705Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-07-30T05:41:56.705Z] > authorizing via signed-in user (joevinry@gmail.com)
+[info] i  emulators: Starting emulators: functions, extensions {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: functions, extensions"}}
+[debug] [2026-07-30T05:41:56.713Z] Checked if tokens are valid: false, expires at: 1785346210130
+[debug] [2026-07-30T05:41:56.713Z] Checked if tokens are valid: false, expires at: 1785346210130
+[debug] [2026-07-30T05:41:56.713Z] > refreshing access token with scopes: []
+[debug] [2026-07-30T05:41:56.716Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-07-30T05:41:56.716Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-07-30T05:41:58.117Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2026-07-30T05:41:58.117Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-07-30T05:41:58.145Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/mindly-7f7c4 [none]
+[debug] [2026-07-30T05:42:00.481Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/mindly-7f7c4 200
+[debug] [2026-07-30T05:42:00.482Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/mindly-7f7c4 {"projectNumber":"505317673514","projectId":"mindly-7f7c4","lifecycleState":"ACTIVE","name":"Mindly","labels":{"firebase":"enabled","firebase-core":"disabled"},"createTime":"2025-12-15T14:30:02.168101Z"}
+[debug] [2026-07-30T05:42:00.523Z] [logging] Logging Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2026-07-30T05:42:00.524Z] assigned listening specs for emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}]},"metadata":{"message":"assigned listening specs for emulators"}}
+[debug] [2026-07-30T05:42:00.541Z] Found emulator hub locator: {"version":"15.16.0","origins":["http://127.0.0.1:4400","http://[::1]:4400"],"pid":27304}
+[debug] [2026-07-30T05:42:00.542Z] Write emulator hub locator at C:\Users\joevi\AppData\Local\Temp\hub-mindly-7f7c4.json
+[debug] [2026-07-30T05:42:00.563Z] [Extensions] Started Extensions emulator, this is a noop.
+[debug] [2026-07-30T05:42:00.587Z] [functions] Functions Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2026-07-30T05:42:00.587Z] [eventarc] Eventarc Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2026-07-30T05:42:00.587Z] [tasks] Cloud Tasks Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2026-07-30T05:42:00.587Z] late-assigned ports for functions and eventarc emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"functions":[{"address":"127.0.0.1","family":"IPv4","port":5001}],"eventarc":[{"address":"127.0.0.1","family":"IPv4","port":9299}],"tasks":[{"address":"127.0.0.1","family":"IPv4","port":9499}]},"metadata":{"message":"late-assigned ports for functions and eventarc emulators"}}
+[warn] !  functions: The following emulators are not running, calls to these services from the Functions emulator will affect production: apphosting, auth, firestore, database, hosting, pubsub, storage, dataconnect {"metadata":{"emulator":{"name":"functions"},"message":"The following emulators are not running, calls to these services from the Functions emulator will affect production: \u001b[1mapphosting, auth, firestore, database, hosting, pubsub, storage, dataconnect\u001b[22m"}}
+[debug] [2026-07-30T05:42:00.648Z] defaultcredentials: writing to file C:\Users\joevi\AppData\Roaming\firebase\joevinry_gmail_com_application_default_credentials.json
+[debug] [2026-07-30T05:42:00.652Z] Setting GAC to C:\Users\joevi\AppData\Roaming\firebase\joevinry_gmail_com_application_default_credentials.json {"metadata":{"emulator":{"name":"functions"},"message":"Setting GAC to C:\\Users\\joevi\\AppData\\Roaming\\firebase\\joevinry_gmail_com_application_default_credentials.json"}}
+[debug] [2026-07-30T05:42:00.654Z] Checked if tokens are valid: true, expires at: 1785393717118
+[debug] [2026-07-30T05:42:00.654Z] Checked if tokens are valid: true, expires at: 1785393717118
+[debug] [2026-07-30T05:42:00.654Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/mindly-7f7c4/adminSdkConfig [none]
+[debug] [2026-07-30T05:42:01.560Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/mindly-7f7c4/adminSdkConfig 200
+[debug] [2026-07-30T05:42:01.560Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/mindly-7f7c4/adminSdkConfig {"projectId":"mindly-7f7c4","storageBucket":"mindly-7f7c4.firebasestorage.app"}
+[debug] [2026-07-30T05:42:01.653Z] [Extensions] Connecting Extensions emulator, this is a noop.
+[info] i  functions: Watching "D:\FYP\Mindly\functions" for Cloud Functions... {"metadata":{"emulator":{"name":"functions"},"message":"Watching \"D:\\FYP\\Mindly\\functions\" for Cloud Functions..."}}
+[debug] [2026-07-30T05:42:01.664Z] Validating nodejs source
+[warn] !  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[debug] [2026-07-30T05:42:06.667Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "24"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "firebase-admin": "^13.6.0",
+    "firebase-functions": "^7.0.0"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^3.4.1"
+  },
+  "private": true
+}
+[debug] [2026-07-30T05:42:06.667Z] Building nodejs source
+[debug] [2026-07-30T05:42:06.668Z] Failed to find version of module node: reached end of search path D:\FYP\Mindly\functions\node_modules
+[info] +  functions: Using node@24 from host. 
+[info] i  functions: Loaded environment variables from .env. 
+[debug] [2026-07-30T05:42:06.678Z] Could not find functions.yaml. Must use http discovery
+[debug] [2026-07-30T05:42:07.015Z] Found firebase-functions binary at 'D:\FYP\Mindly\functions\node_modules\.bin\firebase-functions'
+[info] Serving at port 8906
+
+[debug] [2026-07-30T05:42:08.168Z] Got response from /__/functions.yaml {"endpoints":{"extractText":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":10,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"extractText"},"chatWithGemini":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":10,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"chatWithGemini"},"generateLesson":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":10,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"generateLesson"},"generateQuiz":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":10,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"generateQuiz"},"generateStudyPlan":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":10,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"generateStudyPlan"}},"specVersion":"v1alpha1","requiredAPIs":[],"extensions":{}}
+[debug] [2026-07-30T05:42:12.278Z] defaultcredentials: writing to file C:\Users\joevi\AppData\Roaming\firebase\joevinry_gmail_com_application_default_credentials.json
+[debug] [2026-07-30T05:42:12.281Z] Setting GAC to C:\Users\joevi\AppData\Roaming\firebase\joevinry_gmail_com_application_default_credentials.json {"metadata":{"emulator":{"name":"functions"},"message":"Setting GAC to C:\\Users\\joevi\\AppData\\Roaming\\firebase\\joevinry_gmail_com_application_default_credentials.json"}}
+[info] +  functions: Loaded functions definitions from source: extractText, chatWithGemini, generateLesson, generateQuiz, generateStudyPlan. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: extractText, chatWithGemini, generateLesson, generateQuiz, generateStudyPlan."}}
+[info] +  functions[us-central1-extractText]: http function initialized (http://127.0.0.1:5001/mindly-7f7c4/us-central1/extractText). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://127.0.0.1:5001/mindly-7f7c4/us-central1/extractText)."}}
+[info] +  functions[us-central1-chatWithGemini]: http function initialized (http://127.0.0.1:5001/mindly-7f7c4/us-central1/chatWithGemini). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://127.0.0.1:5001/mindly-7f7c4/us-central1/chatWithGemini)."}}
+[info] +  functions[us-central1-generateLesson]: http function initialized (http://127.0.0.1:5001/mindly-7f7c4/us-central1/generateLesson). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://127.0.0.1:5001/mindly-7f7c4/us-central1/generateLesson)."}}
+[info] +  functions[us-central1-generateQuiz]: http function initialized (http://127.0.0.1:5001/mindly-7f7c4/us-central1/generateQuiz). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://127.0.0.1:5001/mindly-7f7c4/us-central1/generateQuiz)."}}
+[info] +  functions[us-central1-generateStudyPlan]: http function initialized (http://127.0.0.1:5001/mindly-7f7c4/us-central1/generateStudyPlan). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://127.0.0.1:5001/mindly-7f7c4/us-central1/generateStudyPlan)."}}
+[debug] [2026-07-30T05:42:12.338Z] Could not find VSCode notification endpoint: FetchError: request to http://localhost:40001/vscode/notify failed, reason: . If you are not running the Firebase SQL Connect VSCode extension, this is expected and not an issue.
+[info] 
+┌─────────────────────────────────────────────────────────────┐
+│ ✔  All emulators ready! It is now safe to connect your app. │
+│ i  View Emulator UI at http://127.0.0.1:4000/               │
+└─────────────────────────────────────────────────────────────┘
+
+┌────────────┬────────────────┬──────────────────────────────────┐
+│ Emulator   │ Host:Port      │ View in Emulator UI              │
+├────────────┼────────────────┼──────────────────────────────────┤
+│ Functions  │ 127.0.0.1:5001 │ http://127.0.0.1:4000/functions  │
+├────────────┼────────────────┼──────────────────────────────────┤
+│ Extensions │ 127.0.0.1:5001 │ http://127.0.0.1:4000/extensions │
+└────────────┴────────────────┴──────────────────────────────────┘
+  Emulator Hub host: 127.0.0.1 port: 4400
+  Other reserved ports: 4500
+┌─────────────────────────┬───────────────┬─────────────────────┐
+│ Extension Instance Name │ Extension Ref │ View in Emulator UI │
+└─────────────────────────┴───────────────┴─────────────────────┘
+Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
+ 
+[debug] [2026-07-30T05:43:07.972Z] [work-queue] {"queuedWork":["/mindly-7f7c4/us-central1/chatWithGemini-2026-07-30T05:43:07.972Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2026-07-30T05:43:07.973Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/mindly-7f7c4/us-central1/chatWithGemini-2026-07-30T05:43:07.972Z"],"workRunningCount":1}
+[debug] [2026-07-30T05:43:07.975Z] Accepted request OPTIONS /mindly-7f7c4/us-central1/chatWithGemini --> us-central1-chatWithGemini
+[debug] [2026-07-30T05:43:07.978Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2026-07-30T05:43:07.979Z] [functions] Got req.url=/mindly-7f7c4/us-central1/chatWithGemini, mapping to path=/ {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/mindly-7f7c4/us-central1/chatWithGemini, mapping to path=/"}}
+[info] i  functions: Loaded environment variables from .env. 
+[debug] [2026-07-30T05:43:08.020Z] [worker-pool] addWorker(us-central1-chatWithGemini) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] addWorker(us-central1-chatWithGemini)"}}
+[debug] [2026-07-30T05:43:08.022Z] [worker-pool] Adding worker with key us-central1-chatWithGemini, total=1 {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] Adding worker with key us-central1-chatWithGemini, total=1"}}
+[debug] [2026-07-30T05:43:11.714Z] [runtime-status] [26636] Resolved module firebase-admin {"declared":true,"installed":true,"version":"13.10.0","resolution":"D:\\FYP\\Mindly\\functions\\node_modules\\firebase-admin\\lib\\index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-chatWithGemini"},"extension":{},"message":"[runtime-status] [26636] Resolved module firebase-admin {\"declared\":true,\"installed\":true,\"version\":\"13.10.0\",\"resolution\":\"D:\\\\FYP\\\\Mindly\\\\functions\\\\node_modules\\\\firebase-admin\\\\lib\\\\index.js\"}"}}
+[debug] [2026-07-30T05:43:11.717Z] [runtime-status] [26636] Resolved module firebase-functions {"declared":true,"installed":true,"version":"7.2.5","resolution":"D:\\FYP\\Mindly\\functions\\node_modules\\firebase-functions\\lib\\v2\\index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-chatWithGemini"},"extension":{},"message":"[runtime-status] [26636] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"7.2.5\",\"resolution\":\"D:\\\\FYP\\\\Mindly\\\\functions\\\\node_modules\\\\firebase-functions\\\\lib\\\\v2\\\\index.js\"}"}}
+[debug] [2026-07-30T05:43:11.719Z] [runtime-status] [26636] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-chatWithGemini"},"extension":{},"message":"[runtime-status] [26636] Outgoing network have been stubbed. [{\"name\":\"http\",\"status\":\"mocked\"},{\"name\":\"http\",\"status\":\"mocked\"},{\"name\":\"https\",\"status\":\"mocked\"},{\"name\":\"https\",\"status\":\"mocked\"},{\"name\":\"net\",\"status\":\"mocked\"}]"}}
+[debug] [2026-07-30T05:43:11.723Z] [runtime-status] [26636] Resolved module firebase-functions {"declared":true,"installed":true,"version":"7.2.5","resolution":"D:\\FYP\\Mindly\\functions\\node_modules\\firebase-functions\\lib\\v2\\index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-chatWithGemini"},"extension":{},"message":"[runtime-status] [26636] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"7.2.5\",\"resolution\":\"D:\\\\FYP\\\\Mindly\\\\functions\\\\node_modules\\\\firebase-functions\\\\lib\\\\v2\\\\index.js\"}"}}
+[debug] [2026-07-30T05:43:11.725Z] [runtime-status] [26636] Detected firebase-functions v7+, skipping legacy stubs. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-chatWithGemini"},"extension":{},"message":"[runtime-status] [26636] Detected firebase-functions v7+, skipping legacy stubs."}}
+[debug] [2026-07-30T05:43:11.726Z] [runtime-status] [26636] Resolved module firebase-admin {"declared":true,"installed":true,"version":"13.10.0","resolution":"D:\\FYP\\Mindly\\functions\\node_modules\\firebase-admin\\lib\\index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-chatWithGemini"},"extension":{},"message":"[runtime-status] [26636] Resolved module firebase-admin {\"declared\":true,\"installed\":true,\"version\":\"13.10.0\",\"resolution\":\"D:\\\\FYP\\\\Mindly\\\\functions\\\\node_modules\\\\firebase-admin\\\\lib\\\\index.js\"}"}}
+[debug] [2026-07-30T05:43:11.893Z] [runtime-status] [26636] Resolved module firebase-functions {"declared":true,"installed":true,"version":"7.2.5","resolution":"D:\\FYP\\Mindly\\functions\\node_modules\\firebase-functions\\lib\\v2\\index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-chatWithGemini"},"extension":{},"message":"[runtime-status] [26636] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"7.2.5\",\"resolution\":\"D:\\\\FYP\\\\Mindly\\\\functions\\\\node_modules\\\\firebase-functions\\\\lib\\\\v2\\\\index.js\"}"}}
+[debug] [2026-07-30T05:43:12.709Z] [runtime-status] [26636] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"13.10.0","resolution":"D:\\FYP\\Mindly\\functions\\node_modules\\firebase-admin\\lib\\index.js"}} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-chatWithGemini"},"extension":{},"message":"[runtime-status] [26636] firebase-admin has been stubbed. {\"adminResolution\":{\"declared\":true,\"installed\":true,\"version\":\"13.10.0\",\"resolution\":\"D:\\\\FYP\\\\Mindly\\\\functions\\\\node_modules\\\\firebase-admin\\\\lib\\\\index.js\"}}"}}
+[debug] [2026-07-30T05:43:12.744Z] [runtime-status] [26636] Functions runtime initialized. {"cwd":"D:\\FYP\\Mindly\\functions","node_version":"24.15.0"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-chatWithGemini"},"extension":{},"message":"[runtime-status] [26636] Functions runtime initialized. {\"cwd\":\"D:\\\\FYP\\\\Mindly\\\\functions\",\"node_version\":\"24.15.0\"}"}}
+[debug] [2026-07-30T05:43:12.745Z] [runtime-status] [26636] Listening to port: \\?\pipe\fire_emu_3faea52215a03eab {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-chatWithGemini"},"extension":{},"message":"[runtime-status] [26636] Listening to port: \\\\?\\pipe\\fire_emu_3faea52215a03eab"}}
+[debug] [2026-07-30T05:43:12.845Z] [worker-us-central1-chatWithGemini-a4abb6f0-89f3-4d42-a40c-3d432b770d9a]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-chatWithGemini"},"extension":{},"message":"[worker-us-central1-chatWithGemini-a4abb6f0-89f3-4d42-a40c-3d432b770d9a]: IDLE"}}
+[debug] [2026-07-30T05:43:12.846Z] [worker-pool] submitRequest(triggerId=us-central1-chatWithGemini) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-chatWithGemini)"}}
+[info] i  functions: Beginning execution of "us-central1-chatWithGemini" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-chatWithGemini"},"extension":{},"message":"Beginning execution of \"us-central1-chatWithGemini\""}}
+[debug] [2026-07-30T05:43:12.848Z] [worker-us-central1-chatWithGemini-a4abb6f0-89f3-4d42-a40c-3d432b770d9a]: BUSY {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-chatWithGemini"},"extension":{},"message":"[worker-us-central1-chatWithGemini-a4abb6f0-89f3-4d42-a40c-3d432b770d9a]: BUSY"}}
+[debug] [2026-07-30T05:43:12.866Z] Finishing up request with event=pause {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-chatWithGemini"},"extension":{},"message":"Finishing up request with event=pause"}}
+[info] i  functions: Finished "us-central1-chatWithGemini" in 18.4839ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-chatWithGemini"},"extension":{},"message":"Finished \"us-central1-chatWithGemini\" in 18.4839ms"}}
+[debug] [2026-07-30T05:43:12.868Z] [worker-us-central1-chatWithGemini-a4abb6f0-89f3-4d42-a40c-3d432b770d9a]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-chatWithGemini"},"extension":{},"message":"[worker-us-central1-chatWithGemini-a4abb6f0-89f3-4d42-a40c-3d432b770d9a]: IDLE"}}
+[debug] [2026-07-30T05:43:12.869Z] Finishing up request with event=finish {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-chatWithGemini"},"extension":{},"message":"Finishing up request with event=finish"}}
+[debug] [2026-07-30T05:43:12.870Z] Finishing up request with event=close {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-chatWithGemini"},"extension":{},"message":"Finishing up request with event=close"}}
+[debug] [2026-07-30T05:43:12.870Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
+[debug] [2026-07-30T05:43:12.879Z] [work-queue] {"queuedWork":["/mindly-7f7c4/us-central1/chatWithGemini-2026-07-30T05:43:12.878Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2026-07-30T05:43:12.879Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/mindly-7f7c4/us-central1/chatWithGemini-2026-07-30T05:43:12.878Z"],"workRunningCount":1}
+[debug] [2026-07-30T05:43:12.879Z] Accepted request POST /mindly-7f7c4/us-central1/chatWithGemini --> us-central1-chatWithGemini
+[debug] [2026-07-30T05:43:12.881Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2026-07-30T05:43:12.882Z] [functions] Got req.url=/mindly-7f7c4/us-central1/chatWithGemini, mapping to path=/ {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/mindly-7f7c4/us-central1/chatWithGemini, mapping to path=/"}}
+[debug] [2026-07-30T05:43:12.882Z] [worker-pool] submitRequest(triggerId=us-central1-chatWithGemini) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-chatWithGemini)"}}
+[info] i  functions: Beginning execution of "us-central1-chatWithGemini" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-chatWithGemini"},"extension":{},"message":"Beginning execution of \"us-central1-chatWithGemini\""}}
+[debug] [2026-07-30T05:43:12.883Z] [worker-us-central1-chatWithGemini-a4abb6f0-89f3-4d42-a40c-3d432b770d9a]: BUSY {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-chatWithGemini"},"extension":{},"message":"[worker-us-central1-chatWithGemini-a4abb6f0-89f3-4d42-a40c-3d432b770d9a]: BUSY"}}
+[debug] [2026-07-30T05:43:15.213Z] Finishing up request with event=pause {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-chatWithGemini"},"extension":{},"message":"Finishing up request with event=pause"}}
+[info] i  functions: Finished "us-central1-chatWithGemini" in 2330.9499ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-chatWithGemini"},"extension":{},"message":"Finished \"us-central1-chatWithGemini\" in 2330.9499ms"}}
+[debug] [2026-07-30T05:43:15.215Z] [worker-us-central1-chatWithGemini-a4abb6f0-89f3-4d42-a40c-3d432b770d9a]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-chatWithGemini"},"extension":{},"message":"[worker-us-central1-chatWithGemini-a4abb6f0-89f3-4d42-a40c-3d432b770d9a]: IDLE"}}
+[debug] [2026-07-30T05:43:15.216Z] Finishing up request with event=finish {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-chatWithGemini"},"extension":{},"message":"Finishing up request with event=finish"}}
+[debug] [2026-07-30T05:43:15.216Z] Finishing up request with event=close {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-chatWithGemini"},"extension":{},"message":"Finishing up request with event=close"}}
+[debug] [2026-07-30T05:43:15.217Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
+[debug] [2026-07-30T08:06:59.256Z] [worker-us-central1-chatWithGemini-a4abb6f0-89f3-4d42-a40c-3d432b770d9a]: exited {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-chatWithGemini"},"extension":{},"message":"[worker-us-central1-chatWithGemini-a4abb6f0-89f3-4d42-a40c-3d432b770d9a]: exited"}}
+[debug] [2026-07-30T08:07:25.825Z] ----------------------------------------------------------------------
+[debug] [2026-07-30T08:07:25.838Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\joevi\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js emulators:start
+[debug] [2026-07-30T08:07:25.839Z] CLI Version:   15.16.0
+[debug] [2026-07-30T08:07:25.840Z] Platform:      win32
+[debug] [2026-07-30T08:07:25.840Z] Node Version:  v24.15.0
+[debug] [2026-07-30T08:07:25.841Z] Time:          Thu Jul 30 2026 13:07:25 GMT+0500 (Pakistan Standard Time)
+[debug] [2026-07-30T08:07:25.841Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-07-30T08:07:38.145Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-07-30T08:07:38.146Z] > authorizing via signed-in user (joevinry@gmail.com)
+[info] i  emulators: Starting emulators: functions, extensions {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: functions, extensions"}}
+[debug] [2026-07-30T08:07:38.154Z] Checked if tokens are valid: false, expires at: 1785393717118
+[debug] [2026-07-30T08:07:38.154Z] Checked if tokens are valid: false, expires at: 1785393717118
+[debug] [2026-07-30T08:07:38.155Z] > refreshing access token with scopes: []
+[debug] [2026-07-30T08:07:38.158Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-07-30T08:07:38.158Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-07-30T08:07:38.887Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2026-07-30T08:07:38.888Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-07-30T08:07:38.909Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/mindly-7f7c4 [none]
+[debug] [2026-07-30T08:07:40.920Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/mindly-7f7c4 200
+[debug] [2026-07-30T08:07:40.920Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/mindly-7f7c4 {"projectNumber":"505317673514","projectId":"mindly-7f7c4","lifecycleState":"ACTIVE","name":"Mindly","labels":{"firebase":"enabled","firebase-core":"disabled"},"createTime":"2025-12-15T14:30:02.168101Z"}
+[debug] [2026-07-30T08:07:40.947Z] [logging] Logging Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2026-07-30T08:07:40.947Z] assigned listening specs for emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}]},"metadata":{"message":"assigned listening specs for emulators"}}
+[debug] [2026-07-30T08:07:40.960Z] Found emulator hub locator: {"version":"15.16.0","origins":["http://127.0.0.1:4400","http://[::1]:4400"],"pid":21256}
+[debug] [2026-07-30T08:07:40.960Z] Write emulator hub locator at C:\Users\joevi\AppData\Local\Temp\hub-mindly-7f7c4.json
+[debug] [2026-07-30T08:07:40.976Z] [Extensions] Started Extensions emulator, this is a noop.
+[debug] [2026-07-30T08:07:40.993Z] [functions] Functions Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2026-07-30T08:07:40.993Z] [eventarc] Eventarc Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2026-07-30T08:07:40.993Z] [tasks] Cloud Tasks Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2026-07-30T08:07:40.993Z] late-assigned ports for functions and eventarc emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"functions":[{"address":"127.0.0.1","family":"IPv4","port":5001}],"eventarc":[{"address":"127.0.0.1","family":"IPv4","port":9299}],"tasks":[{"address":"127.0.0.1","family":"IPv4","port":9499}]},"metadata":{"message":"late-assigned ports for functions and eventarc emulators"}}
+[warn] !  functions: The following emulators are not running, calls to these services from the Functions emulator will affect production: apphosting, auth, firestore, database, hosting, pubsub, storage, dataconnect {"metadata":{"emulator":{"name":"functions"},"message":"The following emulators are not running, calls to these services from the Functions emulator will affect production: \u001b[1mapphosting, auth, firestore, database, hosting, pubsub, storage, dataconnect\u001b[22m"}}
+[debug] [2026-07-30T08:07:41.029Z] defaultcredentials: writing to file C:\Users\joevi\AppData\Roaming\firebase\joevinry_gmail_com_application_default_credentials.json
+[debug] [2026-07-30T08:07:41.033Z] Setting GAC to C:\Users\joevi\AppData\Roaming\firebase\joevinry_gmail_com_application_default_credentials.json {"metadata":{"emulator":{"name":"functions"},"message":"Setting GAC to C:\\Users\\joevi\\AppData\\Roaming\\firebase\\joevinry_gmail_com_application_default_credentials.json"}}
+[debug] [2026-07-30T08:07:41.035Z] Checked if tokens are valid: true, expires at: 1785402457888
+[debug] [2026-07-30T08:07:41.035Z] Checked if tokens are valid: true, expires at: 1785402457888
+[debug] [2026-07-30T08:07:41.035Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/mindly-7f7c4/adminSdkConfig [none]
+[debug] [2026-07-30T08:07:41.930Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/mindly-7f7c4/adminSdkConfig 200
+[debug] [2026-07-30T08:07:41.930Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/mindly-7f7c4/adminSdkConfig {"projectId":"mindly-7f7c4","storageBucket":"mindly-7f7c4.firebasestorage.app"}
+[debug] [2026-07-30T08:07:41.968Z] [Extensions] Connecting Extensions emulator, this is a noop.
+[info] i  functions: Watching "D:\FYP\Mindly\functions" for Cloud Functions... {"metadata":{"emulator":{"name":"functions"},"message":"Watching \"D:\\FYP\\Mindly\\functions\" for Cloud Functions..."}}
+[debug] [2026-07-30T08:07:41.974Z] Validating nodejs source
+[warn] !  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[debug] [2026-07-30T08:07:48.705Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "24"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "firebase-admin": "^13.6.0",
+    "firebase-functions": "^7.0.0"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^3.4.1"
+  },
+  "private": true
+}
+[debug] [2026-07-30T08:07:48.706Z] Building nodejs source
+[debug] [2026-07-30T08:07:48.707Z] Failed to find version of module node: reached end of search path D:\FYP\Mindly\functions\node_modules
+[info] +  functions: Using node@24 from host. 
+[info] i  functions: Loaded environment variables from .env. 
+[debug] [2026-07-30T08:07:48.716Z] Could not find functions.yaml. Must use http discovery
+[debug] [2026-07-30T08:07:49.009Z] Found firebase-functions binary at 'D:\FYP\Mindly\functions\node_modules\.bin\firebase-functions'
+[info] Serving at port 8804
+
+[debug] [2026-07-30T08:07:51.359Z] Got response from /__/functions.yaml {"endpoints":{"extractText":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":10,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"extractText"},"chatWithGemini":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":10,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"chatWithGemini"},"generateLesson":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":10,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"generateLesson"},"generateQuiz":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":10,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"generateQuiz"},"generateStudyPlan":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":10,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"generateStudyPlan"}},"specVersion":"v1alpha1","requiredAPIs":[],"extensions":{}}
+[debug] [2026-07-30T08:07:55.452Z] defaultcredentials: writing to file C:\Users\joevi\AppData\Roaming\firebase\joevinry_gmail_com_application_default_credentials.json
+[debug] [2026-07-30T08:07:55.454Z] Setting GAC to C:\Users\joevi\AppData\Roaming\firebase\joevinry_gmail_com_application_default_credentials.json {"metadata":{"emulator":{"name":"functions"},"message":"Setting GAC to C:\\Users\\joevi\\AppData\\Roaming\\firebase\\joevinry_gmail_com_application_default_credentials.json"}}
+[info] +  functions: Loaded functions definitions from source: extractText, chatWithGemini, generateLesson, generateQuiz, generateStudyPlan. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: extractText, chatWithGemini, generateLesson, generateQuiz, generateStudyPlan."}}
+[info] +  functions[us-central1-extractText]: http function initialized (http://127.0.0.1:5001/mindly-7f7c4/us-central1/extractText). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://127.0.0.1:5001/mindly-7f7c4/us-central1/extractText)."}}
+[info] +  functions[us-central1-chatWithGemini]: http function initialized (http://127.0.0.1:5001/mindly-7f7c4/us-central1/chatWithGemini). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://127.0.0.1:5001/mindly-7f7c4/us-central1/chatWithGemini)."}}
+[info] +  functions[us-central1-generateLesson]: http function initialized (http://127.0.0.1:5001/mindly-7f7c4/us-central1/generateLesson). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://127.0.0.1:5001/mindly-7f7c4/us-central1/generateLesson)."}}
+[info] +  functions[us-central1-generateQuiz]: http function initialized (http://127.0.0.1:5001/mindly-7f7c4/us-central1/generateQuiz). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://127.0.0.1:5001/mindly-7f7c4/us-central1/generateQuiz)."}}
+[info] +  functions[us-central1-generateStudyPlan]: http function initialized (http://127.0.0.1:5001/mindly-7f7c4/us-central1/generateStudyPlan). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://127.0.0.1:5001/mindly-7f7c4/us-central1/generateStudyPlan)."}}
+[debug] [2026-07-30T08:07:55.486Z] Could not find VSCode notification endpoint: FetchError: request to http://localhost:40001/vscode/notify failed, reason: . If you are not running the Firebase SQL Connect VSCode extension, this is expected and not an issue.
+[info] 
+┌─────────────────────────────────────────────────────────────┐
+│ ✔  All emulators ready! It is now safe to connect your app. │
+│ i  View Emulator UI at http://127.0.0.1:4000/               │
+└─────────────────────────────────────────────────────────────┘
+
+┌────────────┬────────────────┬──────────────────────────────────┐
+│ Emulator   │ Host:Port      │ View in Emulator UI              │
+├────────────┼────────────────┼──────────────────────────────────┤
+│ Functions  │ 127.0.0.1:5001 │ http://127.0.0.1:4000/functions  │
+├────────────┼────────────────┼──────────────────────────────────┤
+│ Extensions │ 127.0.0.1:5001 │ http://127.0.0.1:4000/extensions │
+└────────────┴────────────────┴──────────────────────────────────┘
+  Emulator Hub host: 127.0.0.1 port: 4400
+  Other reserved ports: 4500
+┌─────────────────────────┬───────────────┬─────────────────────┐
+│ Extension Instance Name │ Extension Ref │ View in Emulator UI │
+└─────────────────────────┴───────────────┴─────────────────────┘
+Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
+ 
+[debug] [2026-07-30T08:20:15.400Z] [work-queue] {"queuedWork":["/mindly-7f7c4/us-central1/extractText-2026-07-30T08:20:15.400Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2026-07-30T08:20:15.401Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/mindly-7f7c4/us-central1/extractText-2026-07-30T08:20:15.400Z"],"workRunningCount":1}
+[debug] [2026-07-30T08:20:15.402Z] Accepted request OPTIONS /mindly-7f7c4/us-central1/extractText --> us-central1-extractText
+[debug] [2026-07-30T08:20:15.404Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2026-07-30T08:20:15.406Z] [functions] Got req.url=/mindly-7f7c4/us-central1/extractText, mapping to path=/ {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/mindly-7f7c4/us-central1/extractText, mapping to path=/"}}
+[info] i  functions: Loaded environment variables from .env. 
+[debug] [2026-07-30T08:20:15.445Z] [worker-pool] addWorker(us-central1-extractText) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] addWorker(us-central1-extractText)"}}
+[debug] [2026-07-30T08:20:15.447Z] [worker-pool] Adding worker with key us-central1-extractText, total=1 {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] Adding worker with key us-central1-extractText, total=1"}}
+[debug] [2026-07-30T08:20:19.817Z] [runtime-status] [30400] Resolved module firebase-admin {"declared":true,"installed":true,"version":"13.10.0","resolution":"D:\\FYP\\Mindly\\functions\\node_modules\\firebase-admin\\lib\\index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-extractText"},"extension":{},"message":"[runtime-status] [30400] Resolved module firebase-admin {\"declared\":true,\"installed\":true,\"version\":\"13.10.0\",\"resolution\":\"D:\\\\FYP\\\\Mindly\\\\functions\\\\node_modules\\\\firebase-admin\\\\lib\\\\index.js\"}"}}
+[debug] [2026-07-30T08:20:19.822Z] [runtime-status] [30400] Resolved module firebase-functions {"declared":true,"installed":true,"version":"7.2.5","resolution":"D:\\FYP\\Mindly\\functions\\node_modules\\firebase-functions\\lib\\v2\\index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-extractText"},"extension":{},"message":"[runtime-status] [30400] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"7.2.5\",\"resolution\":\"D:\\\\FYP\\\\Mindly\\\\functions\\\\node_modules\\\\firebase-functions\\\\lib\\\\v2\\\\index.js\"}"}}
+[debug] [2026-07-30T08:20:19.823Z] [runtime-status] [30400] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-extractText"},"extension":{},"message":"[runtime-status] [30400] Outgoing network have been stubbed. [{\"name\":\"http\",\"status\":\"mocked\"},{\"name\":\"http\",\"status\":\"mocked\"},{\"name\":\"https\",\"status\":\"mocked\"},{\"name\":\"https\",\"status\":\"mocked\"},{\"name\":\"net\",\"status\":\"mocked\"}]"}}
+[debug] [2026-07-30T08:20:19.827Z] [runtime-status] [30400] Resolved module firebase-functions {"declared":true,"installed":true,"version":"7.2.5","resolution":"D:\\FYP\\Mindly\\functions\\node_modules\\firebase-functions\\lib\\v2\\index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-extractText"},"extension":{},"message":"[runtime-status] [30400] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"7.2.5\",\"resolution\":\"D:\\\\FYP\\\\Mindly\\\\functions\\\\node_modules\\\\firebase-functions\\\\lib\\\\v2\\\\index.js\"}"}}
+[debug] [2026-07-30T08:20:19.831Z] [runtime-status] [30400] Detected firebase-functions v7+, skipping legacy stubs. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-extractText"},"extension":{},"message":"[runtime-status] [30400] Detected firebase-functions v7+, skipping legacy stubs."}}
+[debug] [2026-07-30T08:20:19.831Z] [runtime-status] [30400] Resolved module firebase-admin {"declared":true,"installed":true,"version":"13.10.0","resolution":"D:\\FYP\\Mindly\\functions\\node_modules\\firebase-admin\\lib\\index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-extractText"},"extension":{},"message":"[runtime-status] [30400] Resolved module firebase-admin {\"declared\":true,\"installed\":true,\"version\":\"13.10.0\",\"resolution\":\"D:\\\\FYP\\\\Mindly\\\\functions\\\\node_modules\\\\firebase-admin\\\\lib\\\\index.js\"}"}}
+[debug] [2026-07-30T08:20:20.172Z] [runtime-status] [30400] Resolved module firebase-functions {"declared":true,"installed":true,"version":"7.2.5","resolution":"D:\\FYP\\Mindly\\functions\\node_modules\\firebase-functions\\lib\\v2\\index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-extractText"},"extension":{},"message":"[runtime-status] [30400] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"7.2.5\",\"resolution\":\"D:\\\\FYP\\\\Mindly\\\\functions\\\\node_modules\\\\firebase-functions\\\\lib\\\\v2\\\\index.js\"}"}}
+[debug] [2026-07-30T08:20:22.160Z] [runtime-status] [30400] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"13.10.0","resolution":"D:\\FYP\\Mindly\\functions\\node_modules\\firebase-admin\\lib\\index.js"}} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-extractText"},"extension":{},"message":"[runtime-status] [30400] firebase-admin has been stubbed. {\"adminResolution\":{\"declared\":true,\"installed\":true,\"version\":\"13.10.0\",\"resolution\":\"D:\\\\FYP\\\\Mindly\\\\functions\\\\node_modules\\\\firebase-admin\\\\lib\\\\index.js\"}}"}}
+[debug] [2026-07-30T08:20:22.225Z] [runtime-status] [30400] Functions runtime initialized. {"cwd":"D:\\FYP\\Mindly\\functions","node_version":"24.15.0"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-extractText"},"extension":{},"message":"[runtime-status] [30400] Functions runtime initialized. {\"cwd\":\"D:\\\\FYP\\\\Mindly\\\\functions\",\"node_version\":\"24.15.0\"}"}}
+[debug] [2026-07-30T08:20:22.226Z] [runtime-status] [30400] Listening to port: \\?\pipe\fire_emu_f0eeb41298d2513d {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-extractText"},"extension":{},"message":"[runtime-status] [30400] Listening to port: \\\\?\\pipe\\fire_emu_f0eeb41298d2513d"}}
+[debug] [2026-07-30T08:20:22.320Z] [worker-us-central1-extractText-d8cc8939-f8bb-4e00-94d5-6e3615ee44f8]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-extractText"},"extension":{},"message":"[worker-us-central1-extractText-d8cc8939-f8bb-4e00-94d5-6e3615ee44f8]: IDLE"}}
+[debug] [2026-07-30T08:20:22.321Z] [worker-pool] submitRequest(triggerId=us-central1-extractText) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-extractText)"}}
+[info] i  functions: Beginning execution of "us-central1-extractText" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-extractText"},"extension":{},"message":"Beginning execution of \"us-central1-extractText\""}}
+[debug] [2026-07-30T08:20:22.326Z] [worker-us-central1-extractText-d8cc8939-f8bb-4e00-94d5-6e3615ee44f8]: BUSY {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-extractText"},"extension":{},"message":"[worker-us-central1-extractText-d8cc8939-f8bb-4e00-94d5-6e3615ee44f8]: BUSY"}}
+[debug] [2026-07-30T08:20:22.337Z] Finishing up request with event=pause {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-extractText"},"extension":{},"message":"Finishing up request with event=pause"}}
+[info] i  functions: Finished "us-central1-extractText" in 11.7156ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-extractText"},"extension":{},"message":"Finished \"us-central1-extractText\" in 11.7156ms"}}
+[debug] [2026-07-30T08:20:22.339Z] [worker-us-central1-extractText-d8cc8939-f8bb-4e00-94d5-6e3615ee44f8]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-extractText"},"extension":{},"message":"[worker-us-central1-extractText-d8cc8939-f8bb-4e00-94d5-6e3615ee44f8]: IDLE"}}
+[debug] [2026-07-30T08:20:22.339Z] Finishing up request with event=finish {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-extractText"},"extension":{},"message":"Finishing up request with event=finish"}}
+[debug] [2026-07-30T08:20:22.340Z] Finishing up request with event=close {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-extractText"},"extension":{},"message":"Finishing up request with event=close"}}
+[debug] [2026-07-30T08:20:22.341Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
+[debug] [2026-07-30T08:20:22.348Z] [work-queue] {"queuedWork":["/mindly-7f7c4/us-central1/extractText-2026-07-30T08:20:22.348Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2026-07-30T08:20:22.348Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/mindly-7f7c4/us-central1/extractText-2026-07-30T08:20:22.348Z"],"workRunningCount":1}
+[debug] [2026-07-30T08:20:22.348Z] Accepted request POST /mindly-7f7c4/us-central1/extractText --> us-central1-extractText
+[debug] [2026-07-30T08:20:22.350Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2026-07-30T08:20:22.350Z] [functions] Got req.url=/mindly-7f7c4/us-central1/extractText, mapping to path=/ {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/mindly-7f7c4/us-central1/extractText, mapping to path=/"}}
+[debug] [2026-07-30T08:20:22.351Z] [worker-pool] submitRequest(triggerId=us-central1-extractText) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-extractText)"}}
+[info] i  functions: Beginning execution of "us-central1-extractText" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-extractText"},"extension":{},"message":"Beginning execution of \"us-central1-extractText\""}}
+[debug] [2026-07-30T08:20:22.351Z] [worker-us-central1-extractText-d8cc8939-f8bb-4e00-94d5-6e3615ee44f8]: BUSY {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-extractText"},"extension":{},"message":"[worker-us-central1-extractText-d8cc8939-f8bb-4e00-94d5-6e3615ee44f8]: BUSY"}}
+[info] >  {"severity":"INFO","message":"Received file: Chapter No. 4 Business Writing Plan.pdf for extraction."} {"user":{"severity":"INFO","message":"Received file: Chapter No. 4 Business Writing Plan.pdf for extraction."},"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-extractText"},"extension":{},"message":"\u001b[90m> \u001b[39m {\"severity\":\"INFO\",\"message\":\"Received file: Chapter No. 4 Business Writing Plan.pdf for extraction.\"}"}}
+[info] >  {"severity":"INFO","message":"Sending request to Unstructured.io API..."} {"user":{"severity":"INFO","message":"Sending request to Unstructured.io API..."},"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-extractText"},"extension":{},"message":"\u001b[90m> \u001b[39m {\"severity\":\"INFO\",\"message\":\"Sending request to Unstructured.io API...\"}"}}
+[info] >  {"severity":"INFO","message":"Extraction successful for Chapter No. 4 Business Writing Plan.pdf. Sending elements back to client."} {"user":{"severity":"INFO","message":"Extraction successful for Chapter No. 4 Business Writing Plan.pdf. Sending elements back to client."},"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-extractText"},"extension":{},"message":"\u001b[90m> \u001b[39m {\"severity\":\"INFO\",\"message\":\"Extraction successful for Chapter No. 4 Business Writing Plan.pdf. Sending elements back to client.\"}"}}
+[debug] [2026-07-30T08:20:27.441Z] Finishing up request with event=pause {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-extractText"},"extension":{},"message":"Finishing up request with event=pause"}}
+[info] i  functions: Finished "us-central1-extractText" in 5090.767ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-extractText"},"extension":{},"message":"Finished \"us-central1-extractText\" in 5090.767ms"}}
+[debug] [2026-07-30T08:20:27.444Z] [worker-us-central1-extractText-d8cc8939-f8bb-4e00-94d5-6e3615ee44f8]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-extractText"},"extension":{},"message":"[worker-us-central1-extractText-d8cc8939-f8bb-4e00-94d5-6e3615ee44f8]: IDLE"}}
+[debug] [2026-07-30T08:20:27.448Z] Finishing up request with event=finish {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-extractText"},"extension":{},"message":"Finishing up request with event=finish"}}
+[debug] [2026-07-30T08:20:27.449Z] Finishing up request with event=close {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-extractText"},"extension":{},"message":"Finishing up request with event=close"}}
+[debug] [2026-07-30T08:20:27.450Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
+[debug] [2026-07-30T08:20:27.495Z] [work-queue] {"queuedWork":["/mindly-7f7c4/us-central1/generateStudyPlan-2026-07-30T08:20:27.494Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2026-07-30T08:20:27.496Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/mindly-7f7c4/us-central1/generateStudyPlan-2026-07-30T08:20:27.494Z"],"workRunningCount":1}
+[debug] [2026-07-30T08:20:27.497Z] Accepted request OPTIONS /mindly-7f7c4/us-central1/generateStudyPlan --> us-central1-generateStudyPlan
+[debug] [2026-07-30T08:20:27.502Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2026-07-30T08:20:27.503Z] [functions] Got req.url=/mindly-7f7c4/us-central1/generateStudyPlan, mapping to path=/ {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/mindly-7f7c4/us-central1/generateStudyPlan, mapping to path=/"}}
+[info] i  functions: Loaded environment variables from .env. 
+[debug] [2026-07-30T08:20:27.539Z] [worker-pool] addWorker(us-central1-generateStudyPlan) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] addWorker(us-central1-generateStudyPlan)"}}
+[debug] [2026-07-30T08:20:27.540Z] [worker-pool] Adding worker with key us-central1-generateStudyPlan, total=1 {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] Adding worker with key us-central1-generateStudyPlan, total=1"}}
+[debug] [2026-07-30T08:20:27.552Z] [work-queue] {"queuedWork":["/mindly-7f7c4/us-central1/generateLesson-2026-07-30T08:20:27.552Z"],"queueLength":1,"runningWork":["/mindly-7f7c4/us-central1/generateStudyPlan-2026-07-30T08:20:27.494Z"],"workRunningCount":1}
+[debug] [2026-07-30T08:20:27.553Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/mindly-7f7c4/us-central1/generateStudyPlan-2026-07-30T08:20:27.494Z","/mindly-7f7c4/us-central1/generateLesson-2026-07-30T08:20:27.552Z"],"workRunningCount":2}
+[debug] [2026-07-30T08:20:27.553Z] Accepted request OPTIONS /mindly-7f7c4/us-central1/generateLesson --> us-central1-generateLesson
+[debug] [2026-07-30T08:20:27.556Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2026-07-30T08:20:27.558Z] [functions] Got req.url=/mindly-7f7c4/us-central1/generateLesson, mapping to path=/ {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/mindly-7f7c4/us-central1/generateLesson, mapping to path=/"}}
+[info] i  functions: Loaded environment variables from .env. 
+[debug] [2026-07-30T08:20:27.599Z] [worker-pool] addWorker(us-central1-generateLesson) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] addWorker(us-central1-generateLesson)"}}
+[debug] [2026-07-30T08:20:27.600Z] [worker-pool] Adding worker with key us-central1-generateLesson, total=1 {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] Adding worker with key us-central1-generateLesson, total=1"}}
+[debug] [2026-07-30T08:20:27.605Z] [work-queue] {"queuedWork":["/mindly-7f7c4/us-central1/generateQuiz-2026-07-30T08:20:27.605Z"],"queueLength":1,"runningWork":["/mindly-7f7c4/us-central1/generateStudyPlan-2026-07-30T08:20:27.494Z","/mindly-7f7c4/us-central1/generateLesson-2026-07-30T08:20:27.552Z"],"workRunningCount":2}
+[debug] [2026-07-30T08:20:27.606Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/mindly-7f7c4/us-central1/generateStudyPlan-2026-07-30T08:20:27.494Z","/mindly-7f7c4/us-central1/generateLesson-2026-07-30T08:20:27.552Z","/mindly-7f7c4/us-central1/generateQuiz-2026-07-30T08:20:27.605Z"],"workRunningCount":3}
+[debug] [2026-07-30T08:20:27.607Z] Accepted request OPTIONS /mindly-7f7c4/us-central1/generateQuiz --> us-central1-generateQuiz
+[debug] [2026-07-30T08:20:27.610Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2026-07-30T08:20:27.612Z] [functions] Got req.url=/mindly-7f7c4/us-central1/generateQuiz, mapping to path=/ {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/mindly-7f7c4/us-central1/generateQuiz, mapping to path=/"}}
+[info] i  functions: Loaded environment variables from .env. 
+[debug] [2026-07-30T08:20:27.661Z] [worker-pool] addWorker(us-central1-generateQuiz) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] addWorker(us-central1-generateQuiz)"}}
+[debug] [2026-07-30T08:20:27.661Z] [worker-pool] Adding worker with key us-central1-generateQuiz, total=1 {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] Adding worker with key us-central1-generateQuiz, total=1"}}
+[debug] [2026-07-30T08:20:30.786Z] [runtime-status] [31364] Resolved module firebase-admin {"declared":true,"installed":true,"version":"13.10.0","resolution":"D:\\FYP\\Mindly\\functions\\node_modules\\firebase-admin\\lib\\index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateLesson"},"extension":{},"message":"[runtime-status] [31364] Resolved module firebase-admin {\"declared\":true,\"installed\":true,\"version\":\"13.10.0\",\"resolution\":\"D:\\\\FYP\\\\Mindly\\\\functions\\\\node_modules\\\\firebase-admin\\\\lib\\\\index.js\"}"}}
+[debug] [2026-07-30T08:20:30.790Z] [runtime-status] [31364] Resolved module firebase-functions {"declared":true,"installed":true,"version":"7.2.5","resolution":"D:\\FYP\\Mindly\\functions\\node_modules\\firebase-functions\\lib\\v2\\index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateLesson"},"extension":{},"message":"[runtime-status] [31364] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"7.2.5\",\"resolution\":\"D:\\\\FYP\\\\Mindly\\\\functions\\\\node_modules\\\\firebase-functions\\\\lib\\\\v2\\\\index.js\"}"}}
+[debug] [2026-07-30T08:20:30.791Z] [runtime-status] [31364] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateLesson"},"extension":{},"message":"[runtime-status] [31364] Outgoing network have been stubbed. [{\"name\":\"http\",\"status\":\"mocked\"},{\"name\":\"http\",\"status\":\"mocked\"},{\"name\":\"https\",\"status\":\"mocked\"},{\"name\":\"https\",\"status\":\"mocked\"},{\"name\":\"net\",\"status\":\"mocked\"}]"}}
+[debug] [2026-07-30T08:20:30.794Z] [runtime-status] [31364] Resolved module firebase-functions {"declared":true,"installed":true,"version":"7.2.5","resolution":"D:\\FYP\\Mindly\\functions\\node_modules\\firebase-functions\\lib\\v2\\index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateLesson"},"extension":{},"message":"[runtime-status] [31364] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"7.2.5\",\"resolution\":\"D:\\\\FYP\\\\Mindly\\\\functions\\\\node_modules\\\\firebase-functions\\\\lib\\\\v2\\\\index.js\"}"}}
+[debug] [2026-07-30T08:20:30.794Z] [runtime-status] [31364] Detected firebase-functions v7+, skipping legacy stubs. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateLesson"},"extension":{},"message":"[runtime-status] [31364] Detected firebase-functions v7+, skipping legacy stubs."}}
+[debug] [2026-07-30T08:20:30.796Z] [runtime-status] [31364] Resolved module firebase-admin {"declared":true,"installed":true,"version":"13.10.0","resolution":"D:\\FYP\\Mindly\\functions\\node_modules\\firebase-admin\\lib\\index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateLesson"},"extension":{},"message":"[runtime-status] [31364] Resolved module firebase-admin {\"declared\":true,\"installed\":true,\"version\":\"13.10.0\",\"resolution\":\"D:\\\\FYP\\\\Mindly\\\\functions\\\\node_modules\\\\firebase-admin\\\\lib\\\\index.js\"}"}}
+[debug] [2026-07-30T08:20:30.807Z] [runtime-status] [20704] Resolved module firebase-admin {"declared":true,"installed":true,"version":"13.10.0","resolution":"D:\\FYP\\Mindly\\functions\\node_modules\\firebase-admin\\lib\\index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateStudyPlan"},"extension":{},"message":"[runtime-status] [20704] Resolved module firebase-admin {\"declared\":true,\"installed\":true,\"version\":\"13.10.0\",\"resolution\":\"D:\\\\FYP\\\\Mindly\\\\functions\\\\node_modules\\\\firebase-admin\\\\lib\\\\index.js\"}"}}
+[debug] [2026-07-30T08:20:30.811Z] [runtime-status] [20704] Resolved module firebase-functions {"declared":true,"installed":true,"version":"7.2.5","resolution":"D:\\FYP\\Mindly\\functions\\node_modules\\firebase-functions\\lib\\v2\\index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateStudyPlan"},"extension":{},"message":"[runtime-status] [20704] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"7.2.5\",\"resolution\":\"D:\\\\FYP\\\\Mindly\\\\functions\\\\node_modules\\\\firebase-functions\\\\lib\\\\v2\\\\index.js\"}"}}
+[debug] [2026-07-30T08:20:30.812Z] [runtime-status] [20704] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateStudyPlan"},"extension":{},"message":"[runtime-status] [20704] Outgoing network have been stubbed. [{\"name\":\"http\",\"status\":\"mocked\"},{\"name\":\"http\",\"status\":\"mocked\"},{\"name\":\"https\",\"status\":\"mocked\"},{\"name\":\"https\",\"status\":\"mocked\"},{\"name\":\"net\",\"status\":\"mocked\"}]"}}
+[debug] [2026-07-30T08:20:30.814Z] [runtime-status] [20704] Resolved module firebase-functions {"declared":true,"installed":true,"version":"7.2.5","resolution":"D:\\FYP\\Mindly\\functions\\node_modules\\firebase-functions\\lib\\v2\\index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateStudyPlan"},"extension":{},"message":"[runtime-status] [20704] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"7.2.5\",\"resolution\":\"D:\\\\FYP\\\\Mindly\\\\functions\\\\node_modules\\\\firebase-functions\\\\lib\\\\v2\\\\index.js\"}"}}
+[debug] [2026-07-30T08:20:30.816Z] [runtime-status] [20704] Detected firebase-functions v7+, skipping legacy stubs. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateStudyPlan"},"extension":{},"message":"[runtime-status] [20704] Detected firebase-functions v7+, skipping legacy stubs."}}
+[debug] [2026-07-30T08:20:30.817Z] [runtime-status] [20704] Resolved module firebase-admin {"declared":true,"installed":true,"version":"13.10.0","resolution":"D:\\FYP\\Mindly\\functions\\node_modules\\firebase-admin\\lib\\index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateStudyPlan"},"extension":{},"message":"[runtime-status] [20704] Resolved module firebase-admin {\"declared\":true,\"installed\":true,\"version\":\"13.10.0\",\"resolution\":\"D:\\\\FYP\\\\Mindly\\\\functions\\\\node_modules\\\\firebase-admin\\\\lib\\\\index.js\"}"}}
+[debug] [2026-07-30T08:20:30.823Z] [runtime-status] [30664] Resolved module firebase-admin {"declared":true,"installed":true,"version":"13.10.0","resolution":"D:\\FYP\\Mindly\\functions\\node_modules\\firebase-admin\\lib\\index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateQuiz"},"extension":{},"message":"[runtime-status] [30664] Resolved module firebase-admin {\"declared\":true,\"installed\":true,\"version\":\"13.10.0\",\"resolution\":\"D:\\\\FYP\\\\Mindly\\\\functions\\\\node_modules\\\\firebase-admin\\\\lib\\\\index.js\"}"}}
+[debug] [2026-07-30T08:20:30.827Z] [runtime-status] [30664] Resolved module firebase-functions {"declared":true,"installed":true,"version":"7.2.5","resolution":"D:\\FYP\\Mindly\\functions\\node_modules\\firebase-functions\\lib\\v2\\index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateQuiz"},"extension":{},"message":"[runtime-status] [30664] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"7.2.5\",\"resolution\":\"D:\\\\FYP\\\\Mindly\\\\functions\\\\node_modules\\\\firebase-functions\\\\lib\\\\v2\\\\index.js\"}"}}
+[debug] [2026-07-30T08:20:30.828Z] [runtime-status] [30664] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateQuiz"},"extension":{},"message":"[runtime-status] [30664] Outgoing network have been stubbed. [{\"name\":\"http\",\"status\":\"mocked\"},{\"name\":\"http\",\"status\":\"mocked\"},{\"name\":\"https\",\"status\":\"mocked\"},{\"name\":\"https\",\"status\":\"mocked\"},{\"name\":\"net\",\"status\":\"mocked\"}]"}}
+[debug] [2026-07-30T08:20:30.831Z] [runtime-status] [30664] Resolved module firebase-functions {"declared":true,"installed":true,"version":"7.2.5","resolution":"D:\\FYP\\Mindly\\functions\\node_modules\\firebase-functions\\lib\\v2\\index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateQuiz"},"extension":{},"message":"[runtime-status] [30664] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"7.2.5\",\"resolution\":\"D:\\\\FYP\\\\Mindly\\\\functions\\\\node_modules\\\\firebase-functions\\\\lib\\\\v2\\\\index.js\"}"}}
+[debug] [2026-07-30T08:20:30.832Z] [runtime-status] [30664] Detected firebase-functions v7+, skipping legacy stubs. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateQuiz"},"extension":{},"message":"[runtime-status] [30664] Detected firebase-functions v7+, skipping legacy stubs."}}
+[debug] [2026-07-30T08:20:30.834Z] [runtime-status] [30664] Resolved module firebase-admin {"declared":true,"installed":true,"version":"13.10.0","resolution":"D:\\FYP\\Mindly\\functions\\node_modules\\firebase-admin\\lib\\index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateQuiz"},"extension":{},"message":"[runtime-status] [30664] Resolved module firebase-admin {\"declared\":true,\"installed\":true,\"version\":\"13.10.0\",\"resolution\":\"D:\\\\FYP\\\\Mindly\\\\functions\\\\node_modules\\\\firebase-admin\\\\lib\\\\index.js\"}"}}
+[debug] [2026-07-30T08:20:31.030Z] [runtime-status] [31364] Resolved module firebase-functions {"declared":true,"installed":true,"version":"7.2.5","resolution":"D:\\FYP\\Mindly\\functions\\node_modules\\firebase-functions\\lib\\v2\\index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateLesson"},"extension":{},"message":"[runtime-status] [31364] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"7.2.5\",\"resolution\":\"D:\\\\FYP\\\\Mindly\\\\functions\\\\node_modules\\\\firebase-functions\\\\lib\\\\v2\\\\index.js\"}"}}
+[debug] [2026-07-30T08:20:31.047Z] [runtime-status] [20704] Resolved module firebase-functions {"declared":true,"installed":true,"version":"7.2.5","resolution":"D:\\FYP\\Mindly\\functions\\node_modules\\firebase-functions\\lib\\v2\\index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateStudyPlan"},"extension":{},"message":"[runtime-status] [20704] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"7.2.5\",\"resolution\":\"D:\\\\FYP\\\\Mindly\\\\functions\\\\node_modules\\\\firebase-functions\\\\lib\\\\v2\\\\index.js\"}"}}
+[debug] [2026-07-30T08:20:31.060Z] [runtime-status] [30664] Resolved module firebase-functions {"declared":true,"installed":true,"version":"7.2.5","resolution":"D:\\FYP\\Mindly\\functions\\node_modules\\firebase-functions\\lib\\v2\\index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateQuiz"},"extension":{},"message":"[runtime-status] [30664] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"7.2.5\",\"resolution\":\"D:\\\\FYP\\\\Mindly\\\\functions\\\\node_modules\\\\firebase-functions\\\\lib\\\\v2\\\\index.js\"}"}}
+[debug] [2026-07-30T08:20:32.074Z] [runtime-status] [31364] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"13.10.0","resolution":"D:\\FYP\\Mindly\\functions\\node_modules\\firebase-admin\\lib\\index.js"}} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateLesson"},"extension":{},"message":"[runtime-status] [31364] firebase-admin has been stubbed. {\"adminResolution\":{\"declared\":true,\"installed\":true,\"version\":\"13.10.0\",\"resolution\":\"D:\\\\FYP\\\\Mindly\\\\functions\\\\node_modules\\\\firebase-admin\\\\lib\\\\index.js\"}}"}}
+[debug] [2026-07-30T08:20:32.117Z] [runtime-status] [20704] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"13.10.0","resolution":"D:\\FYP\\Mindly\\functions\\node_modules\\firebase-admin\\lib\\index.js"}} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateStudyPlan"},"extension":{},"message":"[runtime-status] [20704] firebase-admin has been stubbed. {\"adminResolution\":{\"declared\":true,\"installed\":true,\"version\":\"13.10.0\",\"resolution\":\"D:\\\\FYP\\\\Mindly\\\\functions\\\\node_modules\\\\firebase-admin\\\\lib\\\\index.js\"}}"}}
+[debug] [2026-07-30T08:20:32.139Z] [runtime-status] [30664] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"13.10.0","resolution":"D:\\FYP\\Mindly\\functions\\node_modules\\firebase-admin\\lib\\index.js"}} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateQuiz"},"extension":{},"message":"[runtime-status] [30664] firebase-admin has been stubbed. {\"adminResolution\":{\"declared\":true,\"installed\":true,\"version\":\"13.10.0\",\"resolution\":\"D:\\\\FYP\\\\Mindly\\\\functions\\\\node_modules\\\\firebase-admin\\\\lib\\\\index.js\"}}"}}
+[debug] [2026-07-30T08:20:32.140Z] [runtime-status] [31364] Functions runtime initialized. {"cwd":"D:\\FYP\\Mindly\\functions","node_version":"24.15.0"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateLesson"},"extension":{},"message":"[runtime-status] [31364] Functions runtime initialized. {\"cwd\":\"D:\\\\FYP\\\\Mindly\\\\functions\",\"node_version\":\"24.15.0\"}"}}
+[debug] [2026-07-30T08:20:32.141Z] [runtime-status] [31364] Listening to port: \\?\pipe\fire_emu_5fdb220c33b3ab5e {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateLesson"},"extension":{},"message":"[runtime-status] [31364] Listening to port: \\\\?\\pipe\\fire_emu_5fdb220c33b3ab5e"}}
+[debug] [2026-07-30T08:20:32.162Z] [runtime-status] [20704] Functions runtime initialized. {"cwd":"D:\\FYP\\Mindly\\functions","node_version":"24.15.0"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateStudyPlan"},"extension":{},"message":"[runtime-status] [20704] Functions runtime initialized. {\"cwd\":\"D:\\\\FYP\\\\Mindly\\\\functions\",\"node_version\":\"24.15.0\"}"}}
+[debug] [2026-07-30T08:20:32.163Z] [runtime-status] [20704] Listening to port: \\?\pipe\fire_emu_de8d36895ccc8324 {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateStudyPlan"},"extension":{},"message":"[runtime-status] [20704] Listening to port: \\\\?\\pipe\\fire_emu_de8d36895ccc8324"}}
+[debug] [2026-07-30T08:20:32.180Z] [runtime-status] [30664] Functions runtime initialized. {"cwd":"D:\\FYP\\Mindly\\functions","node_version":"24.15.0"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateQuiz"},"extension":{},"message":"[runtime-status] [30664] Functions runtime initialized. {\"cwd\":\"D:\\\\FYP\\\\Mindly\\\\functions\",\"node_version\":\"24.15.0\"}"}}
+[debug] [2026-07-30T08:20:32.181Z] [runtime-status] [30664] Listening to port: \\?\pipe\fire_emu_f4501a27a1c3ae53 {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateQuiz"},"extension":{},"message":"[runtime-status] [30664] Listening to port: \\\\?\\pipe\\fire_emu_f4501a27a1c3ae53"}}
+[debug] [2026-07-30T08:20:32.245Z] [worker-us-central1-generateLesson-773fbbcf-9287-4e31-b4c5-3bca7152246d]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateLesson"},"extension":{},"message":"[worker-us-central1-generateLesson-773fbbcf-9287-4e31-b4c5-3bca7152246d]: IDLE"}}
+[debug] [2026-07-30T08:20:32.246Z] [worker-pool] submitRequest(triggerId=us-central1-generateLesson) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-generateLesson)"}}
+[info] i  functions: Beginning execution of "us-central1-generateLesson" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateLesson"},"extension":{},"message":"Beginning execution of \"us-central1-generateLesson\""}}
+[debug] [2026-07-30T08:20:32.247Z] [worker-us-central1-generateLesson-773fbbcf-9287-4e31-b4c5-3bca7152246d]: BUSY {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateLesson"},"extension":{},"message":"[worker-us-central1-generateLesson-773fbbcf-9287-4e31-b4c5-3bca7152246d]: BUSY"}}
+[debug] [2026-07-30T08:20:32.252Z] [worker-us-central1-generateQuiz-afbeb0ab-d6d1-4c72-8d1f-89026d61eb92]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateQuiz"},"extension":{},"message":"[worker-us-central1-generateQuiz-afbeb0ab-d6d1-4c72-8d1f-89026d61eb92]: IDLE"}}
+[debug] [2026-07-30T08:20:32.253Z] [worker-pool] submitRequest(triggerId=us-central1-generateQuiz) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-generateQuiz)"}}
+[info] i  functions: Beginning execution of "us-central1-generateQuiz" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateQuiz"},"extension":{},"message":"Beginning execution of \"us-central1-generateQuiz\""}}
+[debug] [2026-07-30T08:20:32.255Z] [worker-us-central1-generateQuiz-afbeb0ab-d6d1-4c72-8d1f-89026d61eb92]: BUSY {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateQuiz"},"extension":{},"message":"[worker-us-central1-generateQuiz-afbeb0ab-d6d1-4c72-8d1f-89026d61eb92]: BUSY"}}
+[debug] [2026-07-30T08:20:32.258Z] [worker-us-central1-generateStudyPlan-d2869a95-2d27-45b3-8d65-df5231be963f]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateStudyPlan"},"extension":{},"message":"[worker-us-central1-generateStudyPlan-d2869a95-2d27-45b3-8d65-df5231be963f]: IDLE"}}
+[debug] [2026-07-30T08:20:32.259Z] [worker-pool] submitRequest(triggerId=us-central1-generateStudyPlan) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-generateStudyPlan)"}}
+[info] i  functions: Beginning execution of "us-central1-generateStudyPlan" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateStudyPlan"},"extension":{},"message":"Beginning execution of \"us-central1-generateStudyPlan\""}}
+[debug] [2026-07-30T08:20:32.260Z] [worker-us-central1-generateStudyPlan-d2869a95-2d27-45b3-8d65-df5231be963f]: BUSY {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateStudyPlan"},"extension":{},"message":"[worker-us-central1-generateStudyPlan-d2869a95-2d27-45b3-8d65-df5231be963f]: BUSY"}}
+[debug] [2026-07-30T08:20:32.264Z] Finishing up request with event=pause {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateLesson"},"extension":{},"message":"Finishing up request with event=pause"}}
+[info] i  functions: Finished "us-central1-generateLesson" in 16.4193ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateLesson"},"extension":{},"message":"Finished \"us-central1-generateLesson\" in 16.4193ms"}}
+[debug] [2026-07-30T08:20:32.265Z] [worker-us-central1-generateLesson-773fbbcf-9287-4e31-b4c5-3bca7152246d]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateLesson"},"extension":{},"message":"[worker-us-central1-generateLesson-773fbbcf-9287-4e31-b4c5-3bca7152246d]: IDLE"}}
+[debug] [2026-07-30T08:20:32.266Z] Finishing up request with event=finish {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateLesson"},"extension":{},"message":"Finishing up request with event=finish"}}
+[debug] [2026-07-30T08:20:32.266Z] Finishing up request with event=close {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateLesson"},"extension":{},"message":"Finishing up request with event=close"}}
+[debug] [2026-07-30T08:20:32.267Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/mindly-7f7c4/us-central1/generateStudyPlan-2026-07-30T08:20:27.494Z","/mindly-7f7c4/us-central1/generateQuiz-2026-07-30T08:20:27.605Z"],"workRunningCount":2}
+[debug] [2026-07-30T08:20:32.273Z] Finishing up request with event=pause {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateQuiz"},"extension":{},"message":"Finishing up request with event=pause"}}
+[info] i  functions: Finished "us-central1-generateQuiz" in 18.9016ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateQuiz"},"extension":{},"message":"Finished \"us-central1-generateQuiz\" in 18.9016ms"}}
+[debug] [2026-07-30T08:20:32.275Z] [worker-us-central1-generateQuiz-afbeb0ab-d6d1-4c72-8d1f-89026d61eb92]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateQuiz"},"extension":{},"message":"[worker-us-central1-generateQuiz-afbeb0ab-d6d1-4c72-8d1f-89026d61eb92]: IDLE"}}
+[debug] [2026-07-30T08:20:32.276Z] Finishing up request with event=finish {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateQuiz"},"extension":{},"message":"Finishing up request with event=finish"}}
+[debug] [2026-07-30T08:20:32.277Z] Finishing up request with event=close {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateQuiz"},"extension":{},"message":"Finishing up request with event=close"}}
+[debug] [2026-07-30T08:20:32.278Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/mindly-7f7c4/us-central1/generateStudyPlan-2026-07-30T08:20:27.494Z"],"workRunningCount":1}
+[debug] [2026-07-30T08:20:32.280Z] [work-queue] {"queuedWork":["/mindly-7f7c4/us-central1/generateLesson-2026-07-30T08:20:32.280Z"],"queueLength":1,"runningWork":["/mindly-7f7c4/us-central1/generateStudyPlan-2026-07-30T08:20:27.494Z"],"workRunningCount":1}
+[debug] [2026-07-30T08:20:32.281Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/mindly-7f7c4/us-central1/generateStudyPlan-2026-07-30T08:20:27.494Z","/mindly-7f7c4/us-central1/generateLesson-2026-07-30T08:20:32.280Z"],"workRunningCount":2}
+[debug] [2026-07-30T08:20:32.281Z] Accepted request POST /mindly-7f7c4/us-central1/generateLesson --> us-central1-generateLesson
+[debug] [2026-07-30T08:20:32.284Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2026-07-30T08:20:32.284Z] [functions] Got req.url=/mindly-7f7c4/us-central1/generateLesson, mapping to path=/ {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/mindly-7f7c4/us-central1/generateLesson, mapping to path=/"}}
+[debug] [2026-07-30T08:20:32.285Z] [worker-pool] submitRequest(triggerId=us-central1-generateLesson) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-generateLesson)"}}
+[info] i  functions: Beginning execution of "us-central1-generateLesson" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateLesson"},"extension":{},"message":"Beginning execution of \"us-central1-generateLesson\""}}
+[debug] [2026-07-30T08:20:32.289Z] [worker-us-central1-generateLesson-773fbbcf-9287-4e31-b4c5-3bca7152246d]: BUSY {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateLesson"},"extension":{},"message":"[worker-us-central1-generateLesson-773fbbcf-9287-4e31-b4c5-3bca7152246d]: BUSY"}}
+[debug] [2026-07-30T08:20:32.294Z] Finishing up request with event=pause {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateStudyPlan"},"extension":{},"message":"Finishing up request with event=pause"}}
+[info] i  functions: Finished "us-central1-generateStudyPlan" in 33.8945ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateStudyPlan"},"extension":{},"message":"Finished \"us-central1-generateStudyPlan\" in 33.8945ms"}}
+[debug] [2026-07-30T08:20:32.296Z] [worker-us-central1-generateStudyPlan-d2869a95-2d27-45b3-8d65-df5231be963f]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateStudyPlan"},"extension":{},"message":"[worker-us-central1-generateStudyPlan-d2869a95-2d27-45b3-8d65-df5231be963f]: IDLE"}}
+[debug] [2026-07-30T08:20:32.297Z] Finishing up request with event=finish {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateStudyPlan"},"extension":{},"message":"Finishing up request with event=finish"}}
+[debug] [2026-07-30T08:20:32.297Z] Finishing up request with event=close {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateStudyPlan"},"extension":{},"message":"Finishing up request with event=close"}}
+[debug] [2026-07-30T08:20:32.298Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/mindly-7f7c4/us-central1/generateLesson-2026-07-30T08:20:32.280Z"],"workRunningCount":1}
+[debug] [2026-07-30T08:20:32.300Z] [work-queue] {"queuedWork":["/mindly-7f7c4/us-central1/generateQuiz-2026-07-30T08:20:32.300Z"],"queueLength":1,"runningWork":["/mindly-7f7c4/us-central1/generateLesson-2026-07-30T08:20:32.280Z"],"workRunningCount":1}
+[debug] [2026-07-30T08:20:32.300Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/mindly-7f7c4/us-central1/generateLesson-2026-07-30T08:20:32.280Z","/mindly-7f7c4/us-central1/generateQuiz-2026-07-30T08:20:32.300Z"],"workRunningCount":2}
+[debug] [2026-07-30T08:20:32.301Z] Accepted request POST /mindly-7f7c4/us-central1/generateQuiz --> us-central1-generateQuiz
+[debug] [2026-07-30T08:20:32.304Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2026-07-30T08:20:32.305Z] [functions] Got req.url=/mindly-7f7c4/us-central1/generateQuiz, mapping to path=/ {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/mindly-7f7c4/us-central1/generateQuiz, mapping to path=/"}}
+[debug] [2026-07-30T08:20:32.305Z] [worker-pool] submitRequest(triggerId=us-central1-generateQuiz) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-generateQuiz)"}}
+[info] i  functions: Beginning execution of "us-central1-generateQuiz" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateQuiz"},"extension":{},"message":"Beginning execution of \"us-central1-generateQuiz\""}}
+[debug] [2026-07-30T08:20:32.307Z] [worker-us-central1-generateQuiz-afbeb0ab-d6d1-4c72-8d1f-89026d61eb92]: BUSY {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateQuiz"},"extension":{},"message":"[worker-us-central1-generateQuiz-afbeb0ab-d6d1-4c72-8d1f-89026d61eb92]: BUSY"}}
+[debug] [2026-07-30T08:20:32.312Z] [work-queue] {"queuedWork":["/mindly-7f7c4/us-central1/generateStudyPlan-2026-07-30T08:20:32.311Z"],"queueLength":1,"runningWork":["/mindly-7f7c4/us-central1/generateLesson-2026-07-30T08:20:32.280Z","/mindly-7f7c4/us-central1/generateQuiz-2026-07-30T08:20:32.300Z"],"workRunningCount":2}
+[debug] [2026-07-30T08:20:32.312Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/mindly-7f7c4/us-central1/generateLesson-2026-07-30T08:20:32.280Z","/mindly-7f7c4/us-central1/generateQuiz-2026-07-30T08:20:32.300Z","/mindly-7f7c4/us-central1/generateStudyPlan-2026-07-30T08:20:32.311Z"],"workRunningCount":3}
+[debug] [2026-07-30T08:20:32.313Z] Accepted request POST /mindly-7f7c4/us-central1/generateStudyPlan --> us-central1-generateStudyPlan
+[debug] [2026-07-30T08:20:32.315Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2026-07-30T08:20:32.317Z] [functions] Got req.url=/mindly-7f7c4/us-central1/generateStudyPlan, mapping to path=/ {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/mindly-7f7c4/us-central1/generateStudyPlan, mapping to path=/"}}
+[debug] [2026-07-30T08:20:32.317Z] [worker-pool] submitRequest(triggerId=us-central1-generateStudyPlan) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-generateStudyPlan)"}}
+[info] i  functions: Beginning execution of "us-central1-generateStudyPlan" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateStudyPlan"},"extension":{},"message":"Beginning execution of \"us-central1-generateStudyPlan\""}}
+[debug] [2026-07-30T08:20:32.320Z] [worker-us-central1-generateStudyPlan-d2869a95-2d27-45b3-8d65-df5231be963f]: BUSY {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateStudyPlan"},"extension":{},"message":"[worker-us-central1-generateStudyPlan-d2869a95-2d27-45b3-8d65-df5231be963f]: BUSY"}}
+[debug] [2026-07-30T08:20:40.809Z] Finishing up request with event=pause {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateQuiz"},"extension":{},"message":"Finishing up request with event=pause"}}
+[info] i  functions: Finished "us-central1-generateQuiz" in 8502.1734ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateQuiz"},"extension":{},"message":"Finished \"us-central1-generateQuiz\" in 8502.1734ms"}}
+[debug] [2026-07-30T08:20:40.811Z] [worker-us-central1-generateQuiz-afbeb0ab-d6d1-4c72-8d1f-89026d61eb92]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateQuiz"},"extension":{},"message":"[worker-us-central1-generateQuiz-afbeb0ab-d6d1-4c72-8d1f-89026d61eb92]: IDLE"}}
+[debug] [2026-07-30T08:20:40.813Z] Finishing up request with event=finish {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateQuiz"},"extension":{},"message":"Finishing up request with event=finish"}}
+[debug] [2026-07-30T08:20:40.814Z] Finishing up request with event=close {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateQuiz"},"extension":{},"message":"Finishing up request with event=close"}}
+[debug] [2026-07-30T08:20:40.814Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/mindly-7f7c4/us-central1/generateLesson-2026-07-30T08:20:32.280Z","/mindly-7f7c4/us-central1/generateStudyPlan-2026-07-30T08:20:32.311Z"],"workRunningCount":2}
+[debug] [2026-07-30T08:20:54.718Z] Finishing up request with event=pause {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateLesson"},"extension":{},"message":"Finishing up request with event=pause"}}
+[info] i  functions: Finished "us-central1-generateLesson" in 22432.424899999998ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateLesson"},"extension":{},"message":"Finished \"us-central1-generateLesson\" in 22432.424899999998ms"}}
+[debug] [2026-07-30T08:20:54.720Z] [worker-us-central1-generateLesson-773fbbcf-9287-4e31-b4c5-3bca7152246d]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateLesson"},"extension":{},"message":"[worker-us-central1-generateLesson-773fbbcf-9287-4e31-b4c5-3bca7152246d]: IDLE"}}
+[debug] [2026-07-30T08:20:54.721Z] Finishing up request with event=finish {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateLesson"},"extension":{},"message":"Finishing up request with event=finish"}}
+[debug] [2026-07-30T08:20:54.722Z] Finishing up request with event=close {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateLesson"},"extension":{},"message":"Finishing up request with event=close"}}
+[debug] [2026-07-30T08:20:54.722Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/mindly-7f7c4/us-central1/generateStudyPlan-2026-07-30T08:20:32.311Z"],"workRunningCount":1}
+[debug] [2026-07-30T08:20:55.912Z] Finishing up request with event=pause {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateStudyPlan"},"extension":{},"message":"Finishing up request with event=pause"}}
+[info] i  functions: Finished "us-central1-generateStudyPlan" in 23592.4154ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateStudyPlan"},"extension":{},"message":"Finished \"us-central1-generateStudyPlan\" in 23592.4154ms"}}
+[debug] [2026-07-30T08:20:55.914Z] [worker-us-central1-generateStudyPlan-d2869a95-2d27-45b3-8d65-df5231be963f]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateStudyPlan"},"extension":{},"message":"[worker-us-central1-generateStudyPlan-d2869a95-2d27-45b3-8d65-df5231be963f]: IDLE"}}
+[debug] [2026-07-30T08:20:55.914Z] Finishing up request with event=finish {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateStudyPlan"},"extension":{},"message":"Finishing up request with event=finish"}}
+[debug] [2026-07-30T08:20:55.915Z] Finishing up request with event=close {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-generateStudyPlan"},"extension":{},"message":"Finishing up request with event=close"}}
+[debug] [2026-07-30T08:20:55.915Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}

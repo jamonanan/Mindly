@@ -1,4 +1,4 @@
-﻿import { auth, db } from './firebaseAuth.js';
+import { auth, db } from './firebaseAuth.js';
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import { collection, doc, getDocs, addDoc, deleteDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 import { updateDailyMetric } from './metrics.js';
@@ -90,13 +90,15 @@ function renderPlanCard(planId, data) {
     const progressPercent = totalChunks === 0 ? 0 : (completedChunks / totalChunks) * 100;
     
     const dateStr = data.createdAt ? new Date(data.createdAt).toLocaleDateString() : 'Unknown Date';
+    const isFinished = totalChunks > 0 && completedChunks === totalChunks;
+    const statusText = isFinished ? '<span style="color: green; font-weight: bold; font-size: 0.85em; padding: 2px 6px; background: #e6ffe6; border-radius: 4px; margin-left: 8px; vertical-align: middle;">Finished</span>' : '';
 
     const card = document.createElement("div");
     card.className = "plan-card";
     
     card.innerHTML = `
         <div class="plan-info">
-            <h3 class="plan-title">${data.title || 'Untitled Plan'}</h3>
+            <h3 class="plan-title" style="display: flex; align-items: center;">${data.title || 'Untitled Plan'} ${statusText}</h3>
             <p class="plan-meta">Created: ${dateStr} • ${completedChunks}/${totalChunks} tasks done</p>
             <div class="plan-progress-container">
                 <div class="plan-progress-fill" style="width: ${progressPercent}%"></div>

@@ -1,6 +1,6 @@
-﻿import { auth, db } from './firebaseAuth.js';
+import { auth, db } from './firebaseAuth.js';
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import { collection, doc, getDocs, deleteDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { collection, doc, getDocs, deleteDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 import { updateDailyMetric } from './metrics.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -52,13 +52,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderLessonCard(lessonId, data) {
         const dateStr = data.createdAt ? new Date(data.createdAt).toLocaleDateString() : 'Unknown Date';
+        const statusText = data.status === 'completed' ? '<span style="color: green; font-weight: bold; font-size: 0.85em; padding: 2px 6px; background: #e6ffe6; border-radius: 4px; margin-left: 8px; vertical-align: middle;">Finished</span>' : '';
 
         const card = document.createElement("div");
         card.className = "plan-card";
 
         card.innerHTML = `
             <div class="plan-info">
-                <h3 class="plan-title">${data.title || 'Untitled Lesson'}</h3>
+                <h3 class="plan-title" style="display: flex; align-items: center;">${data.title || 'Untitled Lesson'} ${statusText}</h3>
                 <p class="plan-meta">Created: ${dateStr}</p>
             </div>
             <button class="delete-plan-btn delete-btn" title="Delete Lesson"></button>
@@ -120,6 +121,10 @@ document.addEventListener('DOMContentLoaded', () => {
     finishBtn.addEventListener('click', async () => {
         try {
             await updateDailyMetric('lessonsDone', 1);
+            if (currentLessonId) {
+                const lessonRef = doc(db, "users", currentUser.uid, "lessons", currentLessonId);
+                await updateDoc(lessonRef, { status: 'completed' });
+            }
             console.log("Lesson finished! Great job.");
         } catch (error) {
             console.error("Error updating lesson metric:", error);
@@ -127,6 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
         resultsSection.style.display = "none";
         listView.style.display = "block";
         currentLessonId = null;
+        loadLessons(); // Refresh list to show Finished status
     });
 });
 
